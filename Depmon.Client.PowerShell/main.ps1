@@ -1,5 +1,5 @@
 param (
-	[string]$paramsFile = "params.json",
+    [string]$paramsFile = "params.json",
     [string]$scriptPath = (Split-Path $MyInvocation.InvocationName),
     [string]$Global:attachmentName = "results.csv"
 )
@@ -17,13 +17,13 @@ Write-Host "Creating file [${attachmentName}]..."
 file-create -fileName $attachmentName
 Write-Host "OK" -ForegroundColor Yellow
 
-$groupCode = $params.groupCode;
-Write-Host "Group: [${groupCode}]"
+$sourceCode = $params.sourceCode;
+Write-Host "Group: [${sourceCode}]"
 
 foreach ($object in $params.objects)
 {
-    $objectCode = $object.objectCode
-    Write-Host "Begin processing object: [${objectCode}]"
+    $groupCode = $object.groupCode
+    Write-Host "Begin processing object: [${groupCode}]"
 
     foreach ($resource in $object.resources)
     {
@@ -32,7 +32,7 @@ foreach ($object in $params.objects)
 
         foreach ($indicator in $resource.indicators)
         {
-            indicator-process -indicator $indicator -groupCode $groupCode -objectCode $objectCode -resourceCode $resourceCode
+            indicator-process -indicator $indicator -sourceCode $sourceCode -groupCode $groupCode -resourceCode $resourceCode
         }
     }
 }

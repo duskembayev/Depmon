@@ -1,8 +1,8 @@
 Function indicator-process
 {
     param (
+        $sourceCode,
         $groupCode,
-        $objectCode,
         $resourceCode,
         $indicator
     )
@@ -13,8 +13,8 @@ Function indicator-process
     $command = [string]::Format("command-{0}", $indicator.command)
 
     $contextProps = @{
+        sourceCode = $sourceCode
         groupCode = $groupCode
-        objectCode = $objectCode
         resourceCode = $resourceCode
         indicatorCode = $indicatorCode
     }
@@ -48,9 +48,25 @@ Function command-web-state
     $response = Invoke-WebRequest $uri
     $statusCode = $response.StatusCode
     $statusDesc = $response.StatusDescription
+    if ($statusCode = 200)
+    {
+        $level = 'Normal'
+    }
+    else
+    {
+        $level = 'Warning'
+    }
 
-    $result = [PSCustomObject]@{ 'GroupCode' = $context.groupCode; 'ObjectCode' = $context.objectCode; 'ResultCode' = $context.resourceCode; 'indicatorCode' = $context.indicatorCode; 'StatusCode' = $statusCode; 'StatusDesc' = $statusDesc}
-    
+    $result = [PSCustomObject]@{
+                    'SourceCode' = $context.sourceCode;
+                    'GroupCode' = $context.groupCode;
+                    'ResourceCode' = $context.resourceCode;
+                    'IndicatorCode' = $context.indicatorCode;
+                    'IndicatorValue' = $statusCode;
+                    'IndicatorDescription' = $statusDesc;
+                    'Level' = $level;
+                    'CheckedAt' = [DateTime]::Now
+                }
 
     Write-Host "${statusCode} ${statusDesc}" -ForegroundColor Yellow
     return $result
