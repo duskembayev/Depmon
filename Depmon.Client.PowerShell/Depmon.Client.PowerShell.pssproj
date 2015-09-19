@@ -26,9 +26,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Script.ps1" />
+    <Content Include="params.json" />
+    <Content Include="reporters.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="functions.ps1" />
+    <Compile Include="main.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />

@@ -1,0 +1,31 @@
+{
+  "groupCode": "DF-KTZHCloud",
+  "objects": [
+    {
+      "objectCode": "192.168.1.3",
+      "resources": [
+        {
+          "resourceCode": "Web.Application",
+          "indicators": [
+            {
+              "indicatorCode": "State-Google",
+              "command": "web-state",
+              "args": {
+                "uri": "https://google.com/",
+                "v": "v"
+              }
+            },
+            {
+              "indicatorCode": "State-Yandex",
+              "command": "web-state",
+              "args": {
+                "uri": "https://yandex.ru/",
+                "v": "v"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

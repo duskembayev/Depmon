@@ -1,0 +1,14 @@
+{
+  "reporters": [
+    {
+      "from": "healthmonitor@mail.ru",
+      "user": "healthmonitor",
+      "password": "healthmonitor",
+      "smtpHost": "smtp.mail.ru",
+      "port": 25,
+      "useSsl": true,
+      "subject": "Monitoring result v2",
+      "recipients": [ "sergey.rubtsov@dtech.kz" ]
+    }
+  ]
+}
