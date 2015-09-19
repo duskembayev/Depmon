@@ -1,5 +1,7 @@
 using React;
 
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Depmon.Server.Portal.ReactConfig), "Configure")]
+
 namespace Depmon.Server.Portal
 {
 	public static class ReactConfig

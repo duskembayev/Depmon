@@ -20,7 +20,6 @@ namespace Depmon.Server.Portal
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ReactConfig.Configure();
         }
     }
 }
