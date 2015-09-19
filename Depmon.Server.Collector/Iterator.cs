@@ -30,19 +30,24 @@ namespace Depmon.Server.Collector
 
             if (!data.Any()) return;
 
-            using (var connection = ConnectionFactory.Instance.Create())
-            using (var rRepo = new ReportRepository(connection))
-            using (var fRepo = new FactRepository(connection))
+            try
             {
-                foreach (var stream in data)
+                using (var connection = ConnectionFactory.Instance.Create())
+                using (var rRepo = new ReportRepository(connection))
+                using (var fRepo = new FactRepository(connection))
                 {
-                    var reportId = rRepo.Create();
+                    foreach (var stream in data)
+                    {
+                        var reportId = rRepo.Create();
 
-                    Process(stream, reportId, fRepo);
+                        Process(stream, reportId, fRepo);
+                    }
                 }
             }
-
-            Dispose(data);
+            finally
+            {
+                Dispose(data);
+            }
         }
 
         private void Process(Stream data, long reportId, FactRepository factRepository)
@@ -68,6 +73,8 @@ namespace Depmon.Server.Collector
                     }
 
                     factRepository.InsertMany(dtos);
+
+                    Console.WriteLine("{0} facts saved", dtos.Length);
                 }
             }
             catch (Exception e)
