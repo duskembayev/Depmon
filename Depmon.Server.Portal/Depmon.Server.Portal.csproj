@@ -199,7 +199,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_viewstart.cshtml" />
     <Content Include="Views\Shared\_layout.cshtml" />
-    <Content Include="JSX\main.jsx" />
+    <Content Include="Scripts\app\jsx\main.jsx" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
   </ItemGroup>
   <ItemGroup>

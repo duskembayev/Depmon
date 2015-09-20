@@ -8,7 +8,8 @@ namespace Depmon.Server.Portal
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new JsxBundle("~/bundles/main").IncludeDirectory("~/JSX", "*.jsx", true));
+            bundles.Add(new JsxBundle("~/bundles/main")
+                .IncludeDirectory("~/Scripts/app/jsx", "*.jsx", true));
 
             bundles.Add(new StyleBundle("~/bundles/styles")
                 .Include("~/Content/bootstrap.min.css")
@@ -21,7 +22,6 @@ namespace Depmon.Server.Portal
 
             bundles.Add(new ScriptBundle("~/bundles/footscripts")
                 .Include("~/Scripts/bootstrap.min.js"));
-
         }
     }
 }
