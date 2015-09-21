@@ -1,0 +1,11 @@
+{
+  "name": "Depmon.Server.Portal",
+  "version": "0.1.0",
+  "description": "Deployment Health Monitor",
+  "scripts": { },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+
+  }
+}
