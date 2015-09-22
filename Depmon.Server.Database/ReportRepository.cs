@@ -1,22 +1,48 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
+using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Database
 {
-    public class ReportRepository : RepositoryBase
+    public class ReportRepository : Repository<Report>
     {
         public ReportRepository(IDbConnection connection) : base(connection)
+        { }
+
+        public override IEnumerable<Report> GetAll()
         {
+            var sql = "SELECT * FROM Reports";
+            return Connection.Query<Report>(sql);
         }
 
-        public int Create()
+        public override Report GetById(int id)
         {
-            var sql = @"insert into Reports (CreatedAt) values (@date)";
-            var prm = new {date = DateTime.Now};
+            var sql = "SELECT * FROM Reports WHERE Facts.Id = @id";
+            var query = Connection.Query<Report>(sql, new { id = id });
+            return query.ElementAtOrDefault(0);
+        }
 
-            Connection.Execute(sql, prm);
-            return LastId;
+        public override void Save(Report entity)
+        {
+            var sqlInsert = @"INSERT INTO Reports (CreatedAt)
+                                        VALUES  (@CreatedAt)";
+
+            var sqlUpdate = @"UPDATE Reports
+                              SET CreatedAt = @CreatedAt
+                              WHERE Id = @Id";
+            var sql = entity.Id == 0 ? sqlInsert : sqlUpdate;
+
+            Connection.Execute(sql, entity);
+        }
+
+        public override void Delete(Report entity)
+        {
+            var sql = "DELETE FROM Reports WHERE Id = @Id";
+
+            Connection.Execute(sql, entity);
         }
     }
 }
