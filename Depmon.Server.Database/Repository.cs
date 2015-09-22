@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
+using Dapper;
 
 namespace Depmon.Server.Database
 {
@@ -10,17 +12,42 @@ namespace Depmon.Server.Database
 
         protected int LastId => (int)((SQLiteConnection)Connection).LastInsertRowId;
 
+        private string _tableName;
+
         protected Repository(IDbConnection connection)
         {
             Connection = connection;
+
+            GetTableName();
         }
-
-        public abstract IEnumerable<T> GetAll();
-
-        public abstract T GetById(int id);
 
         public abstract void Save(T entity);
 
-        public abstract void Delete(T entity);
+        private void GetTableName()
+        {
+            string sql = "SELECT name FROM sqlite_master WHERE type = 'table'";
+            IEnumerable<string> names = Connection.Query<string>(sql);
+            string type = typeof (T).Name;
+            _tableName = names.FirstOrDefault(s => s.Contains(type));
+        }
+
+        public virtual IEnumerable<T> GetAll()
+        {
+            var sql = $"SELECT * FROM {_tableName}";
+            return Connection.Query<T>(sql);
+        }
+
+        public virtual T GetById(int id)
+        {
+            var sql = $"SELECT * FROM {_tableName} WHERE Facts.Id = @id";
+            var query = Connection.Query<T>(sql, new { id = id });
+            return query.ElementAtOrDefault(0);
+        }
+
+        public virtual void Delete(T entity)
+        {
+            var sql = $"DELETE FROM {_tableName} WHERE Id = @Id";
+            Connection.Execute(sql, entity);
+        }
     }
 }

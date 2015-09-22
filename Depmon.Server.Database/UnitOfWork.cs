@@ -21,7 +21,6 @@ namespace Depmon.Server.Database
 
             if (!_repositories.ContainsKey(type))
             {
-                var repositoryType = typeof(Repository<>);
                 object repository;
 
                 //TODO: придумать другой вариант
