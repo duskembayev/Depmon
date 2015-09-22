@@ -24,6 +24,19 @@
               }
             }
           ]
+        },
+        {
+          "resourceCode": "Hard",
+          "indicators": [
+            {
+              "indicatorCode": "DriveState",
+              "command": "harddrive-state",
+              "args": {
+                "server": "localhost",
+                "driveToCheck": [ "C", "D" ]
+              }
+            }
+          ]
         }
       ]
     }

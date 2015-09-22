@@ -21,8 +21,11 @@ Function indicator-process
     $commandContext = New-Object -TypeName psobject -Property $contextProps
     $commandArgs = $indicator.args
     
-    $row = &$command -context $commandContext -contextArgs $commandArgs
-    Export-Csv -Path $attachmentName -InputObject $row -NoTypeInformation -Append
+    $rows = &$command -context $commandContext -contextArgs $commandArgs
+    foreach($row in $rows)
+    {
+        Export-Csv -Path $attachmentName -InputObject $row -NoTypeInformation -Append
+    }
     
     Write-Host "    [${indicatorCode}]: finished"
 }
@@ -69,6 +72,67 @@ Function command-web-state
                 }
 
     Write-Host "${statusCode} ${statusDesc}" -ForegroundColor Yellow
+    return $result
+}
+
+Function command-harddrive-state
+{
+    param (
+        $context,
+        $contextArgs
+    )
+
+    $server = $contextArgs.server
+    Write-Host "Checking HDDs for [${server}]"
+
+    $disks = Get-WmiObject -Class Win32_LogicalDisk -ComputerName $server -Filter "DriveType=3"
+    [PSCustomObject[]]$result = @()
+    foreach($disk in $disks)
+    {
+        $level = 'Normal'
+           $result += [PSCustomObject]@{
+                    'SourceCode' = $context.sourceCode;
+                    'GroupCode' = $context.groupCode;
+                    'ResourceCode' = $context.resourceCode;
+                    'IndicatorCode' = $context.indicatorCode;
+                    'IndicatorValue' = $disk.size;
+                    'IndicatorDescription' = $disk.DeviceID + ' Total Space';
+                    'Level' = $level;
+                    'CheckedAt' = [DateTime]::Now
+                }
+        $result += [PSCustomObject]@{
+                    'SourceCode' = $context.sourceCode;
+                    'GroupCode' = $context.groupCode;
+                    'ResourceCode' = $context.resourceCode;
+                    'IndicatorCode' = $context.indicatorCode;
+                    'IndicatorValue' = $disk.FreeSpace;
+                    'IndicatorDescription' = $disk.DeviceID + ' Free Space';
+                    'Level' = $level;
+                    'CheckedAt' = [DateTime]::Now
+                }
+        $perc = $disk.FreeSpace * 100 / $disk.Size;
+        if ($perc -lt 10) 
+        {
+            $level = 'Warning';
+        } 
+        else 
+        { 
+            if ($perc -lt 5) 
+            {
+                $level = 'Error';
+            }
+        }
+        $result += [PSCustomObject]@{
+                    'SourceCode' = $context.sourceCode;
+                    'GroupCode' = $context.groupCode;
+                    'ResourceCode' = $context.resourceCode;
+                    'IndicatorCode' = $context.indicatorCode;
+                    'IndicatorValue' = $perc;
+                    'IndicatorDescription' = $disk.DeviceID + ' Percentage';
+                    'Level' = $level;
+                    'CheckedAt' = [DateTime]::Now
+                }
+    }
     return $result
 }
 
