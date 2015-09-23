@@ -1,8 +1,13 @@
 ﻿var React = require('react');
+var Rb = require('react-bootstrap');
+var Navbar = Rb.Navbar;
 
 var RootLayout = React.createClass({
     render: function () {
-        return (<div>Hello world!</div>);
+        return (
+<div>
+    <Navbar brand="Depmon"></Navbar>
+</div>);
     }
 });
 
