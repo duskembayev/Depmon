@@ -33,7 +33,29 @@
               "command": "harddrive-state",
               "args": {
                 "server": "localhost",
+                "username": "",
+                "password": "",
                 "driveToCheck": [ "C", "D" ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupCode": "192.168.0.145",
+      "resources": [
+        {
+          "resourceCode": "Hard",
+          "indicators": [
+            {
+              "indicatorCode": "DriveState",
+              "command": "harddrive-state",
+              "args": {
+                "server": "192.168.0.145",
+                "username": "dtech\\developer",
+                "password": "dawnreader",
+                "driveToCheck": [ "C" ]
               }
             }
           ]

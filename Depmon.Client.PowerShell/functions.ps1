@@ -85,7 +85,18 @@ Function command-harddrive-state
     $server = $contextArgs.server
     Write-Host "Checking HDDs for [${server}]"
 
-    $disks = Get-WmiObject -Class Win32_LogicalDisk -ComputerName $server -Filter "DriveType=3"
+    if ($contextArgs.username -ne '')
+    {
+        $secPass = $contextArgs.password | ConvertTo-SecureString -AsPlainText -Force
+        $cred = New-Object PSCredential($contextArgs.username, $secPass)
+        $disks = Get-WmiObject -Class Win32_LogicalDisk -ComputerName $server -Filter "DriveType=3" -Credential $cred
+    }
+    else
+    {
+        $disks = Get-WmiObject -Class Win32_LogicalDisk -ComputerName $server -Filter "DriveType=3"
+    }
+
+    
     [PSCustomObject[]]$result = @()
     foreach($disk in $disks)
     {
