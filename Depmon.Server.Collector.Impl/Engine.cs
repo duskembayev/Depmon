@@ -49,7 +49,7 @@ namespace Depmon.Server.Collector.Impl
 
             using (var scope = continer.BeginLifetimeScope())
             {
-                IDataLoad dataLoad = scope.Resolve<IDataLoad>();
+                IMailReciever dataLoad = scope.Resolve<IMailReciever>();
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     try

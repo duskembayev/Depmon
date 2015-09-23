@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<monitoring>
-  <iteration delay="00:00:05" />
-  <mailboxes>
-    <add name="hm@ecm.local" server="sts.ecm.local" port="110" ssl="false" username="hm@ecm.local" password="1" timeout="1000" capacity="10" delay="00:00:10" />
-  </mailboxes>
-</monitoring>

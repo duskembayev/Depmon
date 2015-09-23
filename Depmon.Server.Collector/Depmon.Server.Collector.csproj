@@ -97,9 +97,10 @@
     <Compile Include="Configuration\IConfigReader.cs" />
     <Compile Include="Configuration\Iteration.cs" />
     <Compile Include="Configuration\Mailbox.cs" />
+    <Compile Include="Configuration\MailboxCollection.cs" />
     <Compile Include="Configuration\MonitoringSection.cs" />
     <Compile Include="IEngine.cs" />
-    <Compile Include="IDataLoad.cs" />
+    <Compile Include="IMailReciever.cs" />
     <Compile Include="IDataSave.cs" />
     <Compile Include="ILevelConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Configuration;
 
 namespace Depmon.Server.Collector.Configuration
 {
-    public class MonitoringSection
+    public class MonitoringSection : ConfigurationSection
     {
-        public IList<Mailbox> Mailboxes { get; set; }
+        [ConfigurationProperty("mailboxes")]
+        public MailboxCollection Mailboxes => (MailboxCollection)base["mailboxes"];
 
-        public Iteration Iteration { get; set; }
+        [ConfigurationProperty("iteration")]
+        public Iteration Iteration => (Iteration)base["iteration"];
     }
 }
