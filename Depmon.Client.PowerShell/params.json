@@ -2,7 +2,7 @@
   "sourceCode": "DF-KTZHCloud",
   "objects": [
     {
-      "groupCode": "192.168.1.3",
+      "groupCode": "Localhost",
       "resources": [
         {
           "resourceCode": "Web.Application",
@@ -10,18 +10,12 @@
             {
               "indicatorCode": "State-Google",
               "command": "web-state",
-              "args": {
-                "uri": "https://google.com/",
-                "v": "v"
-              }
+              "args": { "uri": "https://google.com/" }
             },
             {
               "indicatorCode": "State-Yandex",
               "command": "web-state",
-              "args": {
-                "uri": "https://yandex.ru/",
-                "v": "v"
-              }
+              "args": { "uri": "https://yandex.ru/" }
             }
           ]
         },
