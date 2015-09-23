@@ -8,7 +8,7 @@ using OpenPop.Pop3;
 
 namespace Depmon.Server.Collector.Impl
 {
-    public class DataLoad : IDataLoad
+    public class MailReciever : IMailReciever
     {
         public IList<Stream> Load(Mailbox mailbox)
         {
