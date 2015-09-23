@@ -60,16 +60,7 @@ Function command-web-state
         $level = 'Warning'
     }
 
-    $result = [PSCustomObject]@{
-                    'SourceCode' = $context.sourceCode;
-                    'GroupCode' = $context.groupCode;
-                    'ResourceCode' = $context.resourceCode;
-                    'IndicatorCode' = $context.indicatorCode;
-                    'IndicatorValue' = $statusCode;
-                    'IndicatorDescription' = $statusDesc;
-                    'Level' = $level;
-                    'CheckedAt' = [DateTime]::Now
-                }
+    $result = Create-Result -context $context -indicatorValue $statusCode -indicatorDescription $statusDesc -level $level
 
     Write-Host "${statusCode} ${statusDesc}" -ForegroundColor Yellow
     return $result
@@ -87,8 +78,8 @@ Function command-harddrive-state
 
     if ($contextArgs.username -ne '')
     {
-        $secPass = $contextArgs.password | ConvertTo-SecureString -AsPlainText -Force
-        $cred = New-Object PSCredential($contextArgs.username, $secPass)
+        $securePassword = $contextArgs.password | ConvertTo-SecureString -AsPlainText -Force
+        $cred = New-Object PSCredential($contextArgs.username, $securePassword)
         $disks = Get-WmiObject -Class Win32_LogicalDisk -ComputerName $server -Filter "DriveType=3" -Credential $cred
     }
     else
@@ -105,26 +96,9 @@ Function command-harddrive-state
             continue
         }
         $level = 'Normal'
-        $result += [PSCustomObject]@{
-                    'SourceCode' = $context.sourceCode;
-                    'GroupCode' = $context.groupCode;
-                    'ResourceCode' = $context.resourceCode;
-                    'IndicatorCode' = $context.indicatorCode;
-                    'IndicatorValue' = $disk.size;
-                    'IndicatorDescription' = $disk.DeviceID + ' Total Space';
-                    'Level' = $level;
-                    'CheckedAt' = [DateTime]::Now
-                }
-        $result += [PSCustomObject]@{
-                    'SourceCode' = $context.sourceCode;
-                    'GroupCode' = $context.groupCode;
-                    'ResourceCode' = $context.resourceCode;
-                    'IndicatorCode' = $context.indicatorCode;
-                    'IndicatorValue' = $disk.FreeSpace;
-                    'IndicatorDescription' = $disk.DeviceID + ' Free Space';
-                    'Level' = $level;
-                    'CheckedAt' = [DateTime]::Now
-                }
+        [String]$diskID = $disk.DeviceID
+        $result += Create-Result -context $context -indicatorValue $disk.Size -indicatorDescription ($diskID + ' Total Space') -level $level
+        $result += Create-Result -context $context -indicatorValue $disk.FreeSpace -indicatorDescription ($diskID + ' Free Space') -level $level
         $perc = $disk.FreeSpace * 100 / $disk.Size;
         if ($perc -lt 10) 
         {
@@ -137,18 +111,30 @@ Function command-harddrive-state
                 $level = 'Error';
             }
         }
-        $result += [PSCustomObject]@{
+        $result += Create-Result -context $context -indicatorValue $perc -indicatorDescription ($diskID + ' Percentage') -level $level
+    }
+    return $result
+}
+
+Function Create-Result
+{
+    param (
+        $context,
+        $indicatorValue,
+        $indicatorDescription,
+        $level
+    )
+
+    return [PSCustomObject]@{
                     'SourceCode' = $context.sourceCode;
                     'GroupCode' = $context.groupCode;
                     'ResourceCode' = $context.resourceCode;
                     'IndicatorCode' = $context.indicatorCode;
-                    'IndicatorValue' = $perc;
-                    'IndicatorDescription' = $disk.DeviceID + ' Percentage';
+                    'IndicatorValue' = $indicatorValue;
+                    'IndicatorDescription' = $indicatorDescription;
                     'Level' = $level;
                     'CheckedAt' = [DateTime]::Now
                 }
-    }
-    return $result
 }
 
 Function Send-Result 
