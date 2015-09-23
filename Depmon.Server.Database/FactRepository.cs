@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -21,6 +19,14 @@ namespace Depmon.Server.Database
                               WHERE Id = @Id";
             var sql = entity.Id == 0 ? sqlInsert : sqlUpdate;
 
+            Connection.Execute(sql, entity);
+        }
+
+        public override void InsertMany(params Fact[] entity)
+        {
+            var sql = @"INSERT INTO Facts (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
+                                        VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
+            
             Connection.Execute(sql, entity);
         }
     }

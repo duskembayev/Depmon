@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -21,6 +18,14 @@ namespace Depmon.Server.Database
                               SET CreatedAt = @CreatedAt
                               WHERE Id = @Id";
             var sql = entity.Id == 0 ? sqlInsert : sqlUpdate;
+
+            Connection.Execute(sql, entity);
+        }
+
+        public override void InsertMany(params Report[] entity)
+        {
+            var sql = @"INSERT INTO Reports (CreatedAt)
+                                        VALUES  (@CreatedAt)";
 
             Connection.Execute(sql, entity);
         }

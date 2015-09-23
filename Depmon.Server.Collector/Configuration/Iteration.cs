@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Configuration;
 
 namespace Depmon.Server.Collector.Configuration
 {
-    public class Iteration : ConfigurationElement
+    public class Iteration
     {
-        [ConfigurationProperty("delay")]
-        public TimeSpan Delay => (TimeSpan)base["delay"];
+        public TimeSpan Delay { get; set; }
     }
 }

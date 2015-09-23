@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 
 namespace Depmon.Server.Database
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private IDbConnection _connection;
         private Dictionary<string, object> _repositories;
@@ -40,7 +39,7 @@ namespace Depmon.Server.Database
                 _repositories.Add(type, repository);
             }
 
-            return (Repository<T>)_repositories[type];
+            return (IRepository<T>)_repositories[type];
         }
 
         public void Dispose()

@@ -1,36 +1,25 @@
-using System;
-using System.Configuration;
+﻿using System;
 
 namespace Depmon.Server.Collector.Configuration
 {
-    public class Mailbox : ConfigurationElement
+    public class Mailbox
     {
-        [ConfigurationProperty("name", IsKey = true, IsRequired = true)]
-        public string Name => (string)base["name"];
+        public string Name { get; set; }
 
-        [ConfigurationProperty("server", IsRequired = true)]
-        public string Server => (string)base["server"];
+        public string Server { get; set; }
 
-        [ConfigurationProperty("port", DefaultValue = 110)]
-        public int Port => (int)base["port"];
+        public int Port { get; set; }
 
-        [ConfigurationProperty("ssl", DefaultValue = false)]
-        public bool Ssl => (bool)base["ssl"];
+        public bool Ssl { get; set; }
 
-        [ConfigurationProperty("username", IsRequired = false)]
-        public string Username => (string)base["username"];
+        public string Username { get; set; }
 
-        [ConfigurationProperty("password", IsRequired = false)]
-        public string Password => (string)base["password"];
+        public string Password { get; set; }
 
-        [ConfigurationProperty("timeout", DefaultValue = 1000)]
-        public int Timeout => (int)base["timeout"];
+        public int Timeout { get; set; }
 
-        [ConfigurationProperty("capacity", DefaultValue = 10)]
-        public int Capacity => (int)base["capacity"];
+        public int Capacity { get; set; }
 
-        [ConfigurationProperty("delay", DefaultValue = "00:00:10")]
-        public TimeSpan Delay => (TimeSpan)base["delay"];
-
+        public TimeSpan Delay { get; set; }
     }
 }

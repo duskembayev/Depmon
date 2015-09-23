@@ -1,6 +1,8 @@
-﻿namespace Depmon.Server.Database
+﻿using System;
+
+namespace Depmon.Server.Database
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<T> GetRepository<T>();
     }

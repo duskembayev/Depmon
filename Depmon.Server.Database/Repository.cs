@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace Depmon.Server.Database
         }
 
         public abstract void Save(T entity);
+
+        public abstract void InsertMany(params T[] entity);
+
 
         private void GetTableName()
         {
@@ -48,6 +52,11 @@ namespace Depmon.Server.Database
         {
             var sql = $"DELETE FROM {_tableName} WHERE Id = @Id";
             Connection.Execute(sql, entity);
+        }
+
+        public void Dispose()
+        {
+            Connection = null;
         }
     }
 }
