@@ -9,7 +9,7 @@ namespace Depmon.Server.Database
         public ReportRepository(IDbConnection connection) : base(connection)
         { }
 
-        public override void Save(Report entity)
+        public override void Save(Report report)
         {
             var sqlInsert = @"INSERT INTO Reports (CreatedAt)
                                         VALUES  (@CreatedAt)";
@@ -17,17 +17,17 @@ namespace Depmon.Server.Database
             var sqlUpdate = @"UPDATE Reports
                               SET CreatedAt = @CreatedAt
                               WHERE Id = @Id";
-            var sql = entity.Id == 0 ? sqlInsert : sqlUpdate;
+            var sql = report.Id == 0 ? sqlInsert : sqlUpdate;
 
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, report);
         }
 
-        public override void InsertMany(params Report[] entity)
+        public override void InsertMany(params Report[] reports)
         {
             var sql = @"INSERT INTO Reports (CreatedAt)
                                         VALUES  (@CreatedAt)";
 
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, reports);
         }
     }
 }

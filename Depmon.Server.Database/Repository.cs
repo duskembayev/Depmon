@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.Linq;
 using Dapper;
 
@@ -10,8 +8,6 @@ namespace Depmon.Server.Database
     public abstract class Repository<T> : IRepository<T>
     {
         public IDbConnection Connection { get; private set; }
-
-        protected int LastId => (int)((SQLiteConnection)Connection).LastInsertRowId;
 
         private string _tableName;
 
@@ -24,7 +20,7 @@ namespace Depmon.Server.Database
 
         public abstract void Save(T entity);
 
-        public abstract void InsertMany(params T[] entity);
+        public abstract void InsertMany(params T[] entities);
 
 
         private void GetTableName()

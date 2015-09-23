@@ -9,7 +9,7 @@ namespace Depmon.Server.Database
 
         T GetById(int id);
 
-        void InsertMany(params T[] entity);
+        void InsertMany(params T[] entities);
 
         void Save(T entity);
 

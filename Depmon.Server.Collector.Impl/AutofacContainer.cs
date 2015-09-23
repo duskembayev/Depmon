@@ -16,7 +16,7 @@ namespace Depmon.Server.Collector.Impl
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<Engine>().As<IEngine>();
             builder.RegisterType<ConfigReader>().As<IConfigReader>();
-            builder.RegisterType<DataLoad>().As<IDataLoad>();
+            builder.RegisterType<MailReciever>().As<IMailReciever>();
             builder.RegisterType<DataSave>().As<IDataSave>();
 
             _container = builder.Build();

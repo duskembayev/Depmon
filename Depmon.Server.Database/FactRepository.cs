@@ -9,7 +9,7 @@ namespace Depmon.Server.Database
         public FactRepository(IDbConnection connection) : base(connection)
         { }
 
-        public override void Save(Fact entity)
+        public override void Save(Fact fact)
         {
             var sqlInsert = @"INSERT INTO Facts (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
@@ -17,17 +17,17 @@ namespace Depmon.Server.Database
                               SET CheckedAt = @CheckedAt,  SourceCode = @SourceCode,  GroupCode = @GroupCode,  ResourceCode = @ResourceCode,  IndicatorCode = @IndicatorCode,
                                   IndicatorValue = @IndicatorValue,  IndicatorDescription = @IndicatorDescription,  Level = @Level,  ReportId = @ReportId
                               WHERE Id = @Id";
-            var sql = entity.Id == 0 ? sqlInsert : sqlUpdate;
+            var sql = fact.Id == 0 ? sqlInsert : sqlUpdate;
 
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, fact);
         }
 
-        public override void InsertMany(params Fact[] entity)
+        public override void InsertMany(params Fact[] facts)
         {
             var sql = @"INSERT INTO Facts (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
             
-            Connection.Execute(sql, entity);
+            Connection.Execute(sql, facts);
         }
     }
 }
