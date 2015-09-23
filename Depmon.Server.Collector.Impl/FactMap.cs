@@ -1,4 +1,6 @@
-﻿using CsvHelper.Configuration;
+﻿using System;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector.Impl
@@ -18,6 +20,29 @@ namespace Depmon.Server.Collector.Impl
             Map(f => f.Level).TypeConverter<LevelConverter>();
             Map(f => f.Report).Ignore();
             Map(f => f.ReportId).Ignore();
+        }
+
+        internal class LevelConverter : ITypeConverter
+        {
+            public string ConvertToString(TypeConverterOptions options, object value)
+            {
+                return ((FactLevel)value).ToString("G");
+            }
+
+            public object ConvertFromString(TypeConverterOptions options, string text)
+            {
+                return Enum.Parse(typeof(FactLevel), text);
+            }
+
+            public bool CanConvertFrom(Type type)
+            {
+                return true;
+            }
+
+            public bool CanConvertTo(Type type)
+            {
+                return true;
+            }
         }
     }
 }
