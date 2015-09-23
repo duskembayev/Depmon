@@ -29,7 +29,7 @@
                 "server": "localhost",
                 "username": "",
                 "password": "",
-                "driveToCheck": [ ]
+                "drives": [ ]
               }
             }
           ]
@@ -49,7 +49,7 @@
                 "server": "192.168.0.145",
                 "username": "dtech\\developer",
                 "password": "dawnreader",
-                "driveToCheck": [ "C" ]
+                "drives": [ "C" ]
               }
             }
           ]

@@ -1,4 +1,4 @@
-Function indicator-process
+ï»¿Function indicator-process
 {
     param (
         $sourceCode,
@@ -91,7 +91,7 @@ Function command-harddrive-state
     [PSCustomObject[]]$result = @()
     foreach($disk in $disks)
     {
-        if ($contextArgs.driveToCheck.Ñount -gt 0 -and ! $contextArgs.driveToCheck.contains([String]$disk.DeviceID[0]))
+        if ($contextArgs.drives.Count -gt 0 -and ! $contextArgs.drives.contains([String]$disk.DeviceID[0]))
         {
             continue
         }
