@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SQLite;
 
 namespace Depmon.Server.Database
 {
@@ -10,8 +13,15 @@ namespace Depmon.Server.Database
 
         public UnitOfWork()
         {
-            _connection = new ConnectionFactory().Create();
             _repositories = new Dictionary<string, object>();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["depmon"];
+            if (connectionString == null)
+            {
+                throw new ApplicationException("Connection string 'depmon' not found");
+            }
+            _connection = new SQLiteConnection(connectionString.ConnectionString);
+            _connection.Open();
         }
 
         public IRepository<T> GetRepository<T>()
