@@ -7,7 +7,7 @@ namespace Depmon.Server.Collector.Impl.Configuration
 {
     public class ConfigReader : IConfigReader
     {
-        private const string CONFIG_FILE = "config.xml";
+        private const string ConfigFile = "config.xml";
 
         public MonitoringSection Read()
         {
@@ -15,7 +15,7 @@ namespace Depmon.Server.Collector.Impl.Configuration
             result.Iteration = new Iteration();
             result.Mailboxes = new List<Mailbox>();
 
-            XDocument doc = XDocument.Load(CONFIG_FILE);
+            XDocument doc = XDocument.Load(ConfigFile);
 
             result.Iteration.Delay = TimeSpan.Parse(doc.Root.Element("iteration").Attribute("delay").Value);
 
