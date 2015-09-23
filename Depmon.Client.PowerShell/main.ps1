@@ -35,6 +35,7 @@ foreach ($object in $params.objects)
             indicator-process -indicator $indicator -sourceCode $sourceCode -groupCode $groupCode -resourceCode $resourceCode
         }
     }
+    Write-Host "End processing object: [${groupCode}]"
 }
 
 #Send-Result

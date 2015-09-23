@@ -35,7 +35,7 @@
                 "server": "localhost",
                 "username": "",
                 "password": "",
-                "driveToCheck": [ "C", "D" ]
+                "driveToCheck": [ ]
               }
             }
           ]
