@@ -1,62 +1,90 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
-using System.Dynamic;
 
 namespace Depmon.Server.Database
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private IDbConnection _connection;
-        private Dictionary<string, object> _repositories;
+        protected IDbConnection connection;
+        protected IDbTransaction transaction;
 
-        public UnitOfWork()
+        public UnitOfWork(bool requireTransaction = true)
         {
-            _repositories = new Dictionary<string, object>();
-
             var connectionString = ConfigurationManager.ConnectionStrings["depmon"];
             if (connectionString == null)
             {
                 throw new ApplicationException("Connection string 'depmon' not found");
             }
-            _connection = new SQLiteConnection(connectionString.ConnectionString);
-            _connection.Open();
+            connection = new SQLiteConnection(connectionString.ConnectionString);
+            connection.Open();
+
+            if (requireTransaction)
+            {
+                BeginTransaction();
+            }
+        }
+
+        public void BeginTransaction()
+        {
+            if (transaction != null)
+            {
+                return;
+            }
+            transaction = connection.BeginTransaction();
+        }
+        public void CommitChanges()
+        {
+            if (transaction != null)
+            {
+                transaction.Commit();
+            }
         }
 
         public IRepository<T> GetRepository<T>()
         {
             var type = typeof(T).Name;
+            
+            object repository;
 
-            if (!_repositories.ContainsKey(type))
+            //TODO: придумать другой вариант
+            switch (type)
             {
-                object repository;
-
-                //TODO: придумать другой вариант
-                switch (type)
-                {
-                    case "Fact":
-                        repository = new FactRepository(_connection);
-                        break;
-                    case "Report":
-                        repository = new ReportRepository(_connection);
-                        break;
-                    default:
-                        repository = null;
-                        break;
-                }
-
-                _repositories.Add(type, repository);
+                case "Fact":
+                    repository = new FactRepository(connection, transaction);
+                    break;
+                case "Report":
+                    repository = new ReportRepository(connection, transaction);
+                    break;
+                default:
+                    repository = null;
+                    break;
             }
 
-            return (IRepository<T>)_repositories[type];
+            return (IRepository<T>)repository;
         }
 
         public void Dispose()
         {
-            _connection = null;
-            _repositories = null;
+            Dispose(true);
+        }
+
+        protected void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (transaction != null)
+                {
+                    transaction.Dispose();
+                    transaction = null;
+                }
+                if (connection != null)
+                {
+                    connection.Dispose();
+                    connection = null;
+                }
+            }
         }
     }
 }

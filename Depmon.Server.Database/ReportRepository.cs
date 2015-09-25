@@ -6,7 +6,8 @@ namespace Depmon.Server.Database
 {
     public class ReportRepository : Repository<Report>
     {
-        public ReportRepository(IDbConnection connection) : base(connection)
+        public ReportRepository(IDbConnection connection, IDbTransaction transaction):
+            base(connection, transaction)
         { }
 
         public override void Save(Report report)
@@ -19,7 +20,7 @@ namespace Depmon.Server.Database
                               WHERE Id = @Id";
             var sql = report.Id == 0 ? sqlInsert : sqlUpdate;
 
-            Connection.Execute(sql, report);
+            SqlMapper.Execute(_connection, sql, report, _transaction);
         }
 
         public override void InsertMany(params Report[] reports)
@@ -27,7 +28,7 @@ namespace Depmon.Server.Database
             var sql = @"INSERT INTO Reports (CreatedAt)
                                         VALUES  (@CreatedAt)";
 
-            Connection.Execute(sql, reports);
+            SqlMapper.Execute(_connection, sql, reports, _transaction);
         }
     }
 }

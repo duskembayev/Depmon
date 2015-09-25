@@ -30,6 +30,8 @@ namespace Depmon.Server.Collector.Impl
 
                             Process(stream, reportId, fRepo);
                         }
+
+                        unitOfWork.CommitChanges();
                     }
                 }
             }

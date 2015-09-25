@@ -6,7 +6,8 @@ namespace Depmon.Server.Database
 {
     public class FactRepository : Repository<Fact>
     {
-        public FactRepository(IDbConnection connection) : base(connection)
+        public FactRepository(IDbConnection connection, IDbTransaction transaction) : 
+            base(connection, transaction)
         { }
 
         public override void Save(Fact fact)
@@ -18,16 +19,16 @@ namespace Depmon.Server.Database
                                   IndicatorValue = @IndicatorValue,  IndicatorDescription = @IndicatorDescription,  Level = @Level,  ReportId = @ReportId
                               WHERE Id = @Id";
             var sql = fact.Id == 0 ? sqlInsert : sqlUpdate;
-
-            Connection.Execute(sql, fact);
+            
+            SqlMapper.Execute(_connection, sql, fact, _transaction);
         }
 
         public override void InsertMany(params Fact[] facts)
         {
             var sql = @"INSERT INTO Facts (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
-            
-            Connection.Execute(sql, facts);
+
+            SqlMapper.Execute(_connection, sql, facts, _transaction);
         }
     }
 }
