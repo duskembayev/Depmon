@@ -1,14 +1,12 @@
 ﻿var React = require('react');
-var Rb = require('react-bootstrap');
-var Navbar = Rb.Navbar;
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
 
-var RootLayout = React.createClass({
-    render: function () {
-        return (
-<div>
-    <Navbar brand="Depmon"></Navbar>
-</div>);
-    }
-});
+var App = require('./app');
 
-React.render(<RootLayout />, document.getElementById('container'));
+React.render((
+  <Router>
+    <Route path="/" component={App} />
+  </Router>
+), document.body)
