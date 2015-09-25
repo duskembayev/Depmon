@@ -7,8 +7,8 @@ namespace Depmon.Server.Database
 {
     public class UnitOfWork : IUnitOfWork
     {
-        protected IDbConnection connection;
-        protected IDbTransaction transaction;
+        public IDbConnection _connection;
+        public IDbTransaction _transaction;
 
         public UnitOfWork(bool requireTransaction = true)
         {
@@ -17,8 +17,8 @@ namespace Depmon.Server.Database
             {
                 throw new ApplicationException("Connection string 'depmon' not found");
             }
-            connection = new SQLiteConnection(connectionString.ConnectionString);
-            connection.Open();
+            _connection = new SQLiteConnection(connectionString.ConnectionString);
+            _connection.Open();
 
             if (requireTransaction)
             {
@@ -28,41 +28,20 @@ namespace Depmon.Server.Database
 
         public void BeginTransaction()
         {
-            if (transaction != null)
+            if (_transaction != null)
             {
                 return;
             }
-            transaction = connection.BeginTransaction();
+            _transaction = _connection.BeginTransaction();
         }
         public void CommitChanges()
         {
-            if (transaction != null)
-            {
-                transaction.Commit();
-            }
+            _transaction?.Commit();
         }
 
-        public IRepository<T> GetRepository<T>()
+        public void SetRepository<T>(IRepository<T> repository)
         {
-            var type = typeof(T).Name;
-            
-            object repository;
-
-            //TODO: придумать другой вариант
-            switch (type)
-            {
-                case "Fact":
-                    repository = new FactRepository(connection, transaction);
-                    break;
-                case "Report":
-                    repository = new ReportRepository(connection, transaction);
-                    break;
-                default:
-                    repository = null;
-                    break;
-            }
-
-            return (IRepository<T>)repository;
+            ((Repository<T>)repository).InitConnection(_connection, _transaction);
         }
 
         public void Dispose()
@@ -74,15 +53,15 @@ namespace Depmon.Server.Database
         {
             if (disposing)
             {
-                if (transaction != null)
+                if (_transaction != null)
                 {
-                    transaction.Dispose();
-                    transaction = null;
+                    _transaction.Dispose();
+                    _transaction = null;
                 }
-                if (connection != null)
+                if (_connection != null)
                 {
-                    connection.Dispose();
-                    connection = null;
+                    _connection.Dispose();
+                    _connection = null;
                 }
             }
         }

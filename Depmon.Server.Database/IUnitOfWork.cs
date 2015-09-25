@@ -8,6 +8,6 @@ namespace Depmon.Server.Database
 
         void CommitChanges();
 
-        IRepository<T> GetRepository<T>();
+        void SetRepository<T>(IRepository<T> repository);
     }
 }

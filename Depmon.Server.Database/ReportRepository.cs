@@ -1,4 +1,3 @@
-using System.Data;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -6,10 +5,6 @@ namespace Depmon.Server.Database
 {
     public class ReportRepository : Repository<Report>
     {
-        public ReportRepository(IDbConnection connection, IDbTransaction transaction):
-            base(connection, transaction)
-        { }
-
         public override void Save(Report report)
         {
             var sqlInsert = @"INSERT INTO Reports (CreatedAt)

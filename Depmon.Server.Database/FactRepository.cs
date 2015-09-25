@@ -6,8 +6,7 @@ namespace Depmon.Server.Database
 {
     public class FactRepository : Repository<Fact>
     {
-        public FactRepository(IDbConnection connection, IDbTransaction transaction) : 
-            base(connection, transaction)
+        public FactRepository()
         { }
 
         public override void Save(Fact fact)

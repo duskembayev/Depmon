@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Autofac;
 using Depmon.Server.Database;
 using Depmon.Server.Domain.Model;
 
@@ -9,30 +10,16 @@ namespace Depmon.Server.Collector.Impl
 {
     public class FactsSave : IFactsSave
     {
-        private IUnitOfWork _unitOfWork;
-
-        public FactsSave(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
-
         public void Save(IList<Stream> dataList)
         {
             try
             {
-                using (var rRepo = _unitOfWork.GetRepository<Report>())
-                using (var fRepo = _unitOfWork.GetRepository<Fact>())
+                foreach (var stream in dataList)
                 {
-                    foreach (var stream in dataList)
-                    {
-                        var report = new Report {CreatedAt = DateTime.Now};
-                        rRepo.Save(report);
-                        var reportId = rRepo.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
+                    var dtos = new CsvParse().Parse(stream);
+                    if(!dtos.Any()) continue;
 
-                        Process(stream, reportId, fRepo);
-                    }
-
-                    _unitOfWork.CommitChanges();
+                    SaveFacts(dtos);
                 }
             }
             catch (Exception e)
@@ -41,23 +28,29 @@ namespace Depmon.Server.Collector.Impl
             }
         }
 
-        private void Process(Stream data, long reportId, IRepository<Fact> factRepository)
+        private static void SaveFacts(Fact[] dtos)
         {
-            try
+            var container = new AutofacContainer().GetContainer();
+            using (var scope = container.BeginLifetimeScope())
             {
-                    var dtos = new CsvParse().Parse(data);
-                    foreach (var fact in dtos)
-                    {
-                        fact.ReportId = reportId;
-                    }
+                var uow = scope.Resolve<IUnitOfWork>();
+                var reportRepository = scope.Resolve<IRepository<Report>>();
+                uow.SetRepository(reportRepository);
 
-                    factRepository.InsertMany(dtos);
+                var report = new Report {CreatedAt = DateTime.Now};
+                reportRepository.Save(report);
+                var reportId = reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
 
-                    Console.WriteLine("{0} facts saved", dtos.Length);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("CSV parsing error: {0}", e.Message);
+                foreach (var fact in dtos)
+                    fact.ReportId = reportId;
+
+                var factRepository = scope.Resolve<IRepository<Fact>>();
+                uow.SetRepository(factRepository);
+                factRepository.InsertMany(dtos);
+
+                uow.CommitChanges();
+
+                Console.WriteLine("{0} facts saved", dtos.Length);
             }
         }
     }
