@@ -2,7 +2,7 @@
   "sourceCode": "DF-KTZHCloud",
   "objects": [
     {
-      "groupCode": "192.168.1.3",
+      "groupCode": "Localhost",
       "resources": [
         {
           "resourceCode": "Web.Application",
@@ -10,17 +10,46 @@
             {
               "indicatorCode": "State-Google",
               "command": "web-state",
-              "args": {
-                "uri": "https://google.com/",
-                "v": "v"
-              }
+              "args": { "uri": "https://google.com/" }
             },
             {
               "indicatorCode": "State-Yandex",
               "command": "web-state",
+              "args": { "uri": "https://yandex.ru/" }
+            }
+          ]
+        },
+        {
+          "resourceCode": "Hard",
+          "indicators": [
+            {
+              "indicatorCode": "DriveState",
+              "command": "harddrive-state",
               "args": {
-                "uri": "https://yandex.ru/",
-                "v": "v"
+                "server": "localhost",
+                "username": "",
+                "password": "",
+                "drives": [ ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "groupCode": "192.168.0.145",
+      "resources": [
+        {
+          "resourceCode": "Hard",
+          "indicators": [
+            {
+              "indicatorCode": "DriveState",
+              "command": "harddrive-state",
+              "args": {
+                "server": "192.168.0.145",
+                "username": "dtech\\developer",
+                "password": "dawnreader",
+                "drives": [ "C" ]
               }
             }
           ]
