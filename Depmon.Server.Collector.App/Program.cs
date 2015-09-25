@@ -14,26 +14,29 @@ namespace Depmon.Server.Collector.App
             Console.WriteLine("\nPress 'X' for break...\n\n");
 
             IContainer container = new AutofacContainer().GetContainer();
+            IConfigReader cr;
+            IEngine engine;
+
             using (var scope = container.BeginLifetimeScope())
             {
-                IConfigReader cr = scope.Resolve<IConfigReader>();
-                var config = cr.Read();
-
-                IEngine engine = scope.Resolve<IEngine>();
-                engine.Start(config);
-
-                var finish = false;
-                do
-                {
-                    var key = Console.ReadKey();
-                    if (key.Key == ConsoleKey.X)
-                    {
-                        finish = true;
-                    }
-                } while (!finish);
-
-                engine.Stop();
+                cr = scope.Resolve<IConfigReader>();
+                engine = scope.Resolve<IEngine>();
             }
+
+            var config = cr.Read();
+            engine.Start(config);
+
+            var finish = false;
+            do
+            {
+                var key = Console.ReadKey();
+                if (key.Key == ConsoleKey.X)
+                {
+                    finish = true;
+                }
+            } while (!finish);
+
+            engine.Stop();
         }
     }
 }

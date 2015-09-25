@@ -14,10 +14,15 @@ namespace Depmon.Server.Collector.Impl
             var builder = new ContainerBuilder();
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<Engine>().As<IEngine>();
+
+            //builder.RegisterType<Engine>().As<IEngine>();
+            builder.Register(s => new Engine(s.Resolve<IMailReciever>(), s.Resolve<IFactsSave>())).As<IEngine>();
+
             builder.RegisterType<ConfigReader>().As<IConfigReader>();
             builder.RegisterType<MailReciever>().As<IMailReciever>();
-            builder.RegisterType<FactsSave>().As<IFactsSave>();
+            
+            //builder.RegisterType<FactsSave>().As<IFactsSave>();
+            builder.Register(s => new FactsSave(s.Resolve<IUnitOfWork>())).As<IFactsSave>();
 
             _container = builder.Build();
         }

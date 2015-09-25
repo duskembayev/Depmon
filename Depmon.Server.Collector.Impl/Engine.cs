@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Autofac;
 using Depmon.Server.Collector.Configuration;
 
 namespace Depmon.Server.Collector.Impl
@@ -11,10 +10,14 @@ namespace Depmon.Server.Collector.Impl
     {
         private readonly CancellationTokenSource _cancellationSource;
         private Task[] _tasks;
+        private IMailReciever _mailReciever;
+        private IFactsSave _factsSave;
 
-        public Engine()
+        public Engine(IMailReciever mailReciever, IFactsSave factsSave)
         {
             _cancellationSource = new CancellationTokenSource();
+            _mailReciever = mailReciever;
+            _factsSave = factsSave;
         }
 
         public void Start(MonitoringSection config)
@@ -45,21 +48,15 @@ namespace Depmon.Server.Collector.Impl
         {
             Console.WriteLine("[{0}] monitoring started", mailbox.Name);
 
-            IContainer continer = new AutofacContainer().GetContainer();
-
-            using (var scope = continer.BeginLifetimeScope())
-            {
-                IMailReciever dataLoad = scope.Resolve<IMailReciever>();
                 while (!cancellationToken.IsCancellationRequested)
                 {
                     try
                     {
-                        var data = dataLoad.Load(mailbox);
+                        var data = _mailReciever.Load(mailbox);
 
                         if (data.Any())
                         {
-                            IFactsSave dataSave = scope.Resolve<IFactsSave>();
-                            dataSave.Save(data);
+                            _factsSave.Save(data);
                         }
 
                     }
@@ -70,7 +67,6 @@ namespace Depmon.Server.Collector.Impl
 
                     cancellationToken.WaitHandle.WaitOne(mailbox.Delay);
                 }
-            }
         }
     }
 }

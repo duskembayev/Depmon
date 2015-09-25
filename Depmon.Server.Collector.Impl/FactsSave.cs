@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Autofac;
 using Depmon.Server.Database;
 using Depmon.Server.Domain.Model;
 
@@ -10,29 +9,30 @@ namespace Depmon.Server.Collector.Impl
 {
     public class FactsSave : IFactsSave
     {
+        private IUnitOfWork _unitOfWork;
+
+        public FactsSave(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public void Save(IList<Stream> dataList)
         {
             try
             {
-                IContainer continer = new AutofacContainer().GetContainer();
-
-                using (var scope = continer.BeginLifetimeScope())
+                using (var rRepo = _unitOfWork.GetRepository<Report>())
+                using (var fRepo = _unitOfWork.GetRepository<Fact>())
                 {
-                    using (var unitOfWork = scope.Resolve<IUnitOfWork>())
-                    using (var rRepo = unitOfWork.GetRepository<Report>())
-                    using (var fRepo = unitOfWork.GetRepository<Fact>())
+                    foreach (var stream in dataList)
                     {
-                        foreach (var stream in dataList)
-                        {
-                            var report = new Report {CreatedAt = DateTime.Now};
-                            rRepo.Save(report);
-                            var reportId = rRepo.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
+                        var report = new Report {CreatedAt = DateTime.Now};
+                        rRepo.Save(report);
+                        var reportId = rRepo.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
 
-                            Process(stream, reportId, fRepo);
-                        }
-
-                        unitOfWork.CommitChanges();
+                        Process(stream, reportId, fRepo);
                     }
+
+                    _unitOfWork.CommitChanges();
                 }
             }
             catch (Exception e)
