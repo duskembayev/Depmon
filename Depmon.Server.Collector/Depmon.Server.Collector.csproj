@@ -101,8 +101,7 @@
     <Compile Include="Configuration\MonitoringSection.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="IMailReciever.cs" />
-    <Compile Include="IDataSave.cs" />
-    <Compile Include="ILevelConverter.cs" />
+    <Compile Include="IFactsSave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,10 +19,10 @@ namespace Depmon.Server.Collector.Impl
                 client.Connect(mailbox.Server, mailbox.Port, mailbox.Ssl, mailbox.Timeout, mailbox.Timeout, CertificateValidator);
                 client.Authenticate(mailbox.Username, mailbox.Password);
 
-                var lCount = client.GetMessageCount();
-                Console.WriteLine("[{1}] {0} new messages found", lCount, mailbox.Username);
+                var msgCount = client.GetMessageCount();
+                Console.WriteLine("[{1}] {0} new messages found", msgCount, mailbox.Username);
 
-                for (var li = 1; li <= lCount; li++)
+                for (var li = 1; li <= msgCount; li++)
                 {
                     try
                     {

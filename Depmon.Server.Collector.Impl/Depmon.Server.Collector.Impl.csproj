@@ -55,11 +55,11 @@
   <ItemGroup>
     <Compile Include="AutofacContainer.cs" />
     <Compile Include="Configuration\ConfigReader.cs" />
+    <Compile Include="CsvParse.cs" />
     <Compile Include="MailReciever.cs" />
-    <Compile Include="DataSave.cs" />
+    <Compile Include="FactsSave.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FactMap.cs" />
-    <Compile Include="LevelConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

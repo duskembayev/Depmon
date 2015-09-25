@@ -58,7 +58,7 @@ namespace Depmon.Server.Collector.Impl
 
                         if (data.Any())
                         {
-                            IDataSave dataSave = scope.Resolve<IDataSave>();
+                            IFactsSave dataSave = scope.Resolve<IFactsSave>();
                             dataSave.Save(data);
                         }
 
