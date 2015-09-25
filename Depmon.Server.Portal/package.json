@@ -7,14 +7,12 @@
   "license": "",
   "dependencies": {
     "react": "^0.13.3",
-    "react-bootstrap": "^0.25.2"
+    "react-bootstrap": "^0.25.2",
+    "react-router": "^0.13.3"
   },
   "devDependencies": {
     "browserify": "^11.1.0",
     "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-stylus": "^2.0.7",
-    "path": "^0.12.7",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
   },
