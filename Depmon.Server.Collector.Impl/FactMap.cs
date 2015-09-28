@@ -10,7 +10,8 @@ namespace Depmon.Server.Collector.Impl
         public FactMap()
         {
             Map(f => f.Id).Ignore();
-            Map(f => f.CheckedAt);
+            Map(f => f.Report).Ignore();
+            Map(f => f.ReportId).Ignore();
             Map(f => f.SourceCode);
             Map(f => f.GroupCode);
             Map(f => f.ResourceCode);
@@ -18,8 +19,7 @@ namespace Depmon.Server.Collector.Impl
             Map(f => f.IndicatorValue);
             Map(f => f.IndicatorDescription);
             Map(f => f.Level).TypeConverter<LevelConverter>();
-            Map(f => f.Report).Ignore();
-            Map(f => f.ReportId).Ignore();
+            Map(f => f.CheckedAt);
         }
 
         internal class LevelConverter : ITypeConverter
