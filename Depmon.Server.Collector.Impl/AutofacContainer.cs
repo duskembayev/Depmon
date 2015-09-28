@@ -18,23 +18,19 @@ namespace Depmon.Server.Collector.Impl
 
             var builder = new ContainerBuilder();
 
-            //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
             builder.Register(s => new UnitOfWork(getConnectionString("depmon"))).As<IUnitOfWork>().InstancePerLifetimeScope();
-
-            //builder.RegisterType<Engine>().As<IEngine>();
+            
             builder.Register(s => new Engine(s.Resolve<IObjectFactory>())).As<IEngine>();
 
             builder.RegisterType<ConfigReader>().As<IConfigReader>();
             builder.RegisterType<MailReciever>().As<IMailReciever>();
             builder.RegisterType<CsvParse>().As<ICsvParse>();
             
-            //builder.RegisterType<FactsSave>().As<IFactsSave>();
             builder.Register(s => new FactsSave(s.Resolve<IUnitOfWork>(), s.Resolve<IRepository<Report>>(), s.Resolve<IRepository<Fact>>())).As<IFactsSave>();
 
             builder.RegisterType<FactRepository>().As<IRepository<Fact>>();
             builder.RegisterType<ReportRepository>().As<IRepository<Report>>();
-
-            //builder.RegisterType<AutofacObjectFactory>().As<IObjectFactory>();
+            
             builder.Register(s => new AutofacObjectFactory(_container)).As<IObjectFactory>();
 
             _container = builder.Build();
