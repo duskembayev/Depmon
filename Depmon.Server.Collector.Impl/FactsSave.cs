@@ -25,18 +25,19 @@ namespace Depmon.Server.Collector.Impl
         {
             try
             {
-                var transaction = _unitOfWork.BeginTransaction();
+                using (var transaction = _unitOfWork.BeginTransaction())
+                {
+                    var report = new Report { CreatedAt = DateTime.Now };
+                    _reportRepository.Save(report);
+                    var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
 
-                var report = new Report { CreatedAt = DateTime.Now };
-                _reportRepository.Save(report);
-                var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
+                    foreach (var fact in facts)
+                        fact.ReportId = reportId;
 
-                foreach (var fact in facts)
-                    fact.ReportId = reportId;
+                    _factRepository.InsertMany(facts);
 
-                _factRepository.InsertMany(facts);
-
-                transaction.Commit();
+                    transaction.Commit();
+                }
 
                 Console.WriteLine("{0} facts saved", facts.Length);
             }
