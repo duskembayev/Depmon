@@ -15,6 +15,7 @@ namespace Depmon.Server.Collector.Impl
         {
             var csvConfig = new CsvConfiguration
             {
+                Delimiter = "|",
                 Encoding = Encoding.UTF8,
                 HasHeaderRecord = true,
             };
