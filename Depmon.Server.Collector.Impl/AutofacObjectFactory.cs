@@ -1,5 +1,4 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 
 namespace Depmon.Server.Collector.Impl
 {
@@ -17,13 +16,12 @@ namespace Depmon.Server.Collector.Impl
 	/// быть уверенным, что пользователи этих фабрик не смогут создавать объекты любых типов по своему
 	/// усмотрению.
 	/// </remarks>
-	public class AutofacObjectFactory : IObjectFactory, IDisposable
+	public class AutofacObjectFactory : IObjectFactory
     {
         #region Private Fields
 
         // Объект, определяющий временные рамки существования создаваемого объекта
         private readonly IContainer _container;
-        private ILifetimeScope _scope;
         private bool _isDisposed;
 
         #endregion
@@ -39,35 +37,12 @@ namespace Depmon.Server.Collector.Impl
 
         #region IObjectFactory Members
 
-        /// <summary>
-        /// Создает объект, тип которого зарегистрирован в IoC-контейнере.
-        /// </summary>
-        /// <typeparam name="T">Тип объекта</typeparam>
-        /// <returns>Экземпляр объекта</returns>
-        public T Create<T>()
-        {
-            return _container.Resolve<T>();
-        }
 
-        public object Create(Type specificType)
+        public ILifetimeScope CreateScope()
         {
-            return _container.Resolve(specificType);
-        }
-
-        public void CreateScope()
-        {
-            _scope?.Dispose();
-            _scope = _container.BeginLifetimeScope();
+            return _container.BeginLifetimeScope();
         }
 
         #endregion
-
-        public void Dispose()
-        {
-            if (_isDisposed) return;
-
-            _isDisposed = true;
-            _scope?.Dispose();
-        }
     }
 }

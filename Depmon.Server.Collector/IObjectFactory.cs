@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Autofac;
 
 namespace Depmon.Server.Collector
 {
@@ -18,15 +18,6 @@ namespace Depmon.Server.Collector
 	/// </remarks>
 	public interface IObjectFactory
     {
-        /// <summary>
-        /// Создает объект, тип которого зарегистрирован в IoC-контейнере.
-        /// </summary>
-        /// <typeparam name="T">Тип объекта</typeparam>
-        /// <returns>Экземпляр объекта</returns>
-        T Create<T>();
-        
-        object Create(Type specificType);
-
-        void CreateScope();
+        ILifetimeScope CreateScope();
     }
 }
