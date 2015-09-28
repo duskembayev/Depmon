@@ -10,14 +10,12 @@ namespace Depmon.Server.Collector.Impl
     {
         private readonly CancellationTokenSource _cancellationSource;
         private Task[] _tasks;
-        private IMailReciever _mailReciever;
-        private IFactsSave _factsSave;
+        private IObjectFactory _objectFactory;
 
-        public Engine(IMailReciever mailReciever, IFactsSave factsSave)
+        public Engine(IObjectFactory objectFactory)
         {
             _cancellationSource = new CancellationTokenSource();
-            _mailReciever = mailReciever;
-            _factsSave = factsSave;
+            _objectFactory = objectFactory;
         }
 
         public void Start(MonitoringSection config)
@@ -48,25 +46,32 @@ namespace Depmon.Server.Collector.Impl
         {
             Console.WriteLine("[{0}] monitoring started", mailbox.Name);
 
-                while (!cancellationToken.IsCancellationRequested)
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                _objectFactory.CreateScope();
+
+                IMailReciever mailReciever = _objectFactory.Create<IMailReciever>();
+                IFactsSave factsSave = _objectFactory.Create<IFactsSave>();
+                ICsvParse csvParse = _objectFactory.Create<ICsvParse>();
+
+                try
                 {
-                    try
+                    var data = mailReciever.Load(mailbox);
+
+                    foreach (var stream in data)
                     {
-                        var data = _mailReciever.Load(mailbox);
-
-                        if (data.Any())
-                        {
-                            _factsSave.Save(data);
-                        }
-
+                        var dtos = csvParse.Parse(stream);
+                        if (!dtos.Any()) continue;
+                        factsSave.Save(dtos);
                     }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("[{1}] iteration failed: {0}", e.Message, mailbox.Name);
-                    }
-
-                    cancellationToken.WaitHandle.WaitOne(mailbox.Delay);
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("[{1}] iteration failed: {0}", e.Message, mailbox.Name);
+                }
+
+                cancellationToken.WaitHandle.WaitOne(mailbox.Delay);
+            }
         }
     }
 }

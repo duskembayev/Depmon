@@ -12,10 +12,6 @@ namespace Depmon.Server.Database
 
         public UnitOfWork(string connectionString, bool requireTransaction = true)
         {
-            if (connectionString == null)
-            {
-                throw new ApplicationException("Connection string not found");
-            }
             _connection = new SQLiteConnection(connectionString);
             _connection.Open();
 

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector
 {
     public interface IFactsSave
     {
-        void Save(IList<Stream> dataList);
+        void Save(Fact[] facts);
     }
 }

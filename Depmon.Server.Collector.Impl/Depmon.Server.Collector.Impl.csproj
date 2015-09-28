@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacContainer.cs" />
+    <Compile Include="AutofacObjectFactory.cs" />
     <Compile Include="Configuration\ConfigReader.cs" />
     <Compile Include="CsvParse.cs" />
     <Compile Include="MailReciever.cs" />

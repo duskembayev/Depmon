@@ -99,9 +99,11 @@
     <Compile Include="Configuration\Mailbox.cs" />
     <Compile Include="Configuration\MailboxCollection.cs" />
     <Compile Include="Configuration\MonitoringSection.cs" />
+    <Compile Include="ICsvParse.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="IMailReciever.cs" />
     <Compile Include="IFactsSave.cs" />
+    <Compile Include="IObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

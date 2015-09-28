@@ -9,7 +9,7 @@ using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector.Impl
 {
-    public class CsvParse
+    public class CsvParse : ICsvParse
     {
         public Fact[] Parse(Stream data)
         {

@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Autofac;
 using Depmon.Server.Collector.Configuration;
 using Depmon.Server.Collector.Impl.Configuration;
@@ -9,26 +10,32 @@ namespace Depmon.Server.Collector.Impl
 {
     public class AutofacContainer
     {
-        private IContainer _container;
+        private static IContainer _container;
 
         public AutofacContainer()
         {
+            if(_container != null) return;
+
             var builder = new ContainerBuilder();
 
             //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
-            builder.Register(s => new UnitOfWork(ConfigurationManager.ConnectionStrings["depmon"].ConnectionString)).As<IUnitOfWork>();
+            builder.Register(s => new UnitOfWork(getConnectionString("depmon"))).As<IUnitOfWork>().InstancePerLifetimeScope();
 
             //builder.RegisterType<Engine>().As<IEngine>();
-            builder.Register(s => new Engine(s.Resolve<IMailReciever>(), s.Resolve<IFactsSave>())).As<IEngine>();
+            builder.Register(s => new Engine(s.Resolve<IObjectFactory>())).As<IEngine>();
 
             builder.RegisterType<ConfigReader>().As<IConfigReader>();
             builder.RegisterType<MailReciever>().As<IMailReciever>();
+            builder.RegisterType<CsvParse>().As<ICsvParse>();
             
             //builder.RegisterType<FactsSave>().As<IFactsSave>();
-            builder.Register(s => new FactsSave()).As<IFactsSave>();
+            builder.Register(s => new FactsSave(s.Resolve<IUnitOfWork>(), s.Resolve<IRepository<Report>>(), s.Resolve<IRepository<Fact>>())).As<IFactsSave>();
 
             builder.RegisterType<FactRepository>().As<IRepository<Fact>>();
             builder.RegisterType<ReportRepository>().As<IRepository<Report>>();
+
+            //builder.RegisterType<AutofacObjectFactory>().As<IObjectFactory>();
+            builder.Register(s => new AutofacObjectFactory(_container)).As<IObjectFactory>();
 
             _container = builder.Build();
         }
@@ -36,6 +43,17 @@ namespace Depmon.Server.Collector.Impl
         public IContainer GetContainer()
         {
             return _container;
+        }
+
+        private string getConnectionString(string connStringName)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings[connStringName];
+            if (connectionString == null)
+            {
+                throw new ApplicationException($"Connection string {connStringName} not found");
+            }
+
+            return connectionString.ConnectionString;
         }
     }
 }
