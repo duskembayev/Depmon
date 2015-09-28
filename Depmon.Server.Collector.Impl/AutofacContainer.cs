@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Configuration;
 using Autofac;
-using Autofac.Core;
 using Depmon.Server.Collector.Configuration;
 using Depmon.Server.Collector.Impl.Configuration;
 using Depmon.Server.Database;
@@ -16,7 +15,8 @@ namespace Depmon.Server.Collector.Impl
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.Register(s => new UnitOfWork(ConfigurationManager.ConnectionStrings["depmon"].ConnectionString)).As<IUnitOfWork>();
 
             //builder.RegisterType<Engine>().As<IEngine>();
             builder.Register(s => new Engine(s.Resolve<IMailReciever>(), s.Resolve<IFactsSave>())).As<IEngine>();

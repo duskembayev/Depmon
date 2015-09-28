@@ -10,14 +10,13 @@ namespace Depmon.Server.Database
         public IDbConnection _connection;
         public IDbTransaction _transaction;
 
-        public UnitOfWork(bool requireTransaction = true)
+        public UnitOfWork(string connectionString, bool requireTransaction = true)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["depmon"];
             if (connectionString == null)
             {
-                throw new ApplicationException("Connection string 'depmon' not found");
+                throw new ApplicationException("Connection string not found");
             }
-            _connection = new SQLiteConnection(connectionString.ConnectionString);
+            _connection = new SQLiteConnection(connectionString);
             _connection.Open();
 
             if (requireTransaction)
