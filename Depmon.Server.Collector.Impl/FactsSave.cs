@@ -28,7 +28,7 @@ namespace Depmon.Server.Collector.Impl
             }
         }
 
-        private static void SaveFacts(Fact[] dtos)
+        private void SaveFacts(Fact[] dtos)
         {
             var container = new AutofacContainer().GetContainer();
             using (var scope = container.BeginLifetimeScope())
