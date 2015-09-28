@@ -25,6 +25,8 @@ namespace Depmon.Server.Collector.Impl
         {
             try
             {
+                var transaction = _unitOfWork.BeginTransaction();
+
                 var report = new Report { CreatedAt = DateTime.Now };
                 _reportRepository.Save(report);
                 var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
@@ -34,7 +36,7 @@ namespace Depmon.Server.Collector.Impl
 
                 _factRepository.InsertMany(facts);
 
-                _unitOfWork.CommitChanges();
+                transaction.Commit();
 
                 Console.WriteLine("{0} facts saved", facts.Length);
             }

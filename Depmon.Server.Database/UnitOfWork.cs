@@ -10,28 +10,18 @@ namespace Depmon.Server.Database
         public IDbConnection _connection;
         public IDbTransaction _transaction;
 
-        public UnitOfWork(string connectionString, bool requireTransaction = true)
+        public UnitOfWork(string connectionString)
         {
             _connection = new SQLiteConnection(connectionString);
             _connection.Open();
-
-            if (requireTransaction)
-            {
-                BeginTransaction();
-            }
         }
 
-        public void BeginTransaction()
+        public IDbTransaction BeginTransaction()
         {
-            if (_transaction != null)
-            {
-                return;
-            }
-            _transaction = _connection.BeginTransaction();
-        }
-        public void CommitChanges()
-        {
-            _transaction?.Commit();
+            if (_transaction == null)
+                _transaction = _connection.BeginTransaction();
+
+            return _transaction;
         }
 
         public void SetRepository<T>(IRepository<T> repository)
