@@ -16,9 +16,6 @@ namespace Depmon.Server.Collector.Impl
             _unitOfWork = unitOfWork;
             _factRepository = factRepository;
             _reportRepository = reportRepository;
-
-            _unitOfWork.SetRepository(_factRepository);
-            _unitOfWork.SetRepository(_reportRepository);
         }
 
         public void Save(Fact[] facts)
@@ -27,6 +24,9 @@ namespace Depmon.Server.Collector.Impl
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
+                    _unitOfWork.SetRepository(_factRepository, transaction);
+                    _unitOfWork.SetRepository(_reportRepository, transaction);
+
                     var report = new Report { CreatedAt = DateTime.Now };
                     _reportRepository.Save(report);
                     var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;

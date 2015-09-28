@@ -7,8 +7,7 @@ namespace Depmon.Server.Database
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IDbConnection _connection;
-        public IDbTransaction _transaction;
+        private IDbConnection _connection;
 
         public UnitOfWork(string connectionString)
         {
@@ -18,15 +17,12 @@ namespace Depmon.Server.Database
 
         public IDbTransaction BeginTransaction()
         {
-            if (_transaction == null)
-                _transaction = _connection.BeginTransaction();
-
-            return _transaction;
+            return _connection.BeginTransaction();
         }
 
-        public void SetRepository<T>(IRepository<T> repository)
+        public void SetRepository<T>(IRepository<T> repository, IDbTransaction transaction)
         {
-            ((Repository<T>)repository).InitConnection(_connection, _transaction);
+            ((Repository<T>)repository).InitConnection(_connection, transaction);
         }
 
         public void Dispose()
@@ -38,11 +34,6 @@ namespace Depmon.Server.Database
         {
             if (disposing)
             {
-                if (_transaction != null)
-                {
-                    _transaction.Dispose();
-                    _transaction = null;
-                }
                 if (_connection != null)
                 {
                     _connection.Dispose();

@@ -7,6 +7,6 @@ namespace Depmon.Server.Database
     {
         IDbTransaction BeginTransaction();
 
-        void SetRepository<T>(IRepository<T> repository);
+        void SetRepository<T>(IRepository<T> repository, IDbTransaction transaction);
     }
 }
