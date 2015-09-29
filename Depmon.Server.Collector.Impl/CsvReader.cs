@@ -9,7 +9,7 @@ using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector.Impl
 {
-    public class CsvParse : ICsvParse
+    public class CsvReader : ICsvReader
     {
         public Fact[] Parse(Stream data)
         {
@@ -25,7 +25,7 @@ namespace Depmon.Server.Collector.Impl
             try
             {
                 using (var reader = new StreamReader(data, Encoding.UTF8))
-                using (var parser = new CsvReader(reader, csvConfig))
+                using (var parser = new CsvHelper.CsvReader(reader, csvConfig))
                 {
                     return parser.GetRecords<Fact>().ToArray();
                 }

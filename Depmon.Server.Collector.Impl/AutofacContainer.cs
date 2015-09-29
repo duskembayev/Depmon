@@ -24,7 +24,7 @@ namespace Depmon.Server.Collector.Impl
 
             builder.RegisterType<ConfigReader>().As<IConfigReader>();
             builder.RegisterType<MailReciever>().As<IMailReciever>();
-            builder.RegisterType<CsvParse>().As<ICsvParse>();
+            builder.RegisterType<CsvReader>().As<ICsvReader>();
             
             builder.RegisterType<FactsSave>().As<IFactsSave>();
 

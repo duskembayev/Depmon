@@ -56,7 +56,7 @@ namespace Depmon.Server.Collector.Impl
                 {
                     IMailReciever mailReciever = scope.Resolve<IMailReciever>();
                     IFactsSave factsSave = scope.Resolve<IFactsSave>();
-                    ICsvParse csvParse = scope.Resolve<ICsvParse>();
+                    ICsvReader csvReader = scope.Resolve<ICsvReader>();
                     IList<Stream> data = null;
 
                     try
@@ -65,7 +65,7 @@ namespace Depmon.Server.Collector.Impl
 
                         foreach (var stream in data)
                         {
-                            var dtos = csvParse.Parse(stream);
+                            var dtos = csvReader.Parse(stream);
                             if (!dtos.Any()) continue;
                             factsSave.Save(dtos);
                         }

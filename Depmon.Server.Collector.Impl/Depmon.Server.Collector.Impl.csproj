@@ -56,7 +56,7 @@
     <Compile Include="AutofacContainer.cs" />
     <Compile Include="AutofacObjectFactory.cs" />
     <Compile Include="Configuration\ConfigReader.cs" />
-    <Compile Include="CsvParse.cs" />
+    <Compile Include="CsvReader.cs" />
     <Compile Include="MailReciever.cs" />
     <Compile Include="FactsSave.cs" />
     <Compile Include="Engine.cs" />

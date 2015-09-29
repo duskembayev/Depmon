@@ -3,7 +3,7 @@ using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector
 {
-    public interface ICsvParse
+    public interface ICsvReader
     {
         Fact[] Parse(Stream data);
     }
