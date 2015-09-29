@@ -1,9 +1,7 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using CsvHelper;
 using CsvHelper.Configuration;
 using Depmon.Server.Domain.Model;
 
@@ -22,17 +20,10 @@ namespace Depmon.Server.Collector.Impl
             csvConfig.RegisterClassMap<FactMap>();
             csvConfig.CultureInfo = CultureInfo.InvariantCulture;
 
-            try
+            using (var reader = new StreamReader(data, Encoding.UTF8))
+            using (var parser = new CsvHelper.CsvReader(reader, csvConfig))
             {
-                using (var reader = new StreamReader(data, Encoding.UTF8))
-                using (var parser = new CsvHelper.CsvReader(reader, csvConfig))
-                {
-                    return parser.GetRecords<Fact>().ToArray();
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
+                return parser.GetRecords<Fact>().ToArray();
             }
         }
     }

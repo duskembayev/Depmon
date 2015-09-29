@@ -33,7 +33,7 @@ namespace Depmon.Server.Collector.Impl
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error: {e.Message}");
+                Console.WriteLine($"Report saving failed: {e.Message}");
             }
         }
     }
