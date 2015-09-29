@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,26 +57,41 @@ namespace Depmon.Server.Collector.Impl
                     IMailReciever mailReciever = scope.Resolve<IMailReciever>();
                     IFactsSave factsSave = scope.Resolve<IFactsSave>();
                     ICsvParse csvParse = scope.Resolve<ICsvParse>();
+                    IList<Stream> data = null;
 
                     try
                     {
-                        var data = mailReciever.Load(mailbox);
+                        data = mailReciever.Load(mailbox);
 
                         foreach (var stream in data)
                         {
                             var dtos = csvParse.Parse(stream);
                             if (!dtos.Any()) continue;
                             factsSave.Save(dtos);
-                            stream.Close();
                         }
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("[{1}] iteration failed: {0}", e.Message, mailbox.Name);
                     }
+                    finally
+                    {
+                        Dispose(data);
+                    }
                 }
                 cancellationToken.WaitHandle.WaitOne(mailbox.Delay);
             }
+        }
+
+        private void Dispose(IList<Stream> data)
+        {
+            foreach (var stream in data)
+            {
+                stream.Close();
+                stream.Dispose();
+            }
+
+            data.Clear();
         }
     }
 }
