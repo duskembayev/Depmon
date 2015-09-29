@@ -24,7 +24,7 @@
     $rows = &$command -context $commandContext -contextArgs $commandArgs
     foreach($row in $rows)
     {
-        Export-Csv -Path $attachmentName -InputObject $row -NoTypeInformation -Append
+        Export-Csv -Path $attachmentName -InputObject $row -NoTypeInformation -Delimiter '|' -Append
     }
     
     Write-Host "    [${indicatorCode}]: finished"
