@@ -106,7 +106,7 @@
     <Compile Include="ICsvReader.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="IMailReciever.cs" />
-    <Compile Include="IFactsSave.cs" />
+    <Compile Include="IReportRegistry.cs" />
     <Compile Include="IObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

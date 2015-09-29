@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -55,7 +54,7 @@ namespace Depmon.Server.Collector.Impl
                 using (var scope = _objectFactory.CreateScope())
                 {
                     IMailReciever mailReciever = scope.Resolve<IMailReciever>();
-                    IFactsSave factsSave = scope.Resolve<IFactsSave>();
+                    IReportRegistry reportRegistry = scope.Resolve<IReportRegistry>();
                     ICsvReader csvReader = scope.Resolve<ICsvReader>();
                     IList<Stream> data = null;
 
@@ -67,7 +66,7 @@ namespace Depmon.Server.Collector.Impl
                         {
                             var dtos = csvReader.Parse(stream);
                             if (!dtos.Any()) continue;
-                            factsSave.Save(dtos);
+                            reportRegistry.Save(dtos);
                         }
                     }
                     catch (Exception e)

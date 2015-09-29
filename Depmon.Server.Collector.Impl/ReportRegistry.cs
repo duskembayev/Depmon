@@ -5,12 +5,12 @@ using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector.Impl
 {
-    public class FactsSave : IFactsSave
+    public class ReportRegistry : IReportRegistry
     {
         private IRepository<Report> _reportRepository;
         private IRepository<Fact> _factRepository;
 
-        public FactsSave(IRepository<Report> reportRepository, IRepository<Fact> factRepository)
+        public ReportRegistry(IRepository<Report> reportRepository, IRepository<Fact> factRepository)
         {
             _factRepository = factRepository;
             _reportRepository = reportRepository;

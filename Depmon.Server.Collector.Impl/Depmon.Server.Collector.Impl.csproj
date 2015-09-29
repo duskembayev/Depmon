@@ -58,7 +58,7 @@
     <Compile Include="Configuration\ConfigReader.cs" />
     <Compile Include="CsvReader.cs" />
     <Compile Include="MailReciever.cs" />
-    <Compile Include="FactsSave.cs" />
+    <Compile Include="ReportRegistry.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FactMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
