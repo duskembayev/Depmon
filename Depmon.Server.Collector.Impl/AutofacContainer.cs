@@ -22,7 +22,7 @@ namespace Depmon.Server.Collector.Impl
             
             builder.RegisterType<Engine>().As<IEngine>();
 
-            builder.RegisterType<ConfigReader>().As<IConfigReader>();
+            builder.RegisterType<Settings>().As<ISettings>();
             builder.RegisterType<MailReciever>().As<IMailReciever>();
             builder.RegisterType<CsvReader>().As<ICsvReader>();
             
