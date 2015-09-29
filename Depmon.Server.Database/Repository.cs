@@ -9,7 +9,7 @@ namespace Depmon.Server.Database
         protected abstract string TableName { get; }
         protected IUnitOfWork _unitOfWork;
 
-        public Repository(IUnitOfWork unitOfWork)
+        protected Repository(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
