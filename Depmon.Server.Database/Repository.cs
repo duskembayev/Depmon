@@ -51,14 +51,8 @@ namespace Depmon.Server.Database
 
         public void Dispose()
         {
-            try
-            {
-                _connection.Close();
-            }
-            finally
-            {
-                _connection = null;
-            }
+            _connection?.Close();
+            _connection = null;
         }
     }
 }
