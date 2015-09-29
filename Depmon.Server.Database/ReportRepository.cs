@@ -1,3 +1,4 @@
+using System.Linq;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -10,17 +11,23 @@ namespace Depmon.Server.Database
         public ReportRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
         { }
 
-        public override void Save(Report report)
+        public override int Save(Report report)
         {
             var sqlInsert = $@"INSERT INTO {TableName} (CreatedAt)
-                                        VALUES  (@CreatedAt)";
+                                        VALUES  (@CreatedAt);
+                                        SELECT last_insert_rowid()";
 
             var sqlUpdate = $@"UPDATE {TableName}
                               SET CreatedAt = @CreatedAt
                               WHERE Id = @Id";
-            var sql = report.Id == 0 ? sqlInsert : sqlUpdate;
+            
+            if (report.Id == 0)
+            {
+                return _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
+            }
 
-            _unitOfWork.Session.Execute(sql, report);
+            _unitOfWork.Session.Execute(sqlUpdate, report);
+            return report.Id;
         }
 
         public override void InsertMany(params Report[] reports)

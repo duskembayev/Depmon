@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Depmon.Server.Database;
 using Depmon.Server.Domain.Model;
 
@@ -20,10 +19,9 @@ namespace Depmon.Server.Collector.Impl
         {
             try
             {
-                var report = new Report {CreatedAt = DateTime.Now};
-                _reportRepository.Save(report);
-                var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
-
+                var report = new Report {Id = 0, CreatedAt = DateTime.Now};
+                var reportId = _reportRepository.Save(report);
+                
                 foreach (var fact in facts)
                     fact.ReportId = reportId;
 

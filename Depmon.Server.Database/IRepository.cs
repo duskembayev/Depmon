@@ -11,7 +11,7 @@ namespace Depmon.Server.Database
 
         void InsertMany(params T[] entities);
 
-        void Save(T entity);
+        int Save(T entity);
 
         void Delete(T entity);
     }

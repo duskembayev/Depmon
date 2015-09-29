@@ -14,7 +14,7 @@ namespace Depmon.Server.Database
             _unitOfWork = unitOfWork;
         }
 
-        public abstract void Save(T entity);
+        public abstract int Save(T entity);
 
         public abstract void InsertMany(params T[] entities);
 
