@@ -1,4 +1,3 @@
-using System.Data;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -8,7 +7,10 @@ namespace Depmon.Server.Database
     {
         protected override string TableName => "Facts";
 
-        public override void Save(IDbConnection session, Fact fact)
+        public FactRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        { }
+
+        public override void Save(Fact fact)
         {
             var sqlInsert = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
@@ -18,15 +20,15 @@ namespace Depmon.Server.Database
                               WHERE Id = @Id";
             var sql = fact.Id == 0 ? sqlInsert : sqlUpdate;
 
-            session.Execute(sql, fact);
+            _unitOfWork.Session.Execute(sql, fact);
         }
 
-        public override void InsertMany(IDbConnection session, params Fact[] facts)
+        public override void InsertMany(params Fact[] facts)
         {
             var sql = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
 
-            session.Execute(sql, facts);
+            _unitOfWork.Session.Execute(sql, facts);
         }
     }
 }

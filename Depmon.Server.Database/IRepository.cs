@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Depmon.Server.Database
 {
-    public interface IRepository<T>
+    public interface IRepository<T> : IDisposable
     {
-        IEnumerable<T> GetAll(IDbConnection session);
+        IEnumerable<T> GetAll();
 
-        T GetById(IDbConnection session, int id);
+        T GetById(int id);
 
-        void InsertMany(IDbConnection session, params T[] entities);
+        void InsertMany(params T[] entities);
 
-        void Save(IDbConnection session, T entity);
+        void Save(T entity);
 
-        void Delete(IDbConnection session, T entity);
+        void Delete(T entity);
     }
 }

@@ -26,10 +26,10 @@ namespace Depmon.Server.Collector.Impl
             builder.RegisterType<MailReciever>().As<IMailReciever>();
             builder.RegisterType<CsvParse>().As<ICsvParse>();
             
-            builder.Register(s => new FactsSave(s.Resolve<IUnitOfWork>(), s.Resolve<IRepository<Report>>(), s.Resolve<IRepository<Fact>>())).As<IFactsSave>();
+            builder.Register(s => new FactsSave(s.Resolve<IRepository<Report>>(), s.Resolve<IRepository<Fact>>())).As<IFactsSave>();
 
-            builder.RegisterType<FactRepository>().As<IRepository<Fact>>();
-            builder.RegisterType<ReportRepository>().As<IRepository<Report>>();
+            builder.Register(s => new FactRepository(s.Resolve<IUnitOfWork>())).As<IRepository<Fact>>();
+            builder.Register(s => new ReportRepository(s.Resolve<IUnitOfWork>())).As<IRepository<Report>>();
             
             builder.Register(s => new AutofacObjectFactory(_container)).As<IObjectFactory>();
 

@@ -7,13 +7,11 @@ namespace Depmon.Server.Collector.Impl
 {
     public class FactsSave : IFactsSave
     {
-        private IUnitOfWork _unitOfWork;
         private IRepository<Report> _reportRepository;
         private IRepository<Fact> _factRepository;
 
-        public FactsSave(IUnitOfWork unitOfWork, IRepository<Report> reportRepository, IRepository<Fact> factRepository)
+        public FactsSave(IRepository<Report> reportRepository, IRepository<Fact> factRepository)
         {
-            _unitOfWork = unitOfWork;
             _factRepository = factRepository;
             _reportRepository = reportRepository;
         }
@@ -22,19 +20,14 @@ namespace Depmon.Server.Collector.Impl
         {
             try
             {
-                using (var transaction = _unitOfWork.BeginTransaction())
-                {
-                    var report = new Report { CreatedAt = DateTime.Now };
-                    _reportRepository.Save(_unitOfWork.Session, report);
-                    var reportId = _reportRepository.GetAll(_unitOfWork.Session).FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
+                var report = new Report {CreatedAt = DateTime.Now};
+                _reportRepository.Save(report);
+                var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
 
-                    foreach (var fact in facts)
-                        fact.ReportId = reportId;
+                foreach (var fact in facts)
+                    fact.ReportId = reportId;
 
-                    _factRepository.InsertMany(_unitOfWork.Session, facts);
-
-                    transaction.Commit();
-                }
+                _factRepository.InsertMany(facts);
 
                 Console.WriteLine("{0} facts saved", facts.Length);
             }

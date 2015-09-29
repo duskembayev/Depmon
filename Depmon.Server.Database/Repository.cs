@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using Dapper;
 
@@ -8,29 +7,40 @@ namespace Depmon.Server.Database
     public abstract class Repository<T> : IRepository<T>
     {
         protected abstract string TableName { get; }
+        protected IUnitOfWork _unitOfWork;
 
-        public abstract void Save(IDbConnection session, T entity);
-
-        public abstract void InsertMany(IDbConnection session, params T[] entities);
-
-        public virtual IEnumerable<T> GetAll(IDbConnection session)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            var sql = $"SELECT * FROM {TableName}";
-            return session.Query<T>(sql);
+            _unitOfWork = unitOfWork;
         }
 
-        public virtual T GetById(IDbConnection session, int id)
+        public abstract void Save(T entity);
+
+        public abstract void InsertMany(params T[] entities);
+
+        public virtual IEnumerable<T> GetAll()
+        {
+            var sql = $"SELECT * FROM {TableName}";
+            return _unitOfWork.Session.Query<T>(sql);
+        }
+
+        public virtual T GetById(int id)
         {
             var sql = $"SELECT * FROM {TableName} WHERE Facts.Id = @id";
-            var query = session.Query<T>(sql, new { id = id });
+            var query = _unitOfWork.Session.Query<T>(sql, new { id = id });
             return query.ElementAtOrDefault(0);
         }
 
-        public virtual void Delete(IDbConnection session, T entity)
+        public virtual void Delete(T entity)
         {
             var sql = $"DELETE FROM {TableName} WHERE Id = @Id";
 
-            session.Execute(sql, entity);
+            _unitOfWork.Session.Execute(sql, entity);
+        }
+
+        public void Dispose()
+        {
+            _unitOfWork = null;
         }
     }
 }
