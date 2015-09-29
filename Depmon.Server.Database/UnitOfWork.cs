@@ -22,19 +22,8 @@ namespace Depmon.Server.Database
 
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        protected void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_session != null)
-                {
-                    _session.Dispose();
-                    _session = null;
-                }
-            }
+            _session?.Dispose();
+            _session = null;
         }
     }
 }
