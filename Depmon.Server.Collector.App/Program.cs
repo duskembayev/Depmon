@@ -14,14 +14,8 @@ namespace Depmon.Server.Collector.App
             Console.WriteLine("\nPress 'X' for break...\n\n");
 
             IContainer container = new AutofacContainer().GetContainer();
-            IConfigReader cr;
-            IEngine engine;
-
-            using (var scope = container.BeginLifetimeScope())
-            {
-                cr = scope.Resolve<IConfigReader>();
-                engine = scope.Resolve<IEngine>();
-            }
+            IConfigReader cr = container.Resolve<IConfigReader>();
+            IEngine engine = container.Resolve<IEngine>();
 
             var config = cr.Read();
             engine.Start(config);
