@@ -15,7 +15,7 @@ namespace Depmon.Server.Database
                               WHERE Id = @Id";
             var sql = report.Id == 0 ? sqlInsert : sqlUpdate;
 
-            SqlMapper.Execute(_connection, sql, report, _transaction);
+            _connection.Execute(sql, report);
         }
 
         public override void InsertMany(params Report[] reports)
@@ -23,7 +23,7 @@ namespace Depmon.Server.Database
             var sql = @"INSERT INTO Reports (CreatedAt)
                                         VALUES  (@CreatedAt)";
 
-            SqlMapper.Execute(_connection, sql, reports, _transaction);
+            _connection.Execute(sql, reports);
         }
     }
 }

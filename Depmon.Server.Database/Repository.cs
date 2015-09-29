@@ -8,7 +8,6 @@ namespace Depmon.Server.Database
     public abstract class Repository<T> : IRepository<T>
     {
         protected IDbConnection _connection;
-        protected IDbTransaction _transaction;
 
         private string _tableName;
 
@@ -16,10 +15,9 @@ namespace Depmon.Server.Database
 
         public abstract void InsertMany(params T[] entities);
 
-        public void InitConnection(IDbConnection connection, IDbTransaction transaction)
+        public void InitConnection(IDbConnection connection)
         {
             _connection = connection;
-            _transaction = transaction;
             GetTableName();
         }
 
@@ -34,13 +32,13 @@ namespace Depmon.Server.Database
         public virtual IEnumerable<T> GetAll()
         {
             var sql = $"SELECT * FROM {_tableName}";
-            return SqlMapper.Query<T>(_connection, sql, null, _transaction);
+            return _connection.Query<T>(sql);
         }
 
         public virtual T GetById(int id)
         {
             var sql = $"SELECT * FROM {_tableName} WHERE Facts.Id = @id";
-            var query = SqlMapper.Query<T>(_connection, sql, new { id = id }, _transaction);
+            var query = _connection.Query<T>(sql, new { id = id });
             return query.ElementAtOrDefault(0);
         }
 
@@ -48,7 +46,7 @@ namespace Depmon.Server.Database
         {
             var sql = $"DELETE FROM {_tableName} WHERE Id = @Id";
 
-            SqlMapper.Execute(_connection, sql, entity, _transaction);
+            _connection.Execute(sql, entity);
         }
 
         public void Dispose()
@@ -60,7 +58,6 @@ namespace Depmon.Server.Database
             finally
             {
                 _connection = null;
-                _transaction = null;
             }
         }
     }

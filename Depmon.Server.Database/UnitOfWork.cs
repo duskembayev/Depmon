@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
 
 namespace Depmon.Server.Database
@@ -20,9 +18,9 @@ namespace Depmon.Server.Database
             return _connection.BeginTransaction();
         }
 
-        public void SetRepository<T>(IRepository<T> repository, IDbTransaction transaction)
+        public void SetRepository<T>(IRepository<T> repository)
         {
-            ((Repository<T>)repository).InitConnection(_connection, transaction);
+            ((Repository<T>)repository).InitConnection(_connection);
         }
 
         public void Dispose()

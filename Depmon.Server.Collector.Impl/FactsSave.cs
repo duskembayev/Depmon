@@ -24,8 +24,8 @@ namespace Depmon.Server.Collector.Impl
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
-                    _unitOfWork.SetRepository(_factRepository, transaction);
-                    _unitOfWork.SetRepository(_reportRepository, transaction);
+                    _unitOfWork.SetRepository(_factRepository);
+                    _unitOfWork.SetRepository(_reportRepository);
 
                     var report = new Report { CreatedAt = DateTime.Now };
                     _reportRepository.Save(report);
