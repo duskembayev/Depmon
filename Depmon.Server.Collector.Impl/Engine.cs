@@ -64,6 +64,7 @@ namespace Depmon.Server.Collector.Impl
                             var dtos = csvParse.Parse(stream);
                             if (!dtos.Any()) continue;
                             factsSave.Save(dtos);
+                            stream.Close();
                         }
                     }
                     catch (Exception e)
