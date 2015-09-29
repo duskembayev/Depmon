@@ -1,3 +1,4 @@
+using System.Data;
 using Dapper;
 using Depmon.Server.Domain.Model;
 
@@ -7,7 +8,7 @@ namespace Depmon.Server.Database
     {
         protected override string TableName => "Reports";
 
-        public override void Save(Report report)
+        public override void Save(IDbConnection session, Report report)
         {
             var sqlInsert = $@"INSERT INTO {TableName} (CreatedAt)
                                         VALUES  (@CreatedAt)";
@@ -17,15 +18,15 @@ namespace Depmon.Server.Database
                               WHERE Id = @Id";
             var sql = report.Id == 0 ? sqlInsert : sqlUpdate;
 
-            _connection.Execute(sql, report);
+            session.Execute(sql, report);
         }
 
-        public override void InsertMany(params Report[] reports)
+        public override void InsertMany(IDbConnection session, params Report[] reports)
         {
             var sql = $@"INSERT INTO {TableName} (CreatedAt)
                                         VALUES  (@CreatedAt)";
 
-            _connection.Execute(sql, reports);
+            session.Execute(sql, reports);
         }
     }
 }

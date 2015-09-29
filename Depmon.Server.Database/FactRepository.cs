@@ -8,7 +8,7 @@ namespace Depmon.Server.Database
     {
         protected override string TableName => "Facts";
 
-        public override void Save(Fact fact)
+        public override void Save(IDbConnection session, Fact fact)
         {
             var sqlInsert = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
@@ -17,16 +17,16 @@ namespace Depmon.Server.Database
                                   IndicatorValue = @IndicatorValue,  IndicatorDescription = @IndicatorDescription,  Level = @Level,  ReportId = @ReportId
                               WHERE Id = @Id";
             var sql = fact.Id == 0 ? sqlInsert : sqlUpdate;
-            
-            _connection.Execute(sql, fact);
+
+            session.Execute(sql, fact);
         }
 
-        public override void InsertMany(params Fact[] facts)
+        public override void InsertMany(IDbConnection session, params Fact[] facts)
         {
             var sql = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
                                         VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
 
-            _connection.Execute(sql, facts);
+            session.Execute(sql, facts);
         }
     }
 }

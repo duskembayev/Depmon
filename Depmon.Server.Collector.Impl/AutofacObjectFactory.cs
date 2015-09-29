@@ -22,7 +22,6 @@ namespace Depmon.Server.Collector.Impl
 
         // Объект, определяющий временные рамки существования создаваемого объекта
         private readonly IContainer _container;
-        private bool _isDisposed;
 
         #endregion
 

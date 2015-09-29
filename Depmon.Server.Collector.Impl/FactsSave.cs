@@ -24,17 +24,14 @@ namespace Depmon.Server.Collector.Impl
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
-                    _unitOfWork.SetRepository(_factRepository);
-                    _unitOfWork.SetRepository(_reportRepository);
-
                     var report = new Report { CreatedAt = DateTime.Now };
-                    _reportRepository.Save(report);
-                    var reportId = _reportRepository.GetAll().FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
+                    _reportRepository.Save(_unitOfWork.Session, report);
+                    var reportId = _reportRepository.GetAll(_unitOfWork.Session).FirstOrDefault(s => s.CreatedAt == report.CreatedAt).Id;
 
                     foreach (var fact in facts)
                         fact.ReportId = reportId;
 
-                    _factRepository.InsertMany(facts);
+                    _factRepository.InsertMany(_unitOfWork.Session, facts);
 
                     transaction.Commit();
                 }

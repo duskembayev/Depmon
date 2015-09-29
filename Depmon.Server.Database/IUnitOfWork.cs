@@ -5,8 +5,8 @@ namespace Depmon.Server.Database
 {
     public interface IUnitOfWork : IDisposable
     {
-        IDbTransaction BeginTransaction();
+        IDbConnection Session { get; }
 
-        void SetRepository<T>(IRepository<T> repository);
+        IDbTransaction BeginTransaction();
     }
 }

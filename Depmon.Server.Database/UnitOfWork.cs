@@ -5,22 +5,19 @@ namespace Depmon.Server.Database
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private IDbConnection _connection;
+        private IDbConnection _session;
+
+        public IDbConnection Session => _session;
 
         public UnitOfWork(string connectionString)
         {
-            _connection = new SQLiteConnection(connectionString);
-            _connection.Open();
+            _session = new SQLiteConnection(connectionString);
+            _session.Open();
         }
 
         public IDbTransaction BeginTransaction()
         {
-            return _connection.BeginTransaction();
-        }
-
-        public void SetRepository<T>(IRepository<T> repository)
-        {
-            ((Repository<T>)repository).InitConnection(_connection);
+            return _session.BeginTransaction();
         }
 
         public void Dispose()
@@ -32,10 +29,10 @@ namespace Depmon.Server.Database
         {
             if (disposing)
             {
-                if (_connection != null)
+                if (_session != null)
                 {
-                    _connection.Dispose();
-                    _connection = null;
+                    _session.Dispose();
+                    _session = null;
                 }
             }
         }
