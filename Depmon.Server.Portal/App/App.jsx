@@ -1,12 +1,13 @@
 ﻿var React = require('react');
 var Link = require('react-router').Link;
 var LinkContainer = require('react-router-bootstrap').LinkContainer;
-var rb = require('react-bootstrap');
 
+var rb = require('react-bootstrap');
 var Navbar = rb.Navbar;
 var Nav = rb.Nav;
 var NavItem = rb.NavItem;
-var Panel = rb.Panel;
+var Grid = rb.Grid;
+var Col = rb.Col;
 
 module.exports = React.createClass({
     render: function () {
@@ -22,7 +23,14 @@ module.exports = React.createClass({
             </LinkContainer>
         </Nav>
     </Navbar>
-    <Panel>{this.props.children}</Panel>
+    <Grid fluid={true}>
+        <Col xs={3}>
+            {this.props.children.sidebar}
+        </Col>
+        <Col xs={9}>
+            {this.props.children.content}
+        </Col>
+    </Grid>
 </div>
         );
     }

@@ -132,9 +132,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="App\app.jsx" />
-    <Content Include="App\Dashboard\main.jsx" />
     <Content Include="App\Reports\main.jsx" />
     <Content Include="App\Settings\main.jsx" />
+    <Content Include="App\Dashboard\sources.jsx" />
+    <Content Include="App\Dashboard\groups.jsx" />
+    <Content Include="App\Dashboard\resources.jsx" />
+    <Content Include="App\Dashboard\statistic.jsx" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -6,7 +6,7 @@ var rb = require('react-bootstrap');
 module.exports = React.createClass({
     render: function () {
         return (
-        <h1>Dashboard</h1>
+        <h1>Reports</h1>
         )
     }
 });

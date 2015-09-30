@@ -5,16 +5,35 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require('./app');
-var Dashboard = require('./Dashboard/main');
+
+var DashboardStatistic = require('./Dashboard/statistic');
+var DashboarsSources = require('./Dashboard/sources');
+var DashboardGroups = require('./Dashboard/groups');
+var DashboardResources = require('./Dashboard/resources');
+
 var Reports = require('./Reports/main');
 var Settings = require('./Settings/main');
 
 React.render((
   <Router>
     <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
-        <Route path="reports" component={Reports} />
-        <Route path="settings" component={Settings} />
+        <IndexRoute components={{
+            sidebar: DashboarsSources,
+            content: DashboardStatistic
+        }} />
+        <Route path="sources/:source" components={{
+            sidebar: DashboarsSources,
+            content: DashboardGroups
+        }}>
+            <IndexRoute component={DashboardResources} />
+            <Route path="groups/:group" component={DashboardResources} />
+        </Route>
+        <Route path="reports" components={{
+            content: Reports
+        }} />
+        <Route path="settings" components={{
+            content: Settings
+        }} />
     </Route>
   </Router>
 ), document.body)
