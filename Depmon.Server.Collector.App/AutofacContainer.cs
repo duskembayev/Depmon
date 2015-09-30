@@ -5,6 +5,7 @@ using Depmon.Server.Collector.Configuration;
 using Depmon.Server.Collector.Impl;
 using Depmon.Server.Collector.Impl.Configuration;
 using Depmon.Server.Database;
+using Depmon.Server.Database.Impl;
 using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Collector.App
