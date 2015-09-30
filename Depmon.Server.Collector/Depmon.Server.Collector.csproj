@@ -98,11 +98,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="Configuration\ISettingsReader.cs" />
     <Compile Include="Configuration\Iteration.cs" />
     <Compile Include="Configuration\Mailbox.cs" />
     <Compile Include="Configuration\MailboxCollection.cs" />
-    <Compile Include="Configuration\MonitoringSection.cs" />
+    <Compile Include="Configuration\Settings.cs" />
     <Compile Include="ICsvReader.cs" />
     <Compile Include="IEngine.cs" />
     <Compile Include="IMailReciever.cs" />

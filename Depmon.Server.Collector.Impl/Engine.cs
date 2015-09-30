@@ -21,7 +21,7 @@ namespace Depmon.Server.Collector.Impl
             _objectFactory = objectFactory;
         }
 
-        public void Start(MonitoringSection config)
+        public void Start(Settings config)
         {
             Console.WriteLine("Monitoring starting...");
 
@@ -64,7 +64,7 @@ namespace Depmon.Server.Collector.Impl
 
                         foreach (var stream in data)
                         {
-                            var dtos = csvReader.Parse(stream);
+                            var dtos = csvReader.Read(stream);
                             if (!dtos.Any()) continue;
                             reportRegistry.Save(dtos);
                         }

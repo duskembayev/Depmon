@@ -8,9 +8,11 @@ namespace Depmon.Server.Collector.Impl
     {
         private IRepository<Report> _reportRepository;
         private IRepository<Fact> _factRepository;
+        private IUnitOfWork _unitOfWork;
 
-        public ReportRegistry(IRepository<Report> reportRepository, IRepository<Fact> factRepository)
+        public ReportRegistry(IUnitOfWork unitOfWork, IRepository<Report> reportRepository, IRepository<Fact> factRepository)
         {
+            _unitOfWork = unitOfWork;
             _factRepository = factRepository;
             _reportRepository = reportRepository;
         }
@@ -19,13 +21,18 @@ namespace Depmon.Server.Collector.Impl
         {
             try
             {
-                var report = new Report {Id = 0, CreatedAt = DateTime.Now};
-                var reportId = _reportRepository.Save(report);
+                using (var transaction = _unitOfWork.BeginTransaction())
+                {
+                    var report = new Report { Id = 0, CreatedAt = DateTime.Now };
+                    var reportId = _reportRepository.Save(report);
                 
-                foreach (var fact in facts)
-                    fact.ReportId = reportId;
+                    foreach (var fact in facts)
+                        fact.ReportId = reportId;
 
-                _factRepository.InsertMany(facts);
+                    _factRepository.InsertMany(facts);
+
+                    transaction.Commit();
+                }
 
                 Console.WriteLine("{0} facts saved", facts.Length);
             }

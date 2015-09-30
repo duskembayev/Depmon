@@ -14,10 +14,10 @@ namespace Depmon.Server.Collector.App
             Console.WriteLine("\nPress 'X' for break...\n\n");
 
             IContainer container = new AutofacContainer().GetContainer();
-            ISettings cr = container.Resolve<ISettings>();
+            ISettingsReader settingsReader = container.Resolve<ISettingsReader>();
             IEngine engine = container.Resolve<IEngine>();
 
-            var config = cr.Read();
+            var config = settingsReader.Read();
             engine.Start(config);
 
             var finish = false;

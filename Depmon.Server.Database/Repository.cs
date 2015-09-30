@@ -26,7 +26,7 @@ namespace Depmon.Server.Database
 
         public virtual T GetById(int id)
         {
-            var sql = $"SELECT * FROM {TableName} WHERE Facts.Id = @id";
+            var sql = $"SELECT * FROM {TableName} WHERE {TableName}.Id = @id";
             var query = _unitOfWork.Session.Query<T>(sql, new { id = id });
             return query.ElementAtOrDefault(0);
         }

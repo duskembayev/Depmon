@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Depmon.Server.Collector.Configuration
 {
-    public interface ISettings
+    public interface ISettingsReader
     {
-        MonitoringSection Read();
+        Settings Read();
     }
 }

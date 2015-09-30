@@ -9,7 +9,7 @@ namespace Depmon.Server.Collector.Impl
 {
     public class CsvReader : ICsvReader
     {
-        public Fact[] Parse(Stream data)
+        public Fact[] Read(Stream data)
         {
             var csvConfig = new CsvConfiguration
             {
