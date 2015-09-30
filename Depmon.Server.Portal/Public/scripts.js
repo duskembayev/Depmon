@@ -32,17 +32,17 @@ module.exports = React.createClass({displayName: "exports",
 },{"react":439,"react-bootstrap":81,"react-router":260}],3:[function(require,module,exports){
 var React = require('react');
 var rb = require('react-bootstrap');
-var Nav = rb.Nav;
-var NavItem = rb.NavItem;
+var ListGroup = rb.ListGroup;
+var ListGroupItem = rb.ListGroupItem;
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
         return (
-React.createElement(Nav, {bsStyle: "pills", stacked: true}, 
-    React.createElement(NavItem, null, "KTZH"), 
-    React.createElement(NavItem, null, "TTK"), 
-    React.createElement(NavItem, null, "SK"), 
-    React.createElement(NavItem, null, "TS")
+React.createElement(ListGroup, {bsStyle: "pills", stacked: true}, 
+    React.createElement(ListGroupItem, null, "KTZH"), 
+    React.createElement(ListGroupItem, null, "TTK"), 
+    React.createElement(ListGroupItem, null, "SK"), 
+    React.createElement(ListGroupItem, null, "TS")
 )
         )
     }
@@ -52,15 +52,15 @@ React.createElement(Nav, {bsStyle: "pills", stacked: true},
 var React = require('react');
 
 var rb = require('react-bootstrap');
-
+var Jumbotron = rb.Jumbotron;
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
         return (
-        React.createElement("div", null, 
-    React.createElement("h3", null, "Monitoring statistic"), 
+React.createElement(Jumbotron, null, 
+    React.createElement("h1", null, "Monitoring statistic"), 
     React.createElement("p", null, "Soon...")
-    )
+)
         )
     }
 });
@@ -120,10 +120,10 @@ React.createElement("div", null,
         )
     ), 
     React.createElement(Grid, {fluid: true}, 
-        React.createElement(Col, {xs: 3}, 
+        React.createElement(Col, {md: 3}, 
             this.props.children.sidebar
         ), 
-        React.createElement(Col, {xs: 9}, 
+        React.createElement(Col, {md: 9}, 
             this.props.children.content
         )
     )
@@ -142,7 +142,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var App = require('./app');
 
 var DashboardStatistic = require('./Dashboard/statistic');
-var DashboarsSources = require('./Dashboard/sources');
+var DashboardSources = require('./Dashboard/sources');
 var DashboardGroups = require('./Dashboard/groups');
 var DashboardResources = require('./Dashboard/resources');
 
@@ -153,13 +153,13 @@ React.render((
   React.createElement(Router, null, 
     React.createElement(Route, {path: "/", component: App}, 
         React.createElement(IndexRoute, {components: {
-            sidebar: DashboarsSources,
+            sidebar: DashboardSources,
             content: DashboardStatistic
         }}), 
         React.createElement(Route, {path: "sources/:source", components: {
-            sidebar: DashboarsSources,
+            sidebar: DashboardSources,
             content: DashboardGroups
-        }}, 
+}}, 
             React.createElement(IndexRoute, {component: DashboardResources}), 
             React.createElement(Route, {path: "groups/:group", component: DashboardResources})
         ), 

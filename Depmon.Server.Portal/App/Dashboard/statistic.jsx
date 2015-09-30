@@ -1,15 +1,15 @@
 ﻿var React = require('react');
 
 var rb = require('react-bootstrap');
-
+var Jumbotron = rb.Jumbotron;
 
 module.exports = React.createClass({
     render: function () {
         return (
-        <div>
-    <h3>Monitoring statistic</h3>
+<Jumbotron>
+    <h1>Monitoring statistic</h1>
     <p>Soon...</p>
-    </div>
+</Jumbotron>
         )
     }
 });

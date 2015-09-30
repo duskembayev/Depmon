@@ -7,7 +7,7 @@ var IndexRoute = ReactRouter.IndexRoute;
 var App = require('./app');
 
 var DashboardStatistic = require('./Dashboard/statistic');
-var DashboarsSources = require('./Dashboard/sources');
+var DashboardSources = require('./Dashboard/sources');
 var DashboardGroups = require('./Dashboard/groups');
 var DashboardResources = require('./Dashboard/resources');
 
@@ -18,13 +18,13 @@ React.render((
   <Router>
     <Route path="/" component={App}>
         <IndexRoute components={{
-            sidebar: DashboarsSources,
+            sidebar: DashboardSources,
             content: DashboardStatistic
         }} />
         <Route path="sources/:source" components={{
-            sidebar: DashboarsSources,
+            sidebar: DashboardSources,
             content: DashboardGroups
-        }}>
+}}>
             <IndexRoute component={DashboardResources} />
             <Route path="groups/:group" component={DashboardResources} />
         </Route>

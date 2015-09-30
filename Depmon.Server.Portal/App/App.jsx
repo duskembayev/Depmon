@@ -24,10 +24,10 @@ module.exports = React.createClass({
         </Nav>
     </Navbar>
     <Grid fluid={true}>
-        <Col xs={3}>
+        <Col md={3}>
             {this.props.children.sidebar}
         </Col>
-        <Col xs={9}>
+        <Col md={9}>
             {this.props.children.content}
         </Col>
     </Grid>
