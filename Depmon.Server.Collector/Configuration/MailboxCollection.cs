@@ -12,7 +12,7 @@ namespace Depmon.Server.Collector.Configuration
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return ((Mailbox) element).Name;
+            return ((Mailbox)element).Name;
         }
 
         public Mailbox this[int idx] => (Mailbox)BaseGet(idx);

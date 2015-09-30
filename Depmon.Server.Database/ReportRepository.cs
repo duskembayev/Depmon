@@ -1,22 +1,41 @@
-using System;
-using System.Data;
+using System.Linq;
 using Dapper;
+using Depmon.Server.Domain.Model;
 
 namespace Depmon.Server.Database
 {
-    public class ReportRepository : RepositoryBase
+    public class ReportRepository : Repository<Report>
     {
-        public ReportRepository(IDbConnection connection) : base(connection)
+        protected override string TableName => "Reports";
+
+        public ReportRepository(IUnitOfWork unitOfWork) : base(unitOfWork)
+        { }
+
+        public override int Save(Report report)
         {
+            var sqlInsert = $@"INSERT INTO {TableName} (CreatedAt)
+                                        VALUES  (@CreatedAt);
+                                        SELECT last_insert_rowid()";
+
+            var sqlUpdate = $@"UPDATE {TableName}
+                              SET CreatedAt = @CreatedAt
+                              WHERE Id = @Id";
+            
+            if (report.Id == 0)
+            {
+                return _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
+            }
+
+            _unitOfWork.Session.Execute(sqlUpdate, report);
+            return report.Id;
         }
 
-        public int Create()
+        public override void InsertMany(params Report[] reports)
         {
-            var sql = @"insert into Reports (CreatedAt) values (@date)";
-            var prm = new {date = DateTime.Now};
+            var sql = $@"INSERT INTO {TableName} (CreatedAt)
+                                        VALUES  (@CreatedAt)";
 
-            Connection.Execute(sql, prm);
-            return LastId;
+            _unitOfWork.Session.Execute(sql, reports);
         }
     }
 }

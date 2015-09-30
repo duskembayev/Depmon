@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Configuration;
 
 namespace Depmon.Server.Collector.Configuration
@@ -31,6 +31,5 @@ namespace Depmon.Server.Collector.Configuration
 
         [ConfigurationProperty("delay", DefaultValue = "00:00:10")]
         public TimeSpan Delay => (TimeSpan)base["delay"];
-
     }
 }
