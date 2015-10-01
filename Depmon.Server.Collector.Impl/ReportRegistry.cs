@@ -23,6 +23,12 @@ namespace Depmon.Server.Collector.Impl
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
+                    if (facts.Length == 0 || string.IsNullOrWhiteSpace(facts[0].SourceCode))
+                    {
+                        Console.WriteLine("Warning!: facts or SourceCode is empty");
+                        return;
+                    }
+
                     var report = new Report { Id = 0, CreatedAt = DateTime.Now, SourceCode = facts[0].SourceCode, IsLast = true };
                     var reportId = _reportRepository.Save(report);
 
