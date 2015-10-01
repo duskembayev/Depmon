@@ -13,6 +13,6 @@ namespace Depmon.Server.Database
 
         int Save(T entity);
 
-        void Delete(T entity);
+        void Delete(int id);
     }
 }

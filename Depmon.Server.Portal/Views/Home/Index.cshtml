@@ -9,7 +9,13 @@
     
 </div>
 
-@section scripts
+@section foot
 {
-    @Scripts.Render("~/bundles/main")
+    @Scripts.Render("~/bundles/mainscripts")
+}
+
+@section head
+{
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/headscripts")
 }
