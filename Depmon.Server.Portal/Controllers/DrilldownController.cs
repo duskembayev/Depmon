@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using System.Web.Http;
 using Dapper;
@@ -72,6 +71,18 @@ group by f.ResourceCode, f.Level";
                 AllCount = resource.Sum(row => (int) row.Count),
                 BugCount = resource.Where(row => (int) row.Level > (int) FactLevel.Normal).Sum(row => (int) row.Count)
             }).ToList();
+        }
+
+        [HttpGet]
+        public IEnumerable Indicators(string sourceCode, string groupCode, string resourceCode)
+        {
+            var sql = @"
+select f.IndicatorCode Code, f.Level Level, f.IndicatorValue, f.IndicatorDescription from Reports r
+join Facts f on f.ReportId = r.Id
+where r.IsLast = 1 and r.SourceCode = @sourceCode and f.GroupCode = @groupCode and f.ResourceCode = @resourceCode";
+
+            var data = _unitOfWork.Session.Query(sql, new { sourceCode, groupCode, resourceCode });
+            return data.ToList();
         }
     }
 }
