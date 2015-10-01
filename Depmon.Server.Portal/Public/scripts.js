@@ -1,88 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-            React.createElement("div", null, 
-                React.createElement("h1", null, "Groups"), 
-                this.props.children
-            )
-        )
-    }
-});
-
-},{"react":439}],2:[function(require,module,exports){
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-        React.createElement("h1", null, "Reports")
-        )
-    }
-});
-
-},{"react":439}],3:[function(require,module,exports){
-var React = require('react');
-var rb = require('react-bootstrap');
-var ListGroup = rb.ListGroup;
-var ListGroupItem = rb.ListGroupItem;
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-React.createElement(ListGroup, {bsStyle: "pills", stacked: true}, 
-    React.createElement(ListGroupItem, null, "KTZH"), 
-    React.createElement(ListGroupItem, null, "TTK"), 
-    React.createElement(ListGroupItem, null, "SK"), 
-    React.createElement(ListGroupItem, null, "TS")
-)
-        )
-    }
-});
-
-},{"react":439,"react-bootstrap":81}],4:[function(require,module,exports){
-var React = require('react');
-
-var rb = require('react-bootstrap');
-var Jumbotron = rb.Jumbotron;
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-React.createElement(Jumbotron, null, 
-    React.createElement("h1", null, "Monitoring statistic"), 
-    React.createElement("p", null, "Soon...")
-)
-        )
-    }
-});
-
-},{"react":439,"react-bootstrap":81}],5:[function(require,module,exports){
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-        React.createElement("h1", null, "Reports")
-        )
-    }
-});
-
-},{"react":439}],6:[function(require,module,exports){
-var React = require('react');
-
-module.exports = React.createClass({displayName: "exports",
-    render: function () {
-        return (
-        React.createElement("h1", null, "Settings")
-        )
-    }
-});
-
-},{"react":439}],7:[function(require,module,exports){
-var React = require('react');
 var Link = require('react-router').Link;
 var LinkContainer = require('react-router-bootstrap').LinkContainer;
 
@@ -120,7 +37,90 @@ React.createElement("div", null,
     }
 });
 
-},{"react":439,"react-bootstrap":81,"react-router":260,"react-router-bootstrap":242}],8:[function(require,module,exports){
+},{"react":439,"react-bootstrap":81,"react-router":260,"react-router-bootstrap":242}],2:[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+            React.createElement("div", null, 
+                React.createElement("h1", null, "Groups"), 
+                this.props.children
+            )
+        )
+    }
+});
+
+},{"react":439}],3:[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+        React.createElement("h1", null, "Reports")
+        )
+    }
+});
+
+},{"react":439}],4:[function(require,module,exports){
+var React = require('react');
+var rb = require('react-bootstrap');
+var ListGroup = rb.ListGroup;
+var ListGroupItem = rb.ListGroupItem;
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+React.createElement(ListGroup, {bsStyle: "pills", stacked: true}, 
+    React.createElement(ListGroupItem, null, "KTZH"), 
+    React.createElement(ListGroupItem, null, "TTK"), 
+    React.createElement(ListGroupItem, null, "SK"), 
+    React.createElement(ListGroupItem, null, "TS")
+)
+        )
+    }
+});
+
+},{"react":439,"react-bootstrap":81}],5:[function(require,module,exports){
+var React = require('react');
+
+var rb = require('react-bootstrap');
+var Jumbotron = rb.Jumbotron;
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+React.createElement(Jumbotron, null, 
+    React.createElement("h1", null, "Monitoring statistic"), 
+    React.createElement("p", null, "Soon...")
+)
+        )
+    }
+});
+
+},{"react":439,"react-bootstrap":81}],6:[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+        React.createElement("h1", null, "Reports")
+        )
+    }
+});
+
+},{"react":439}],7:[function(require,module,exports){
+var React = require('react');
+
+module.exports = React.createClass({displayName: "exports",
+    render: function () {
+        return (
+        React.createElement("h1", null, "Settings")
+        )
+    }
+});
+
+},{"react":439}],8:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
@@ -129,13 +129,13 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require('./app');
 
-var DashboardStatistic = require('./Dashboard/statistic');
-var DashboardSources = require('./Dashboard/sources');
-var DashboardGroups = require('./Dashboard/groups');
-var DashboardResources = require('./Dashboard/resources');
+var DashboardStatistic = require('./components/Dashboard/statistic');
+var DashboardSources = require('./components/Dashboard/sources');
+var DashboardGroups = require('./components/Dashboard/groups');
+var DashboardResources = require('./components/Dashboard/resources');
 
-var Reports = require('./Reports/main');
-var Settings = require('./Settings/main');
+var Reports = require('./components/Reports/main');
+var Settings = require('./components/Settings/main');
 
 React.render((
   React.createElement(Router, null, 
@@ -161,7 +161,7 @@ React.render((
   )
 ), document.body)
 
-},{"./Dashboard/groups":1,"./Dashboard/resources":2,"./Dashboard/sources":3,"./Dashboard/statistic":4,"./Reports/main":5,"./Settings/main":6,"./app":7,"react":439,"react-router":260}],9:[function(require,module,exports){
+},{"./app":1,"./components/Dashboard/groups":2,"./components/Dashboard/resources":3,"./components/Dashboard/sources":4,"./components/Dashboard/statistic":5,"./components/Reports/main":6,"./components/Settings/main":7,"react":439,"react-router":260}],9:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

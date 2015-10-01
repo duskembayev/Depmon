@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using System.Text;
 using System.Web.Http;
 using Dapper;
 using Depmon.Server.Database;
@@ -74,14 +75,19 @@ group by f.ResourceCode, f.Level";
         }
 
         [HttpGet]
-        public IEnumerable Indicators(string sourceCode, string groupCode, string resourceCode)
+        public IEnumerable Indicators(string sourceCode, string groupCode, string resourceCode = null)
         {
-            var sql = @"
+            var sqlBuilder = new StringBuilder(@"
 select f.IndicatorCode Code, f.Level Level, f.IndicatorValue, f.IndicatorDescription from Reports r
 join Facts f on f.ReportId = r.Id
-where r.IsLast = 1 and r.SourceCode = @sourceCode and f.GroupCode = @groupCode and f.ResourceCode = @resourceCode";
+where r.IsLast = 1 and r.SourceCode = @sourceCode and f.GroupCode = @groupCode");
 
-            var data = _unitOfWork.Session.Query(sql, new { sourceCode, groupCode, resourceCode });
+            if (!string.IsNullOrWhiteSpace(resourceCode))
+            {
+                sqlBuilder.Append(" and f.ResourceCode = @resourceCode");
+            }
+
+            var data = _unitOfWork.Session.Query(sqlBuilder.ToString(), new { sourceCode, groupCode, resourceCode });
             return data.ToList();
         }
     }

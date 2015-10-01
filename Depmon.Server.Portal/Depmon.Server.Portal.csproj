@@ -148,12 +148,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="App\app.jsx" />
-    <Content Include="App\Reports\main.jsx" />
-    <Content Include="App\Settings\main.jsx" />
-    <Content Include="App\Dashboard\sources.jsx" />
-    <Content Include="App\Dashboard\groups.jsx" />
-    <Content Include="App\Dashboard\resources.jsx" />
-    <Content Include="App\Dashboard\statistic.jsx" />
+    <Content Include="App\components\Reports\main.jsx" />
+    <Content Include="App\components\Settings\main.jsx" />
+    <Content Include="App\components\Dashboard\sources.jsx" />
+    <Content Include="App\components\Dashboard\groups.jsx" />
+    <Content Include="App\components\Dashboard\resources.jsx" />
+    <Content Include="App\components\Dashboard\statistic.jsx" />
+    <Content Include="App\dispatcher.jsx" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -191,6 +192,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\actions\" />
+    <Folder Include="App\stores\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

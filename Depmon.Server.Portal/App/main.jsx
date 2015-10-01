@@ -6,13 +6,13 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 var App = require('./app');
 
-var DashboardStatistic = require('./Dashboard/statistic');
-var DashboardSources = require('./Dashboard/sources');
-var DashboardGroups = require('./Dashboard/groups');
-var DashboardResources = require('./Dashboard/resources');
+var DashboardStatistic = require('./components/Dashboard/statistic');
+var DashboardSources = require('./components/Dashboard/sources');
+var DashboardGroups = require('./components/Dashboard/groups');
+var DashboardResources = require('./components/Dashboard/resources');
 
-var Reports = require('./Reports/main');
-var Settings = require('./Settings/main');
+var Reports = require('./components/Reports/main');
+var Settings = require('./components/Settings/main');
 
 React.render((
   <Router>
