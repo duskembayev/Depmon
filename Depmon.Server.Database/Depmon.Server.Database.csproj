@@ -88,8 +88,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\Util\ItemTypeResolver.cs" />
-    <Compile Include="Items\Util\IItemTypeResolver.cs" />
     <Compile Include="Impl\FactRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
