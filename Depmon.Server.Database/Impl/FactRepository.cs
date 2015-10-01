@@ -13,12 +13,12 @@ namespace Depmon.Server.Database.Impl
 
         public override int Save(Fact fact)
         {
-            var sqlInsert = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
-                                        VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId);
+            var sqlInsert = $@"INSERT INTO {TableName} (CheckedAt, GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
+                                        VALUES  (@CheckedAt, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId);
                                         select last_insert_rowid()";
 
             var sqlUpdate = $@"UPDATE {TableName}
-                              SET CheckedAt = @CheckedAt,  SourceCode = @SourceCode,  GroupCode = @GroupCode,  ResourceCode = @ResourceCode,  IndicatorCode = @IndicatorCode,
+                              SET CheckedAt = @CheckedAt, GroupCode = @GroupCode,  ResourceCode = @ResourceCode,  IndicatorCode = @IndicatorCode,
                                   IndicatorValue = @IndicatorValue,  IndicatorDescription = @IndicatorDescription,  Level = @Level,  ReportId = @ReportId
                               WHERE Id = @Id";
 
@@ -33,8 +33,8 @@ namespace Depmon.Server.Database.Impl
 
         public override void InsertMany(params Fact[] facts)
         {
-            var sql = $@"INSERT INTO {TableName} (CheckedAt,  SourceCode,  GroupCode,  ResourceCode,  IndicatorCode,  IndicatorValue,  IndicatorDescription,  Level,  ReportId)
-                                        VALUES  (@CheckedAt, @SourceCode, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
+            var sql = $@"INSERT INTO {TableName} (CheckedAt, GroupCode, ResourceCode, IndicatorCode, IndicatorValue, IndicatorDescription, Level, ReportId)
+                                        VALUES  (@CheckedAt, @GroupCode, @ResourceCode, @IndicatorCode, @IndicatorValue, @IndicatorDescription, @Level, @ReportId)";
 
             _unitOfWork.Session.Execute(sql, facts);
         }
