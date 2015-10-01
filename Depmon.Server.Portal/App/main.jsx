@@ -24,7 +24,7 @@ React.render((
         <Route path="sources/:source" components={{
             sidebar: DashboardSources,
             content: DashboardGroups
-}}>
+        }}>
             <IndexRoute component={DashboardResources} />
             <Route path="groups/:group" component={DashboardResources} />
         </Route>

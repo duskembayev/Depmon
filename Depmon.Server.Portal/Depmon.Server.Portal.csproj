@@ -164,7 +164,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <None Include=".bin\node.cmd" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

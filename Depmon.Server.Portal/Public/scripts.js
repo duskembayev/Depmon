@@ -1,8 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var React = require('react');
-var Link = require('react-router').Link;
-
-var rb = require('react-bootstrap');
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
@@ -15,11 +12,8 @@ module.exports = React.createClass({displayName: "exports",
     }
 });
 
-},{"react":439,"react-bootstrap":81,"react-router":260}],2:[function(require,module,exports){
+},{"react":439}],2:[function(require,module,exports){
 var React = require('react');
-var Link = require('react-router').Link;
-
-var rb = require('react-bootstrap');
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
@@ -29,7 +23,7 @@ module.exports = React.createClass({displayName: "exports",
     }
 });
 
-},{"react":439,"react-bootstrap":81,"react-router":260}],3:[function(require,module,exports){
+},{"react":439}],3:[function(require,module,exports){
 var React = require('react');
 var rb = require('react-bootstrap');
 var ListGroup = rb.ListGroup;
@@ -67,9 +61,6 @@ React.createElement(Jumbotron, null,
 
 },{"react":439,"react-bootstrap":81}],5:[function(require,module,exports){
 var React = require('react');
-var Link = require('react-router').Link;
-
-var rb = require('react-bootstrap');
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
@@ -79,11 +70,8 @@ module.exports = React.createClass({displayName: "exports",
     }
 });
 
-},{"react":439,"react-bootstrap":81,"react-router":260}],6:[function(require,module,exports){
+},{"react":439}],6:[function(require,module,exports){
 var React = require('react');
-var Link = require('react-router').Link;
-
-var rb = require('react-bootstrap');
 
 module.exports = React.createClass({displayName: "exports",
     render: function () {
@@ -93,7 +81,7 @@ module.exports = React.createClass({displayName: "exports",
     }
 });
 
-},{"react":439,"react-bootstrap":81,"react-router":260}],7:[function(require,module,exports){
+},{"react":439}],7:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
 var LinkContainer = require('react-router-bootstrap').LinkContainer;
@@ -159,7 +147,7 @@ React.render((
         React.createElement(Route, {path: "sources/:source", components: {
             sidebar: DashboardSources,
             content: DashboardGroups
-}}, 
+        }}, 
             React.createElement(IndexRoute, {component: DashboardResources}), 
             React.createElement(Route, {path: "groups/:group", component: DashboardResources})
         ), 
