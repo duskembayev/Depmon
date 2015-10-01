@@ -1,6 +1,6 @@
-﻿namespace Depmon.Server.Domain.Model
+﻿namespace Depmon.Server.Domain
 {
-    public enum FactObjectType
+    public enum ItemType
     {
         Source = 0,
         Group,

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Dapper;
-using Depmon.Server.Domain.Model;
+using Depmon.Server.Domain;
 
 namespace Depmon.Server.Database.Impl
 {
@@ -23,21 +23,23 @@ namespace Depmon.Server.Database.Impl
                                   SourceCode = @SourceCode,
                                   IsLast = @IsLast
                               WHERE Id = @Id";
-            
+
             if (report.Id == 0)
             {
-                var transaction = _unitOfWork.BeginTransaction();
-                try
+                using (var transaction = _unitOfWork.BeginTransaction())
                 {
-                    UpdateOlderReports(report.SourceCode);
-                    var reportId = _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
-                    transaction.Commit();
-                    return reportId;
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
+                    try
+                    {
+                        UpdateOlderReports(report.SourceCode);
+                        var reportId = _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
+                        transaction.Commit();
+                        return reportId;
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
 
@@ -56,8 +58,8 @@ WHERE SourceCode = '{sourceCode}'";
 
         public override void InsertMany(params Report[] reports)
         {
-            var sql = $@"INSERT INTO {TableName} (CreatedAt)
-                                        VALUES  (@CreatedAt)";
+            var sql = $@"INSERT INTO {TableName} (CreatedAt, SourceCode, IsLast)
+                                        VALUES  (@CreatedAt, @SourceCode, @IsLast)";
 
             _unitOfWork.Session.Execute(sql, reports);
         }

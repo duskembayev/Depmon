@@ -1,4 +1,4 @@
-namespace Depmon.Server.Domain.Model
+namespace Depmon.Server.Domain
 {
     public enum FactLevel
     {

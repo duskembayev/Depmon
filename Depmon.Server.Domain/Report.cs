@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Depmon.Server.Domain.Model
+namespace Depmon.Server.Domain
 {
     public class Report
     {

@@ -1,10 +1,10 @@
-﻿namespace Depmon.Server.Domain.Model
+﻿namespace Depmon.Server.Domain
 {
-    public class Association
+    public class Style
     {
         public int Id { get; set; }
 
-        public FactObjectType Type { get; set; }
+        public ItemType Type { get; set; }
 
         public string Code { get; set; }
 
