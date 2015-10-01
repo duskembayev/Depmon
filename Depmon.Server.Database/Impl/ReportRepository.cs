@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Dapper;
 using Depmon.Server.Domain.Model;
@@ -25,20 +26,31 @@ namespace Depmon.Server.Database.Impl
             
             if (report.Id == 0)
             {
-                SetIsLastToFalseForOlder(report);
-                return _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
+                var transaction = _unitOfWork.BeginTransaction();
+                try
+                {
+                    UpdateOlderReports(report.SourceCode);
+                    var reportId = _unitOfWork.Session.Query<int>(sqlInsert, report).FirstOrDefault();
+                    transaction.Commit();
+                    return reportId;
+                }
+                catch (Exception)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
 
             _unitOfWork.Session.Execute(sqlUpdate, report);
             return report.Id;
         }
 
-        private void SetIsLastToFalseForOlder(Report report)
+        private void UpdateOlderReports(string sourceCode)
         {
             var sql = $@"
 UPDATE {TableName}
 SET IsLast = 'false'
-WHERE SourceCode = '{report.SourceCode}'";
+WHERE SourceCode = '{sourceCode}'";
             _unitOfWork.Session.Execute(sql);
         }
 
