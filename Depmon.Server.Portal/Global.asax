@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Depmon.Server.Portal.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Depmon.Server.Portal.MvcApplication" Language="C#" %>

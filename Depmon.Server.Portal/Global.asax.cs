@@ -8,10 +8,12 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using System.Web.Optimization;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 
 namespace Depmon.Server.Portal
 {
-    public class Global : HttpApplication
+    public class MvcApplication : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
@@ -20,6 +22,20 @@ namespace Depmon.Server.Portal
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ConfigureIoC();
+        }
+
+        private void ConfigureIoC()
+        {
+            var container = new AutofacContainer().GetContainer();
+
+            // WebAPI
+            var config = GlobalConfiguration.Configuration;
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            // MVC
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }
