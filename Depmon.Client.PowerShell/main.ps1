@@ -38,4 +38,4 @@ foreach ($object in $params.objects)
     Write-Host "End processing object: [${groupCode}]"
 }
 
-#Send-Result
+Send-Result
