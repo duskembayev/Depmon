@@ -6,11 +6,15 @@
   "author": "",
   "license": "",
   "dependencies": {
+    "events": "^1.1.0",
     "flux": "^2.1.1",
+    "jquery": "^2.1.4",
+    "object-assign": "^4.0.1",
     "react": "^0.13.3",
     "react-bootstrap": "^0.25.2",
     "react-router": "^1.0.0-rc1",
-    "react-router-bootstrap": "^0.19.0"
+    "react-router-bootstrap": "^0.19.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "browserify": "^11.1.0",

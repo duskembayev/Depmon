@@ -132,6 +132,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\actioncreators\dashboard.js" />
+    <Content Include="App\actions\common.js" />
+    <Content Include="App\actions\dashboard.js" />
+    <Content Include="App\stores\sources.js" />
+    <Content Include="App\stores\utils.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -147,7 +152,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="App\app.jsx" />
+    <Content Include="App\components\app.jsx" />
     <Content Include="App\components\Reports\main.jsx" />
     <Content Include="App\components\Settings\main.jsx" />
     <Content Include="App\components\Dashboard\sources.jsx" />
@@ -155,6 +160,8 @@
     <Content Include="App\components\Dashboard\resources.jsx" />
     <Content Include="App\components\Dashboard\statistic.jsx" />
     <Content Include="App\dispatcher.jsx" />
+    <Content Include="App\components\routes.jsx" />
+    <Content Include="App\api\drilldown.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -192,8 +199,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\actions\" />
-    <Folder Include="App\stores\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
