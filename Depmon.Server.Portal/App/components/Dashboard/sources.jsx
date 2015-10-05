@@ -1,5 +1,6 @@
 ﻿var React = require('react');
 var rb = require('react-bootstrap');
+var LinkContainer = require('react-router-bootstrap').LinkContainer;
 var ListGroup = rb.ListGroup;
 var ListGroupItem = rb.ListGroupItem;
 var Badge = rb.Badge;
@@ -14,8 +15,7 @@ module.exports = React.createClass({
 
     getStateFromStore: function () {
         return {
-            items: SourcesStore.get(),
-            selected: SourcesStore.getSelected()
+            items: SourcesStore.get()
         }
     },
 
@@ -34,10 +34,6 @@ module.exports = React.createClass({
         SourcesStore.removeChangeListener(this.updateStateFromStore.bind(this));
     },
 
-    onSelected:function (item) {
-
-    },
-
     render: function () {
         return (
 <ListGroup bsStyle="pills" stacked>
@@ -51,15 +47,18 @@ module.exports = React.createClass({
         if (item.Level > 25) {
             props.bsStyle = "danger";
         }
-        if (this.state.selected === item) {
-            props.active = true;
-        }
 
         var badge = undefined;
         if (item.BugCount > 0) {
             badge = <Badge>{item.BugCount}</Badge>
         }
 
-        return <ListGroupItem onClick={function() { this.onSelected(item); }} {...props}>{item.Code} {badge}</ListGroupItem>;
+        var itemLink = "/sources/" + item.Code;
+
+        return (
+            <LinkContainer to={itemLink}>
+                <ListGroupItem {...props}>{item.Code} {badge}</ListGroupItem>
+            </LinkContainer>
+        );
     }
 });

@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\actioncreators\dashboard.js" />
+    <Content Include="App\actioncreators\utils.js" />
     <Content Include="App\actions\common.js" />
     <Content Include="App\actions\dashboard.js" />
     <Content Include="App\stores\sources.js" />
