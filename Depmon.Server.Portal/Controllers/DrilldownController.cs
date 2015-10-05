@@ -56,12 +56,18 @@ group by f.GroupCode, f.Level";
         }
 
         [HttpGet]
-        public IEnumerable Resources(string sourceCode, string groupCode)
+        public IEnumerable Resources(string sourceCode, string groupCode = null)
         {
-            var sql = @"
+            var condition = string.Empty;
+            if (!string.IsNullOrWhiteSpace(groupCode))
+            {
+                condition = "and f.GroupCode = @groupCode";
+            }
+
+            var sql = $@"
 select f.ResourceCode Code, f.Level Level, count(f.IndicatorCode) Count from Reports r
 join Facts f on f.ReportId = r.Id
-where r.IsLast = 1 and r.SourceCode = @sourceCode and f.GroupCode = @groupCode
+where r.IsLast = 1 and r.SourceCode = @sourceCode {condition}
 group by f.ResourceCode, f.Level";
 
             var data = _unitOfWork.Session.Query(sql, new { sourceCode, groupCode });
@@ -75,12 +81,17 @@ group by f.ResourceCode, f.Level";
         }
 
         [HttpGet]
-        public IEnumerable Indicators(string sourceCode, string groupCode, string resourceCode = null)
+        public IEnumerable Indicators(string sourceCode, string groupCode = null, string resourceCode = null)
         {
             var sqlBuilder = new StringBuilder(@"
 select f.IndicatorCode Code, f.Level Level, f.IndicatorValue, f.IndicatorDescription from Reports r
 join Facts f on f.ReportId = r.Id
-where r.IsLast = 1 and r.SourceCode = @sourceCode and f.GroupCode = @groupCode");
+where r.IsLast = 1 and r.SourceCode = @sourceCode");
+
+            if (!string.IsNullOrWhiteSpace(groupCode))
+            {
+                sqlBuilder.Append(" and f.GroupCode = @groupCode");
+            }
 
             if (!string.IsNullOrWhiteSpace(resourceCode))
             {

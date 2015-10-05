@@ -34,7 +34,7 @@ module.exports = {
             datatype: "json"
         }).fail(acomm.onAjaxFailed)
           .done(function (data) {
-              acurr.onResourcesLoaded(data);
+              acurr.onResourcesLoaded(request, data);
           });
     },
 
@@ -46,7 +46,7 @@ module.exports = {
             datatype: "json"
         }).fail(acomm.onAjaxFailed)
           .done(function (data) {
-              acurr.onIndicatorsLoaded(data);
+              acurr.onIndicatorsLoaded(request, data);
           });
     }
 };

@@ -1,6 +1,6 @@
 ﻿var React = require('react');
-var rb = require('react-bootstrap');
 var LinkContainer = require('react-router-bootstrap').LinkContainer;
+var rb = require('react-bootstrap');
 var ListGroup = rb.ListGroup;
 var ListGroupItem = rb.ListGroupItem;
 var Badge = rb.Badge;
@@ -24,14 +24,14 @@ module.exports = React.createClass({
     },
 
     componentDidMount: function () {
-        SourcesStore.addChangeListener(this.updateStateFromStore.bind(this));
+        SourcesStore.addChangeListener(this.updateStateFromStore);
 
         this.updateStateFromStore();
         acDashboard.loadSources();
     },
 
     componentWillUnmount: function () {
-        SourcesStore.removeChangeListener(this.updateStateFromStore.bind(this));
+        SourcesStore.removeChangeListener(this.updateStateFromStore);
     },
 
     render: function () {

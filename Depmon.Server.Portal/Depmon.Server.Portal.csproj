@@ -136,6 +136,8 @@
     <Content Include="App\actioncreators\utils.js" />
     <Content Include="App\actions\common.js" />
     <Content Include="App\actions\dashboard.js" />
+    <Content Include="App\stores\resources.js" />
+    <Content Include="App\stores\groups.js" />
     <Content Include="App\stores\sources.js" />
     <Content Include="App\stores\utils.js" />
     <Content Include="Content\bootstrap-theme.css" />
