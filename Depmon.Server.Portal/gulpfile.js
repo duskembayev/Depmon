@@ -4,7 +4,7 @@ var browserify = require('browserify');
 
 gulp.task('js', function () {
     var bundle = browserify({
-        entries: ['./App/main.jsx'],
+        entries: ['./App/main.js'],
         extensions: ['.jsx', '.js', '.json']
     });
     bundle.bundle()

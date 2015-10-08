@@ -23,15 +23,23 @@ module.exports = React.createClass({
         this.setState(this.getStateFromStore())
     },
 
+    reloadStore: function (props) {
+        acDashboard.loadSources();
+    },
+
     componentDidMount: function () {
         SourcesStore.addChangeListener(this.updateStateFromStore);
-
-        this.updateStateFromStore();
-        acDashboard.loadSources();
+        this.reloadStore(this.props);
     },
 
     componentWillUnmount: function () {
         SourcesStore.removeChangeListener(this.updateStateFromStore);
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+        if (nextProps.params.source == undefined) {
+            this.reloadStore(nextProps);
+        }
     },
 
     render: function () {

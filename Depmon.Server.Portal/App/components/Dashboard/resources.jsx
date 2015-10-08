@@ -13,9 +13,7 @@ module.exports = React.createClass({
 
     getStateFromStore: function () {
         return {
-            items: ResourcesStore.get(),
-            sourceCode: this.props.params.source,
-            groupCode: this.props.params.group
+            items: ResourcesStore.get()
         }
     },
 
@@ -23,15 +21,21 @@ module.exports = React.createClass({
         this.setState(this.getStateFromStore())
     },
 
+    reloadStore: function (props) {
+        acDashboard.loadResources(props.params.source, props.params.group);
+    },
+
     componentDidMount: function () {
         ResourcesStore.addChangeListener(this.updateStateFromStore);
-
-        this.updateStateFromStore();
-        acDashboard.loadResources(this.state.sourceCode, this.state.groupCode);
+        this.reloadStore(this.props);
     },
 
     componentWillUnmount: function () {
         ResourcesStore.removeChangeListener(this.updateStateFromStore);
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+        this.reloadStore(nextProps);
     },
 
     onSelect: function(a, b, c, d, e, f) {
@@ -50,7 +54,7 @@ module.exports = React.createClass({
         var header = this.renderHeader(item);
         var content = this.renderIndicator(item);
         return (
-            <Panel collapsible={true} header={item} onSelect={this.onSelect}>
+            <Panel collapsible={true} header={header} onSelect={this.onSelect}>
                 {content}
             </Panel>
         )

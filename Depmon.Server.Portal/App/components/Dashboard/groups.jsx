@@ -17,8 +17,7 @@ module.exports = React.createClass({
 
     getStateFromStore: function () {
         return {
-            items: GroupsStore.get(),
-            sourceCode: this.props.params.source
+            items: GroupsStore.get()
         }
     },
 
@@ -26,15 +25,23 @@ module.exports = React.createClass({
         this.setState(this.getStateFromStore())
     },
 
+    reloadStore: function (props) {
+        acDashboard.loadGroups(props.params.source);
+    },
+
     componentDidMount: function () {
         GroupsStore.addChangeListener(this.updateStateFromStore);
-
-        this.updateStateFromStore();
-        acDashboard.loadGroups(this.state.sourceCode);
+        this.reloadStore(this.props);
     },
 
     componentWillUnmount: function () {
         GroupsStore.removeChangeListener(this.updateStateFromStore);
+    },
+
+    componentWillReceiveProps: function (nextProps) {
+        if (nextProps.params.group == undefined) {
+            this.reloadStore(nextProps);
+        }
     },
 
     render: function () {
@@ -61,12 +68,12 @@ module.exports = React.createClass({
             badge = <Badge>{item.BugCount}</Badge>
         }
 
-        var itemLink = "/sources/" + this.state.sourceCode + "/groups/" + item.Code;
+        var itemLink = "/sources/" + this.props.params.source + "/groups/" + item.Code;
 
         return (
             <LinkContainer to={itemLink}>
                 <ListGroupItem {...props}>{item.Code} {badge}</ListGroupItem>
             </LinkContainer>
         );
-}
+    }
 });

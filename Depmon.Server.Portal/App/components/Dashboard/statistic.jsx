@@ -8,7 +8,7 @@ module.exports = React.createClass({
         return (
 <Jumbotron>
     <h1>Monitoring statistic</h1>
-    <p>Soon...</p>
+    <p>Coming soon...</p>
 </Jumbotron>
         )
     }

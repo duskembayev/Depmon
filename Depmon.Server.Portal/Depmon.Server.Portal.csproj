@@ -162,7 +162,7 @@
     <Content Include="App\components\Dashboard\groups.jsx" />
     <Content Include="App\components\Dashboard\resources.jsx" />
     <Content Include="App\components\Dashboard\statistic.jsx" />
-    <Content Include="App\dispatcher.jsx" />
+    <Content Include="App\dispatcher.js" />
     <Content Include="App\components\routes.jsx" />
     <Content Include="App\api\drilldown.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -174,7 +174,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_viewstart.cshtml" />
     <Content Include="Views\Shared\_layout.cshtml" />
-    <Content Include="App\main.jsx" />
+    <Content Include="App\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

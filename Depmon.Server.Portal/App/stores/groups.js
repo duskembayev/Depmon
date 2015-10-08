@@ -3,7 +3,6 @@ var disp = require('../dispatcher');
 var utils = require('./utils');
 
 var _items = [];
-var _selected = null;
 
 var GroupsStore = utils.createStore({
     get: function() {

@@ -5,11 +5,11 @@ module.exports = {
         drilldownApi.loadSources();
     },
 
-    loadGroups: function(sourceCode) {
-        drilldownApi.loadGroups({ sourceCode:sourceCode });
+    loadGroups: function (sourceCode) {
+        drilldownApi.loadGroups({ sourceCode: sourceCode });
     },
 
-    loadResources: function(sourceCode, groupCode) {
-        drilldownApi.loadResources({ sourceCode:sourceCode, groupCode:groupCode });
+    loadResources: function (sourceCode, groupCode) {
+        drilldownApi.loadResources({ sourceCode: sourceCode, groupCode: groupCode });
     }
 };

@@ -65,15 +65,15 @@ group by f.GroupCode, f.Level";
             }
 
             var sql = $@"
-select f.ResourceCode Code, f.Level Level, count(f.IndicatorCode) Count from Reports r
+select f.GroupCode GroupCode, f.ResourceCode Code, f.Level Level, count(f.IndicatorCode) Count from Reports r
 join Facts f on f.ReportId = r.Id
 where r.IsLast = 1 and r.SourceCode = @sourceCode {condition}
-group by f.ResourceCode, f.Level";
+group by f.GroupCode, f.ResourceCode, f.Level";
 
             var data = _unitOfWork.Session.Query(sql, new { sourceCode, groupCode });
-            return data.GroupBy(row => row.Code).Select(resource => new
+            return data.GroupBy(row => new { row.GroupCode, row.Code }).Select(resource => new
             {
-                Code = resource.Key,
+                Code = resource.Key.Code,
                 Level = (FactLevel) resource.Max(row => row.Level),
                 AllCount = resource.Sum(row => (int) row.Count),
                 BugCount = resource.Where(row => (int) row.Level > (int) FactLevel.Normal).Sum(row => (int) row.Count)

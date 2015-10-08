@@ -3,15 +3,14 @@ var disp = require('../dispatcher');
 var utils = require('./utils');
 
 var _items = [];
-var _selected = null;
 
 var SourcesStore = utils.createStore({
-    get: function() {
+    get: function () {
         return _items;
     }
 });
 
-SourcesStore.dispatchToken = disp.register(function(payload) {
+SourcesStore.dispatchToken = disp.register(function (payload) {
     var actionType = payload.actionType;
     switch (actionType) {
         case "sources-load":
