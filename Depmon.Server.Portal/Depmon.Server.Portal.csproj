@@ -132,14 +132,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\actioncreators\dashboard.js" />
-    <Content Include="App\actioncreators\utils.js" />
-    <Content Include="App\actions\common.js" />
-    <Content Include="App\actions\dashboard.js" />
-    <Content Include="App\stores\resources.js" />
-    <Content Include="App\stores\groups.js" />
-    <Content Include="App\stores\sources.js" />
-    <Content Include="App\stores\utils.js" />
+    <Content Include="App\actioncreators\dashboard.cre.js" />
+    <Content Include="App\actioncreators\utils.cre.js" />
+    <Content Include="App\actions\common.act.js" />
+    <Content Include="App\actions\dashboard.act.js" />
+    <Content Include="App\stores\resources.store.js" />
+    <Content Include="App\stores\groups.store.js" />
+    <Content Include="App\stores\sources.store.js" />
+    <Content Include="App\stores\utils.store.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -164,7 +164,7 @@
     <Content Include="App\components\Dashboard\statistic.jsx" />
     <Content Include="App\dispatcher.js" />
     <Content Include="App\components\routes.jsx" />
-    <Content Include="App\api\drilldown.js" />
+    <Content Include="App\api\drilldown.api.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

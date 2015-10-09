@@ -48,6 +48,7 @@ group by f.GroupCode, f.Level";
             var data = _unitOfWork.Session.Query(sql, new { sourceCode });
             return data.GroupBy(row => row.Code).Select(group => new
             {
+                SourceCode = sourceCode,
                 Code = group.Key,
                 Level = (FactLevel) group.Max(row => row.Level),
                 AllCount = group.Sum(row => (int) row.Count),
@@ -73,6 +74,8 @@ group by f.GroupCode, f.ResourceCode, f.Level";
             var data = _unitOfWork.Session.Query(sql, new { sourceCode, groupCode });
             return data.GroupBy(row => new { row.GroupCode, row.Code }).Select(resource => new
             {
+                SourceCode = sourceCode,
+                GroupCode = resource.Key.GroupCode,
                 Code = resource.Key.Code,
                 Level = (FactLevel) resource.Max(row => row.Level),
                 AllCount = resource.Sum(row => (int) row.Count),
@@ -84,7 +87,7 @@ group by f.GroupCode, f.ResourceCode, f.Level";
         public IEnumerable Indicators(string sourceCode, string groupCode = null, string resourceCode = null)
         {
             var sqlBuilder = new StringBuilder(@"
-select f.IndicatorCode Code, f.Level Level, f.IndicatorValue, f.IndicatorDescription from Reports r
+select r.SourceCode, f.GroupCode, f.ResourceCode, f.IndicatorCode Code, f.Level Level, f.IndicatorValue, f.IndicatorDescription from Reports r
 join Facts f on f.ReportId = r.Id
 where r.IsLast = 1 and r.SourceCode = @sourceCode");
 

@@ -1,4 +1,4 @@
-﻿var drilldownApi = require('../api/drilldown');
+﻿var drilldownApi = require('../api/drilldown.api');
 
 module.exports = {
     loadSources: function () {
@@ -11,5 +11,9 @@ module.exports = {
 
     loadResources: function (sourceCode, groupCode) {
         drilldownApi.loadResources({ sourceCode: sourceCode, groupCode: groupCode });
+    },
+
+    loadIndicators: function(sourceCode, groupCode, resourceCode) {
+        drilldownApi.loadIndicators({ sourceCode: sourceCode, groupCode: groupCode, resourceCode: resourceCode });
     }
 };

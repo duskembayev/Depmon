@@ -1,6 +1,6 @@
 ﻿var $ = require('jquery');
-var acurr = require('../actions/dashboard');
-var acomm = require('../actions/common');
+var acurr = require('../actions/dashboard.act');
+var acomm = require('../actions/common.act');
 
 module.exports = {
     loadSources: function () {

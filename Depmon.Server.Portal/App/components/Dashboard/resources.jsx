@@ -3,8 +3,8 @@ var rb = require('react-bootstrap');
 var PanelGroup = rb.PanelGroup;
 var Panel = rb.Panel;
 
-var ResourcesStore = require('../../stores/resources');
-var acDashboard = require('../../actioncreators/dashboard');
+var ResourcesStore = require('../../stores/resources.store');
+var acDashboard = require('../../actioncreators/dashboard.cre');
 
 module.exports = React.createClass({
     getInitialState: function () {

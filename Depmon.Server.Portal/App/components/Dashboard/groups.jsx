@@ -7,8 +7,8 @@ var Badge = rb.Badge;
 var Grid = rb.Grid;
 var Col = rb.Col;
 
-var GroupsStore = require('../../stores/groups');
-var acDashboard = require('../../actioncreators/dashboard');
+var GroupsStore = require('../../stores/groups.store');
+var acDashboard = require('../../actioncreators/dashboard.cre');
 
 module.exports = React.createClass({
     getInitialState: function () {

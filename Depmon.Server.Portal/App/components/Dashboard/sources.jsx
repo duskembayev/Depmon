@@ -5,8 +5,8 @@ var ListGroup = rb.ListGroup;
 var ListGroupItem = rb.ListGroupItem;
 var Badge = rb.Badge;
 
-var SourcesStore = require('../../stores/sources');
-var acDashboard = require('../../actioncreators/dashboard');
+var SourcesStore = require('../../stores/sources.store');
+var acDashboard = require('../../actioncreators/dashboard.cre');
 
 module.exports = React.createClass({
     getInitialState: function () {

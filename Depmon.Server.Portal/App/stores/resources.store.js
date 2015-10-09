@@ -1,6 +1,6 @@
 ﻿var _ = require('underscore');
 var disp = require('../dispatcher');
-var utils = require('./utils');
+var utils = require('./utils.store');
 
 var _items = [];
 
@@ -15,6 +15,13 @@ ResourcesStore.dispatchToken = disp.register(function (payload) {
     switch (actionType) {
         case "resources-load":
             _items = payload.data;
+
+            ResourcesStore.emitChange();
+            break;
+        case "indicators-load":
+            var resourceCode = payload.request.resourceCode;
+            var resource = _.find(_items, function (item) { return item.Code === resourceCode; });
+            _.extend(resource, { indicators: payload.data });
 
             ResourcesStore.emitChange();
             break;
