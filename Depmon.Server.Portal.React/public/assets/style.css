@@ -1,0 +1,121 @@
+
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
+
+/* line 286 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
+
+/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
+
+/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+#app-node {
+  height: 100%;
+}
+
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+.l-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 100%;
+}
+
+/* line 11 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+.l-wrapper {
+  flex: 1 0 auto;
+}
+
+/* line 14 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+.l-container,
+.l-content {
+  position: relative;
+  margin: 0 auto;
+  width: 768px;
+}
+
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+.l-content {
+  padding-top: 20px;
+}
+
+/* line 23 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+.l-right-section {
+  padding-left: 30px;
+}
+
+/* line 26 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+
+/* line 29 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+
+/* line 30 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+
+/* line 30 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+.l-text-center {
+  text-align: center;
+}
+
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+.l-text-right {
+  text-align: right;
+}
+
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+.c-header {
+  height: 45px;
+  border-bottom: 1px solid #c2dce8;
+  display: table;
+  letter-spacing: 1px;
+  padding: 0 5%;
+  color: #2ea4ff;
+  width: 100%;
+}
+
+/* line 12 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+.c-header nav,
+.c-header div {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+/* line 18 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+.c-header nav {
+  text-align: right;
+}
+
+/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+.c-header nav a {
+  color: #2ea4ff;
+  padding-right: 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* line 27 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\header.styl */
+.c-header nav a.active {
+  color: #3eb4eb;
+  font-weight: 700;
+}

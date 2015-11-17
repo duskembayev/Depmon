@@ -196,3 +196,5 @@ FakesAssemblies/
 *.opt
 Depmon.Client.PowerShell/results.csv
 /Depmon.Server.Portal/Public/scripts.js
+
+.idea/

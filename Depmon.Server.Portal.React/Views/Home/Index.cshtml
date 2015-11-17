@@ -1,0 +1,16 @@
+﻿@using System.Web.Optimization
+@model dynamic
+
+@{
+    ViewBag.Title = "";
+}
+
+<div id="app-node"></div>
+@section bundles
+{
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    @Styles.Render("~/bundles/style")
+    @Scripts.Render("~/bundles/vendor")
+    @Scripts.Render("~/bundles/app")
+}
