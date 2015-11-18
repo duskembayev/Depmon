@@ -2,9 +2,12 @@
 using System.Linq;
 using System.Text;
 using System.Web.Http;
+using System.Web.Mvc;
 using Dapper;
 using Depmon.Server.Database;
 using Depmon.Server.Domain;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Depmon.Server.Portal.Controllers
 {
@@ -17,7 +20,9 @@ namespace Depmon.Server.Portal.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
+        
+
+        [System.Web.Http.HttpGet]
         public IEnumerable Sources()
         {
             var sql = @"
@@ -30,13 +35,13 @@ group by r.SourceCode, f.Level";
             return data.GroupBy(row => row.Code).Select(source => new
             {
                 Code = source.Key,
-                Level = (FactLevel) source.Max(row => row.Level),
-                AllCount = source.Sum(row => (int) row.Count),
-                BugCount = source.Where(row => (int) row.Level > (int) FactLevel.Normal).Sum(row => (int) row.Count)
+                Level = (FactLevel)source.Max(row => row.Level),
+                AllCount = source.Sum(row => (int)row.Count),
+                BugCount = source.Where(row => (int)row.Level > (int)FactLevel.Normal).Sum(row => (int)row.Count)
             }).ToList();
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IEnumerable Groups(string sourceCode)
         {
             var sql = @"
@@ -50,13 +55,13 @@ group by f.GroupCode, f.Level";
             {
                 SourceCode = sourceCode,
                 Code = group.Key,
-                Level = (FactLevel) group.Max(row => row.Level),
-                AllCount = group.Sum(row => (int) row.Count),
-                BugCount = group.Where(row => (int) row.Level > (int) FactLevel.Normal).Sum(row => (int) row.Count)
+                Level = (FactLevel)group.Max(row => row.Level),
+                AllCount = group.Sum(row => (int)row.Count),
+                BugCount = group.Where(row => (int)row.Level > (int)FactLevel.Normal).Sum(row => (int)row.Count)
             }).ToList();
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IEnumerable Resources(string sourceCode, string groupCode = null)
         {
             var condition = string.Empty;
@@ -77,13 +82,13 @@ group by f.GroupCode, f.ResourceCode, f.Level";
                 SourceCode = sourceCode,
                 GroupCode = resource.Key.GroupCode,
                 Code = resource.Key.Code,
-                Level = (FactLevel) resource.Max(row => row.Level),
-                AllCount = resource.Sum(row => (int) row.Count),
-                BugCount = resource.Where(row => (int) row.Level > (int) FactLevel.Normal).Sum(row => (int) row.Count)
+                Level = (FactLevel)resource.Max(row => row.Level),
+                AllCount = resource.Sum(row => (int)row.Count),
+                BugCount = resource.Where(row => (int)row.Level > (int)FactLevel.Normal).Sum(row => (int)row.Count)
             }).ToList();
         }
 
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         public IEnumerable Indicators(string sourceCode, string groupCode = null, string resourceCode = null)
         {
             var sqlBuilder = new StringBuilder(@"
