@@ -24,7 +24,7 @@ VENDOR = [
   'lodash',
   'page',
   'react',
-  'react-dom'
+  'react-dom',
 ];
 
 compileVendorJs = function (opts) {

@@ -1,22 +1,13 @@
 import React from 'react';
 import Component from '../base/component';
-import Header from './components/header';
-import TreeNode from './components/treeNode';
-import Api from '../modules/api'
-
+import SideBar from './components/sidebar'
 
 export default class HomeView extends Component {
-  componentDidMount() {
-    Api.tree((tree) => {
-      this.setState({ tree });
-    });
-
-  }
 
   render () {
-    return <div>
-      <Header/>
-      <TreeNode node={this.state.tree} />
+    return <div id="layout" className="l-layout content pure-g">
+      <SideBar/>
+
     </div>;
   }
 }
