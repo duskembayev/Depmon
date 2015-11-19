@@ -1,5 +1,5 @@
 
-/* line 11 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
+/* line 13 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
 
@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
@@ -1223,7 +1224,11 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 }
 
 
-/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\menus-core.css */
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\menus-core.css */
+
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
 
@@ -1306,6 +1311,13 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 }
 
 /* line 31 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
-.c-sidebar .pure-menu .pure-menu-heading .problem-count {
-  margin-left: 2px;
+.c-sidebar .pure-menu .problem-count {
+  display: inline-block;
+  background-color: #c00;
+  margin-left: 5px;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+  float: right;
 }

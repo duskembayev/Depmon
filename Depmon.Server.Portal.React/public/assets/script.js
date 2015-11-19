@@ -61130,7 +61130,7 @@ var SideBar = (function (_Component) {
           { key: index, className: 'pure-menu-item' },
           _react2['default'].createElement(
             'a',
-            { href: '#', className: 'pure-menu-link' },
+            { href: '/source/' + source.sourceCode, className: 'pure-menu-link' },
             _react2['default'].createElement(
               'span',
               { className: 'source-label' },
@@ -61139,9 +61139,7 @@ var SideBar = (function (_Component) {
             _react2['default'].createElement(
               'span',
               { className: 'problem-count' },
-              '(',
-              source.problemCount,
-              ')'
+              source.problemCount
             )
           )
         );
