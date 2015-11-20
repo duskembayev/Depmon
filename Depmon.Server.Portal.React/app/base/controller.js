@@ -15,7 +15,7 @@ export default class Controller {
   }
 
   renderView (View, callback) {
-    let view = ReactDOM.render(<View />, window.appNode, callback);
+    let view = ReactDOM.render(View,  window.appNode, callback);
     window.titleNode.innerText = view.title();
   }
 }

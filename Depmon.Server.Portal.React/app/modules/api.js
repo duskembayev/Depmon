@@ -15,6 +15,18 @@ class Api {
       callback(sources);
     })
   }
+
+  sourceInfo (callback) {
+    let url = `${rootUrl}/drilldown/sourceinfo`;
+    request(url, (error, response, body) => {
+      if(error !== null) {
+        throw new Error("Cannot get API");
+      }
+
+      var info =  JSON.parse(body);
+      callback(info);
+    })
+  }
 }
 
 export default new Api();
