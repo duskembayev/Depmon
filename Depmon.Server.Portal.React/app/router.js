@@ -7,7 +7,7 @@ export default class Router extends BaseRouter {
     this.route('/', 'home.index');
     this.route('/settings', 'setting.index');
     this.route('/reports', 'report.index');
-    this.route('/source:sourceCode', 'source.index');
+    this.route('/source/:sourceCode', 'source.index');
   }
 }
 
@@ -17,4 +17,3 @@ Router.prototype.controllers = {
   report: require('./controllers/report'),
   source: require('./controllers/source'),
 };
-

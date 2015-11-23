@@ -1,5 +1,5 @@
 
-/* line 45 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
+/* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
 
@@ -1310,9 +1310,30 @@ striping:
 
 /* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\tables.css */
 
-/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url("https://fonts.gstatic.com/s/roboto/v15/ek4gzZ-GeXAPcSbHtCeQI_esZW2xOQ-xsNqO47m55DA.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url("https://fonts.gstatic.com/s/roboto/v15/mErvLBYg_cXG3rLvUsKT_fesZW2xOQ-xsNqO47m55DA.woff2") format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url("https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
 
-/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+/* line 25 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
 
@@ -1327,7 +1348,7 @@ striping:
 
 /* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 .l-layout {
-  padding-left: 200px;
+  padding-left: 185px;
   position: relative;
 }
 
@@ -1357,14 +1378,16 @@ striping:
 .l-card {
   position: relative;
   display: block;
+  letter-spacing: 0;
+  font-size: 14px;
 }
 
-/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 .l-card .l-c-heading {
   border-radius: 3px;
   padding: 10px 5px;
   color: #fff;
-  background-color: #3a5866;
+  background-color: #537e92;
   cursor: default;
   vertical-align: middle;
   z-index: 2;
@@ -1372,41 +1395,12 @@ striping:
 }
 
 /* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-.l-card .c-g-i-heading {
-  background-color: #3a5866;
-  color: #fff;
-  box-shadow: -1px 6px 6px -6px rgba(0,0,0,0.35);
-  padding: 5px;
-}
 
-/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-.l-card .c-group-item {
-  margin: 15px 0 15px 15px;
-}
-
-/* line 24 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-.l-card .c-resource-item {
-  border: 1px solid #3a5866;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 5px;
-}
-
-/* line 30 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-.l-card .c-r-i-heading {
-  background-color: #3a5866;
-  color: #fff;
-  box-shadow: -1px 6px 6px -6px rgba(0,0,0,0.35);
-  padding: 5px;
-}
-
-/* line 34 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-
-/* line 34 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar {
-  margin-left: -200px;
+  margin-left: -185px;
   min-width: 170px;
   height: 100%;
   position: fixed;
@@ -1433,7 +1427,8 @@ striping:
 
 /* line 22 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-link:hover,
-.c-sidebar .pure-menu .pure-menu-link:focus {
+.c-sidebar .pure-menu .pure-menu-link:focus,
+.c-sidebar .pure-menu .pure-menu-link.active {
   background: #82aabd;
 }
 
@@ -1457,51 +1452,73 @@ striping:
   float: right;
 }
 
-/* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g {
-  display: flex;
-  flex-wrap: wrap;
+/* line 39 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+
+/* line 39 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+.c-group-item {
+  margin: 15px 0 15px 15px;
 }
 
-/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-
-/* line 22 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-spacing [class *= "pure-u"] {
-  padding: 0 5px;
-  box-sizing: border-box;
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+.c-group-item .c-g-i-heading {
+  background-color: #90b1c0;
+  color: #fff;
+  padding: 5px;
 }
 
-/* line 26 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-spacing [class *= "pure-u"]:first-child {
-  padding-left: 0;
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+.c-resource-item {
+  border: 1px solid #b0babf;
+  margin: 5px 0 0 10px;
 }
 
-/* line 29 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-spacing [class *= "pure-u"]:last-child {
-  padding-right: 0;
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+.c-resource-item .c-r-i-heading {
+  background-color: #d8e3e9;
+  color: #1c1c1c;
+  padding: 5px;
 }
 
-/* line 32 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g [class *= "pure-u"] {
-  font-family: 'Roboto', sans-serif;
+/* line 8 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+
+/* line 8 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+
+/* line 3 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+.c-indicator-item .c-i-i-value-list {
+  padding-left: 5px;
 }
 
-/* line 35 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-hor-center {
-  justify-content: center;
+/* line 6 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+.c-indicator-item .c-i-i-value {
+  display: inline-block;
+  margin: 4px 5px;
+  padding: 2px;
+  text-align: center;
 }
 
-/* line 38 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-ver-center {
-  align-items: center;
+/* line 12 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+.c-indicator-item .level-normal {
+  border: 2px solid #70b870;
+  background-color: #cfc;
 }
 
-/* line 41 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-g-hor-reverse {
-  flex-direction: row-reverse;
+/* line 16 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+.c-indicator-item .level-warning {
+  border: 2px solid #db6e00;
+  background-color: #f93;
 }
 
-/* line 44 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
-.pure-u-spacing {
-  margin: 5px;
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+.c-indicator-item .level-error,
+.c-indicator-item .level-critical {
+  border: 2px solid #b30000;
+  background-color: #f00;
 }

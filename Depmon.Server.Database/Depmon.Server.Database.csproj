@@ -95,6 +95,7 @@
     <Compile Include="Impl\ReportRepository.cs" />
     <Compile Include="Impl\Repository.cs" />
     <Compile Include="Impl\UnitOfWork.cs" />
+    <Compile Include="Queries\QueryStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

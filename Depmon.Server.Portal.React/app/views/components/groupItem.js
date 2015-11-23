@@ -1,6 +1,6 @@
 import React from 'react';
 import Component from '../../base/component';
-import ResourceList from './resourceList'
+import ResourceItem from './resourceItem'
 
 export default class GroupItem extends Component {
 
@@ -8,12 +8,14 @@ export default class GroupItem extends Component {
     let code = this.props.group.code;
     let resources = this.props.group.resources;
 
+    let resourcesItems = resources.map((info, index) => {
+      return <ResourceItem key={index} resource={info} />
+    });
     return <div className="c-group-item">
       <div className="c-g-i-heading">
         Группа: {code}
       </div>
-
-      <ResourceList resources = {resources}/>
+      <div className="">{resourcesItems}</div>
     </div>
   }
 }

@@ -13,10 +13,6 @@ export default class SideBar extends Component {
 
   componentDidMount () {
     vent.on('route:after', this.setActivePath, this);
-    //Api.sources((sources) => {
-    //  this.setState({sources});
-    //  console.log(sources);
-    //});
   }
 
   componentWillUnmount () {
@@ -43,20 +39,17 @@ export default class SideBar extends Component {
       <div className="pure-menu">
         <ul className="pure-menu-list">
           <li className="pure-menu-heading">Меню</li>
-
-          <li className={this.cx('pure-menu-item', {active: currentPath === homeUrl})}>
-            <a href={homeUrl} className="pure-menu-link">Главная</a>
+          <li>
+            <a href={homeUrl} className={this.cx('pure-menu-link', {active: currentPath === homeUrl})}>Главная</a>
           </li>
-          <li className={this.cx('pure-menu-item', {active: currentPath === '/reports'})}>
-            <a href="/reports" className="pure-menu-link">Отчеты</a>
+          <li>
+            <a href="/reports" className={this.cx('pure-menu-link', {active: currentPath === '/reports'})}>Отчеты</a>
           </li>
-          <li className={this.cx('pure-menu-item', {active: currentPath === '/settings'})}>
-            <a href="/settings" className="pure-menu-link">Настройки</a>
+          <li>
+            <a href="/settings" className={this.cx('pure-menu-link', {active: currentPath === '/settings'})}>Настройки</a>
           </li>
           <li className="pure-menu-heading">Источники</li>
-
           {sourceLinks}
-
         </ul>
       </div>
     </div>

@@ -1,6 +1,5 @@
 @require 'reset'
 
-
 @require 'purecss/build/grids-core.css'
 @require 'purecss/build/grids-units.css'
 @require 'purecss/build/grids-responsive.css'
@@ -13,33 +12,6 @@
 @require 'layout/text'
 @require 'layout/card'
 @require 'components/sidebar'
-
-.pure-g
-  display: flex
-  flex-wrap: wrap
-
-.pure-g-spacing
-  [class *= "pure-u"]
-    padding: 0 5px
-    box-sizing: border-box
-
-    &:first-child
-      padding-left: 0
-
-    &:last-child
-      padding-right: 0
-
-.pure-g [class *= "pure-u"]
-  font-family: $main_font_family
-
-.pure-g-hor-center
-  justify-content: center
-
-.pure-g-ver-center
-  align-items: center
-
-.pure-g-hor-reverse
-  flex-direction: row-reverse
-
-.pure-u-spacing
-  margin: 5px
+@require 'components/group-item'
+@require 'components/resource-item'
+@require 'components/indicator-item'

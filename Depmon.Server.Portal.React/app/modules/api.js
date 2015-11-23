@@ -1,31 +1,22 @@
-import request from 'request'
+import axios from 'axios'
 
 
 const rootUrl = 'http://localhost:9820/api';
 
 class Api {
-  sources (callback) {
+  sources () {
     let url = `${rootUrl}/drilldown/sources`;
-    request(url, (error, response, body) => {
-      if(error !== null) {
-        throw new Error("Cannot get API");
-      }
-
-      var sources =  JSON.parse(body);
-      callback(sources);
-    })
+    return axios.get(url);
   }
 
-  sourceInfo (callback) {
+  sourceInfo () {
     let url = `${rootUrl}/drilldown/sourceinfo`;
-    request(url, (error, response, body) => {
-      if(error !== null) {
-        throw new Error("Cannot get API");
-      }
+    return axios.get(url);
+  }
 
-      var info =  JSON.parse(body);
-      callback(info);
-    })
+  sourceInfoByCode (sourceCode) {
+    let url = `${rootUrl}/drilldown/sourceinfo?sourceCode=${sourceCode}`;
+    return axios.get(url);
   }
 }
 

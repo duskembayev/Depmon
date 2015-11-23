@@ -1,6 +1,6 @@
 import React from 'react';
 import Component from '../../base/component';
-import IndicatorList from './indicatorList'
+import IndicatorItem from './indicatorItem'
 
 export default class ResourceItem extends Component {
 
@@ -12,12 +12,11 @@ export default class ResourceItem extends Component {
       return <IndicatorItem key={index} indicator={info} />
     });
 
-    return <div className="c-resource-item pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+    return <div className="c-resource-item">
       <div className="c-r-i-heading">
         Ресурс: {code}
       </div>
-
-      /*<IndicatorList indicators = {indicators}/>*/
+     {indicatorItems}
     </div>
   }
 }

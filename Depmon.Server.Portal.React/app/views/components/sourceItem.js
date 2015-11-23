@@ -1,6 +1,6 @@
 import React from 'react';
 import Component from '../../base/component';
-import GroupList from './groupList'
+import GroupItem from './groupItem'
 
 export default class SourceItem extends Component {
 
@@ -12,12 +12,11 @@ export default class SourceItem extends Component {
       return <GroupItem key={index} group={info} />
     });
 
-    return <div className="l-card">
+    return <div className="l-card pure-u-1">
       <div className="l-c-heading">
         {code}
       </div>
       {groupItems}
-      /*<GroupList  groups = {groups}/>*/
     </div>
   }
 }

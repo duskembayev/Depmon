@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Collector", "
 EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Depmon.Client.PowerShell", "Depmon.Client.PowerShell\Depmon.Client.PowerShell.pssproj", "{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Portal", "Depmon.Server.Portal\Depmon.Server.Portal.csproj", "{EB67087C-98FE-4EBC-B2BF-E4314320155B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Collector.Impl", "Depmon.Server.Collector.Impl\Depmon.Server.Collector.Impl.csproj", "{600F7BAF-FCC6-41A5-9A5F-870C792E42D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Collector.App", "Depmon.Server.Collector.App\Depmon.Server.Collector.App.csproj", "{2AA7A7B2-7103-467D-A8AB-3772AD2C38E3}"
@@ -77,18 +75,6 @@ Global
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|x64.Build.0 = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|x86.ActiveCfg = Release|Any CPU
 		{6CAFC0C6-A428-4D30-A9F9-700E829FEA51}.Release|x86.Build.0 = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|x64.Build.0 = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Debug|x86.Build.0 = Debug|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|x64.ActiveCfg = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|x64.Build.0 = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|x86.ActiveCfg = Release|Any CPU
-		{EB67087C-98FE-4EBC-B2BF-E4314320155B}.Release|x86.Build.0 = Release|Any CPU
 		{600F7BAF-FCC6-41A5-9A5F-870C792E42D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{600F7BAF-FCC6-41A5-9A5F-870C792E42D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{600F7BAF-FCC6-41A5-9A5F-870C792E42D4}.Debug|x64.ActiveCfg = Debug|Any CPU

@@ -1,7 +1,7 @@
 import React from 'react';
 import Component from '../base/component';
-import SideBar from './components/sidebar'
-import SourceList from './components/sourceList.js'
+import Layout from './layout';
+import SourceItem from './components/sourceItem';
 
 export default class HomeView extends Component {
   render () {
@@ -10,11 +10,8 @@ export default class HomeView extends Component {
       return <SourceItem key={index} source={info} />
     });
 
-
-    return <div id="layout" className="l-layout content pure-g">
-      <SideBar sources={this.props.sources}/>
+    return  <Layout sources={this.props.sources}>
       {sourceItems}
-      /*<SourceList sourcesInfo = {this.props.sourcesInfo} />*/
-    </div>;
+    </Layout>;
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import Component from '../../base/component';
-import IndicatorItemValue from './indicatorItemValue';
 
 export default class IndicatorItem extends Component {
 
@@ -8,19 +7,22 @@ export default class IndicatorItem extends Component {
     let code = this.props.indicator.code;
     let values = this.props.indicator.values;
 
-    let indicatorValues = values.map((info, index) => {
-      return <IndicatorItemValue key={index} value={info} />
-    });
+    let items = values.map((info, index) => {
+      let st =  this.cx('c-i-i-value',{
+      	'level-normal': info.level === 25,
+        'level-warning': info.level === 50,
+        'level-error': info.level === 75,
+        'level-critical': info.level === 75
+      });
 
-    let qwe = values.map((info, index) => {
       return (
-      <span key={index}>{`${info.value} (${info.description})/`}</span>
+      <span className={st} key={index}>{`${info.value} (${info.description})`}</span>
       )
     });
 
 
-    return <div className="">
-      <span>{`${code}:`} {qwe}</span>
+    return <div className="c-indicator-item">
+      <span className="c-i-i-value-list">{`${code}:`} {items}</span>
     </div>
   }
 }
