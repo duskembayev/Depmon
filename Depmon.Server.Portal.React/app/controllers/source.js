@@ -7,13 +7,9 @@ import Api from '../modules/api'
 
 export default class SourceController extends Controller {
   index (ctx, done) {
-    var self = this;
-    Axios.all([
-        Api.sources(),
-        Api.sourceInfoByCode(ctx.params.sourceCode)
-      ])
-      .then(Axios.spread(function (sources, sourcesInfo) {
-        self.renderView(<HomeView sources={sources.data} sourcesInfo={sourcesInfo.data} />, done);
-      }));
+    Api.sourceInfoByCode(ctx.params.sourceCode)
+      .then((sourcesInfo) => {
+        this.renderView(<HomeView sourcesInfo={sourcesInfo.data}/>, done);
+      });
   }
 }

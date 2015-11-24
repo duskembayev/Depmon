@@ -12,6 +12,9 @@ export default class SideBar extends Component {
   }
 
   componentDidMount () {
+    Api.sources().then((sources) => {
+      this.setState({sources: sources.data});
+    });
     vent.on('route:after', this.setActivePath, this);
   }
 
@@ -25,8 +28,8 @@ export default class SideBar extends Component {
 
   render () {
     let homeUrl = '/';
-    let { currentPath } = this.state;
-    let sourceLinks = this.props.sources.map((source, index) => {
+    let { currentPath, sources } = this.state;
+    let sourceLinks = sources.map((source, index) => {
       return <li key={index} className="pure-menu-item">
         <a href={`/source/${source.sourceCode}`} className="pure-menu-link">
           <span className="source-label">{source.sourceCode}</span>

@@ -4,8 +4,8 @@ import SideBar from './components/sidebar';
 
 export default class LayoutView extends Component {
   render () {
-    return <div id="layout" className="l-layout content pure-g">
-      <SideBar sources={this.props.sources}/>
+    return <div id="layout" className="l-layout pure-g">
+      <SideBar />
       {this.props.children}
     </div>;
   }

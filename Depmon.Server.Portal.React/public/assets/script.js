@@ -335,10 +335,11 @@ var HomeController = (function (_Controller) {
   _createClass(HomeController, [{
     key: 'index',
     value: function index(ctx, done) {
-      var self = this;
-      _axios2['default'].all([_modulesApi2['default'].sources(), _modulesApi2['default'].sourceInfo()]).then(_axios2['default'].spread(function (sources, sourcesInfo) {
-        self.renderView(_react2['default'].createElement(_viewsHome2['default'], { sources: sources.data, sourcesInfo: sourcesInfo.data }), done);
-      }));
+      var _this = this;
+
+      _modulesApi2['default'].sourceInfo().then(function (sourcesInfo) {
+        _this.renderView(_react2['default'].createElement(_viewsHome2['default'], { sourcesInfo: sourcesInfo.data }), done);
+      });
     }
   }]);
 
@@ -502,10 +503,11 @@ var SourceController = (function (_Controller) {
   _createClass(SourceController, [{
     key: 'index',
     value: function index(ctx, done) {
-      var self = this;
-      _axios2['default'].all([_modulesApi2['default'].sources(), _modulesApi2['default'].sourceInfoByCode(ctx.params.sourceCode)]).then(_axios2['default'].spread(function (sources, sourcesInfo) {
-        self.renderView(_react2['default'].createElement(_viewsHome2['default'], { sources: sources.data, sourcesInfo: sourcesInfo.data }), done);
-      }));
+      var _this = this;
+
+      _modulesApi2['default'].sourceInfoByCode(ctx.params.sourceCode).then(function (sourcesInfo) {
+        _this.renderView(_react2['default'].createElement(_viewsHome2['default'], { sourcesInfo: sourcesInfo.data }), done);
+      });
     }
   }]);
 
@@ -1916,6 +1918,11 @@ var SideBar = (function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this = this;
+
+      _modulesApi2['default'].sources().then(function (sources) {
+        _this.setState({ sources: sources.data });
+      });
       _modulesVent2['default'].on('route:after', this.setActivePath, this);
     }
   }, {
@@ -1932,9 +1939,11 @@ var SideBar = (function (_Component) {
     key: 'render',
     value: function render() {
       var homeUrl = '/';
-      var currentPath = this.state.currentPath;
+      var _state = this.state;
+      var currentPath = _state.currentPath;
+      var sources = _state.sources;
 
-      var sourceLinks = this.props.sources.map(function (source, index) {
+      var sourceLinks = sources.map(function (source, index) {
         return _react2['default'].createElement(
           'li',
           { key: index, className: 'pure-menu-item' },
@@ -2191,8 +2200,8 @@ var LayoutView = (function (_Component) {
     value: function render() {
       return _react2['default'].createElement(
         'div',
-        { id: 'layout', className: 'l-layout content pure-g' },
-        _react2['default'].createElement(_componentsSidebar2['default'], { sources: this.props.sources }),
+        { id: 'layout', className: 'l-layout pure-g' },
+        _react2['default'].createElement(_componentsSidebar2['default'], null),
         this.props.children
       );
     }
@@ -2230,6 +2239,10 @@ var _baseComponent = require('../base/component');
 
 var _baseComponent2 = _interopRequireDefault(_baseComponent);
 
+var _layout = require('./layout');
+
+var _layout2 = _interopRequireDefault(_layout);
+
 var ReportsView = (function (_Component) {
   _inherits(ReportsView, _Component);
 
@@ -2243,9 +2256,13 @@ var ReportsView = (function (_Component) {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
-        'div',
+        _layout2['default'],
         null,
-        'Reports'
+        _react2['default'].createElement(
+          'div',
+          { className: 'pure-u-1' },
+          'Reports'
+        )
       );
     }
   }]);
@@ -2257,7 +2274,7 @@ exports['default'] = ReportsView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"react":undefined}],35:[function(require,module,exports){
+},{"../base/component":1,"./layout":33,"react":undefined}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2282,6 +2299,10 @@ var _baseComponent = require('../base/component');
 
 var _baseComponent2 = _interopRequireDefault(_baseComponent);
 
+var _layout = require('./layout');
+
+var _layout2 = _interopRequireDefault(_layout);
+
 var SetingsView = (function (_Component) {
   _inherits(SetingsView, _Component);
 
@@ -2295,9 +2316,13 @@ var SetingsView = (function (_Component) {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
-        'div',
+        _layout2['default'],
         null,
-        'Settings'
+        _react2['default'].createElement(
+          'div',
+          { className: 'pure-u-1' },
+          'Settings'
+        )
       );
     }
   }]);
@@ -2309,4 +2334,4 @@ exports['default'] = SetingsView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"react":undefined}]},{},[9]);
+},{"../base/component":1,"./layout":33,"react":undefined}]},{},[9]);
