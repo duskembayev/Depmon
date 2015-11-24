@@ -1,0 +1,14 @@
+﻿@using System.Web.Optimization
+@model dynamic
+
+@{
+    ViewBag.Title = "";
+}
+
+<div id="app-node"></div>
+@section bundles
+{
+    @Styles.Render("~/bundles/style")
+    @Scripts.Render("~/bundles/vendor")
+    @Scripts.Render("~/bundles/app")
+}

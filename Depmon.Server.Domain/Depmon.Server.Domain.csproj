@@ -76,17 +76,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FactObject.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Indicator.cs" />
-    <Compile Include="Model\Association.cs" />
-    <Compile Include="Model\FactObjectType.cs" />
-    <Compile Include="Model\Fact.cs" />
-    <Compile Include="Model\FactLevel.cs" />
-    <Compile Include="Model\Report.cs" />
+    <Compile Include="Style.cs" />
+    <Compile Include="ItemType.cs" />
+    <Compile Include="Fact.cs" />
+    <Compile Include="FactLevel.cs" />
+    <Compile Include="Report.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource.cs" />
-    <Compile Include="Source.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

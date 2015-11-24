@@ -6,7 +6,7 @@ using Depmon.Server.Collector.Impl;
 using Depmon.Server.Collector.Impl.Configuration;
 using Depmon.Server.Database;
 using Depmon.Server.Database.Impl;
-using Depmon.Server.Domain.Model;
+using Depmon.Server.Domain;
 
 namespace Depmon.Server.Collector.App
 {
@@ -20,7 +20,7 @@ namespace Depmon.Server.Collector.App
 
             var builder = new ContainerBuilder();
 
-            builder.Register(s => new UnitOfWork(getConnectionString("depmon"))).As<IUnitOfWork>().InstancePerLifetimeScope();
+            builder.Register(s => new UnitOfWork(GetConnectionString("depmon"))).As<IUnitOfWork>().InstancePerLifetimeScope();
             
             builder.RegisterType<Engine>().As<IEngine>();
 
@@ -43,7 +43,7 @@ namespace Depmon.Server.Collector.App
             return _container;
         }
 
-        private string getConnectionString(string connStringName)
+        private string GetConnectionString(string connStringName)
         {
             var connectionString = ConfigurationManager.ConnectionStrings[connStringName];
             if (connectionString == null)

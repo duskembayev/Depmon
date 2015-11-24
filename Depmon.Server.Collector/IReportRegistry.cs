@@ -1,4 +1,4 @@
-﻿using Depmon.Server.Domain.Model;
+﻿using Depmon.Server.Domain;
 
 namespace Depmon.Server.Collector
 {

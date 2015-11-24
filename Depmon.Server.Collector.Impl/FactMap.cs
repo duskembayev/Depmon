@@ -1,7 +1,7 @@
 ﻿using System;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using Depmon.Server.Domain.Model;
+using Depmon.Server.Domain;
 
 namespace Depmon.Server.Collector.Impl
 {

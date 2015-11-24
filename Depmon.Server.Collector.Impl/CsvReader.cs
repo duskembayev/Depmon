@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CsvHelper.Configuration;
-using Depmon.Server.Domain.Model;
+using Depmon.Server.Domain;
 
 namespace Depmon.Server.Collector.Impl
 {
