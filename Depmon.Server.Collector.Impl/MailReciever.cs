@@ -4,7 +4,8 @@ using System.IO;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using Depmon.Server.Collector.Configuration;
-using OpenPop.Pop3;
+using MailKit.Net.Pop3;
+
 
 namespace Depmon.Server.Collector.Impl
 {
@@ -16,10 +17,10 @@ namespace Depmon.Server.Collector.Impl
 
             using (var client = new Pop3Client())
             {
-                client.Connect(mailbox.Server, mailbox.Port, mailbox.Ssl, mailbox.Timeout, mailbox.Timeout, CertificateValidator);
+                client.Connect(mailbox.Server, mailbox.Port, mailbox.Ssl);
                 client.Authenticate(mailbox.Username, mailbox.Password);
 
-                var msgCount = client.GetMessageCount();
+                var msgCount = client.Count;
                 Console.WriteLine("[{1}] {0} new messages found", msgCount, mailbox.Username);
 
                 for (var li = 1; li <= msgCount; li++)
@@ -27,11 +28,11 @@ namespace Depmon.Server.Collector.Impl
                     try
                     {
                         var letter = client.GetMessage(li);
-                        var attachments = letter.FindAllAttachments();
+                        var attachments = letter.Attachments;
                         foreach (var attachment in attachments)
                         {
                             var stream = new MemoryStream();
-                            attachment.Save(stream);
+                            attachment.WriteTo(stream);
                             stream.Position = 0;
 
                             result.Add(stream);

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Depmon.Server.Collector.Impl</RootNamespace>
     <AssemblyName>Depmon.Server.Collector.Impl</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,17 +35,26 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BouncyCastle, Version=1.8.5804.17198, Culture=neutral, PublicKeyToken=eec3120e64a3fcba, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.2.15.0\lib\net45\BouncyCastle.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.2.13.2.0\lib\net40-client\CsvHelper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OpenPop, Version=2.0.6.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenPop.2.0.6.2\lib\net20\OpenPop.dll</HintPath>
+    <Reference Include="MailKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.1.2.14\lib\net45\MailKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MimeKit, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.2.15.0\lib\net45\MimeKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

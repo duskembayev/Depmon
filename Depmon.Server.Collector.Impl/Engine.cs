@@ -84,6 +84,11 @@ namespace Depmon.Server.Collector.Impl
 
         private void Dispose(IList<Stream> data)
         {
+            if (data == null)
+            {
+                return;
+            }
+
             foreach (var stream in data)
             {
                 stream.Close();
