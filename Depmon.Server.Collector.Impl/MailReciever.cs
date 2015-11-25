@@ -5,6 +5,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using Depmon.Server.Collector.Configuration;
 using MailKit.Net.Pop3;
+using MimeKit;
 
 
 namespace Depmon.Server.Collector.Impl
@@ -23,19 +24,24 @@ namespace Depmon.Server.Collector.Impl
                 var msgCount = client.Count;
                 Console.WriteLine("[{1}] {0} new messages found", msgCount, mailbox.Username);
 
-                for (var li = 1; li <= msgCount; li++)
+                for (var li = 0; li < msgCount; li++)
                 {
                     try
                     {
                         var letter = client.GetMessage(li);
+                        
                         var attachments = letter.Attachments;
-                        foreach (var attachment in attachments)
+                        var parts = letter.BodyParts;
+                        foreach (var attachment in parts)
                         {
-                            var stream = new MemoryStream();
-                            attachment.WriteTo(stream);
-                            stream.Position = 0;
-
-                            result.Add(stream);
+                            if (attachment.IsAttachment)
+                            {
+                                var stream = new MemoryStream();
+                                //attachment.WriteTo(stream);
+                                ((MimePart)attachment).ContentObject.WriteTo(stream);
+                                stream.Position = 0;
+                                result.Add(stream);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -44,9 +50,10 @@ namespace Depmon.Server.Collector.Impl
                     }
                     finally
                     {
-                        client.DeleteMessage(li);
+                        //client.DeleteMessage(li);
                     }
                 }
+                client.Disconnect(true);
             }
 
             return result;
