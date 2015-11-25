@@ -20,9 +20,8 @@
 VENDOR = [
   'backbone-events-standalone',
   'classnames',
-  'jquery',
-  'lodash',
   'page',
+  'lodash',
   'react',
   'react-dom',
 ];

@@ -15,10 +15,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -58,7 +54,7 @@ var Component = (function (_React$Component) {
         value: function trigger(eventName) {
             var _props;
 
-            eventName = 'on' + _lodash2['default'].capitalize(eventName);
+            eventName = 'on' + _.capitalize(eventName);
 
             for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                 args[_key - 1] = arguments[_key];
@@ -77,7 +73,7 @@ Component.prototype.cx = _classnames2['default'];
 module.exports = exports['default'];
 
 
-},{"classnames":undefined,"lodash":undefined,"react":undefined}],2:[function(require,module,exports){
+},{"classnames":undefined,"react":undefined}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -521,33 +517,11 @@ module.exports = exports['default'];
 },{"../base/controller":2,"../modules/api":10,"../views/home":32,"axios":12,"react":undefined}],8:[function(require,module,exports){
 'use strict';
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 window.appNode = document.getElementById('app-node');
 window.titleNode = document.getElementsByTagName('title')[0];
 
-_jquery2['default'].ajaxSetup({
-  crossDomain: true,
-  dataType: 'json',
-  contentType: 'application/json',
-  processData: false,
-  beforeSend: function beforeSend() {
-    if (_lodash2['default'].isObject(this.data) && this.type.toLowerCase() !== 'get') {
-      this.data = JSON.stringify(this.data);
-    }
-  }
-});
 
-
-},{"jquery":undefined,"lodash":undefined}],9:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -579,7 +553,7 @@ var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var rootUrl = 'http://localhost:9820/api';
+var rootUrl = '/api';
 
 var Api = (function () {
   function Api() {

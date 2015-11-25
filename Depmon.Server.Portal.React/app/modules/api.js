@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const rootUrl = 'http://localhost:9820/api';
+const rootUrl = '/api';
 
 class Api {
   sources () {

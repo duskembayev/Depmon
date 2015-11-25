@@ -1,5 +1,4 @@
-﻿import _ from 'lodash';
-import React from 'react';
+﻿import React from 'react';
 import classnames from 'classnames';
 
 export default class Component extends React.Component {

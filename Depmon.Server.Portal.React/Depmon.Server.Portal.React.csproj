@@ -170,10 +170,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\base\component.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="public\assets\script.js" />
+    <Content Include="public\assets\style.css" />
+    <Content Include="public\assets\vendor.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -188,9 +190,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\actions\" />
-    <Folder Include="app\stores\" />
-    <Folder Include="app\views\components\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +203,9 @@
       <Project>{14CFF559-0739-48D5-B9CC-D1455BF06FDF}</Project>
       <Name>Depmon.Server.Database</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Depmon.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
