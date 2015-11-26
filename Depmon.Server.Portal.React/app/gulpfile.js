@@ -91,6 +91,11 @@ compileCss = function (opts) {
     task = task.pipe(gulp.dest('./../public/assets/'));
 };
 
+gulp.task('watch', function () {
+    gulp.watch('./stylesheets/**/*.styl', ['css']);
+    gulp.watch('./**/*.js', ['js:app']);
+});
+
 // ===============================================================
 // DEVELOPMENT
 // ===============================================================
@@ -112,3 +117,5 @@ gulp.task('css', function () {
 gulp.task('assets', ['js', 'css']);
 
 gulp.task('assets:min', ['js:min', 'css:min']);
+
+gulp.task('dev', ['js', 'css', 'watch']);

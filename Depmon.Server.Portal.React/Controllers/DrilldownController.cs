@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -24,7 +25,24 @@ namespace Depmon.Server.Portal.React.Controllers
         }
 
         [HttpGet]
-        public object Sources()
+        public HttpResponseMessage IsNewReportExist(DateTime dateTime)
+        {
+            var sql = QueryStore.IsNewReportExist();
+
+            var data = _unitOfWork.Session.Query(sql, new { dateTime }).Single();
+            var serializer = JsonSerializer.Create(new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(JObject.FromObject(data, serializer).ToString(), Encoding.UTF8,
+                "application/json");
+            return response;
+        }
+
+        [HttpGet]
+        public HttpResponseMessage Sources()
         {
             var sql = QueryStore.SourceQuery();
 

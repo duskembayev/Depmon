@@ -18,6 +18,11 @@ class Api {
     let url = `${rootUrl}/drilldown/sourceinfo?sourceCode=${sourceCode}`;
     return axios.get(url);
   }
+
+  isNewReportExist(dateTime) {
+    let url = `${rootUrl}/drilldown/IsNewReportExist?dateTime=${dateTime}`;
+    return axios.get(url);
+  }
 }
 
 export default new Api();

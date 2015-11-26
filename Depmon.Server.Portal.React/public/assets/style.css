@@ -1,13 +1,13 @@
 
-/* line 16 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
+/* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\index.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
 
-/* line 286 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
+/* line 286 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\gulp-stylus\node_modules\stylus\lib\functions\index.styl */
 
-/* line 286 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+/* line 286 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\reset.styl */
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -96,7 +96,7 @@ this the same font stack that Normalize.css sets for the `body`.
 }
 
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-core.css */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-core.css */
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -315,7 +315,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
     width: 100%;
 }
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-units.css */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-units.css */
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -1178,7 +1178,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
     }
 }
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-responsive.css */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\grids-responsive.css */
 /*!
 Pure v0.6.0
 Copyright 2014 Yahoo! Inc. All rights reserved.
@@ -1224,9 +1224,9 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 }
 
 
-/* line 5 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\menus-core.css */
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\node_modules\purecss\build\menus-core.css */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -1249,48 +1249,48 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-/* line 25 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
+/* line 25 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\fonts.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
 
-/* line 20 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\config.styl */
 
-/* line 20 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 #app-node {
   height: 100%;
 }
 
-/* line 4 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 .l-layout {
   padding-left: 185px;
   position: relative;
 }
 
-/* line 8 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 8 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 
-/* line 11 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 11 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 
-/* line 12 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
+/* line 12 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\layout.styl */
 
-/* line 12 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+/* line 12 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
 .l-text-center {
   text-align: center;
 }
 
-/* line 4 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
 .l-text-right {
   text-align: right;
 }
 
-/* line 5 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\text.styl */
 
-/* line 5 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 .l-card {
   position: relative;
   display: block;
@@ -1298,7 +1298,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   font-size: 14px;
 }
 
-/* line 7 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 .l-card .l-c-heading {
   border-radius: 3px;
   padding: 10px 5px;
@@ -1310,11 +1310,11 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   box-shadow: -1px 6px 6px -6px rgba(0,0,0,0.35);
 }
 
-/* line 15 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+/* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 
-/* line 15 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar {
   margin-left: -185px;
   min-width: 170px;
@@ -1329,26 +1329,27 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   padding: 2em 0;
 }
 
-/* line 14 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 14 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu {
   text-align: left;
 }
 
-/* line 17 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-link {
   color: #c2dce8;
   margin-left: 0.5em;
   padding: 0.5em 1em;
+  white-space: normal;
 }
 
-/* line 22 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 23 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-link:hover,
 .c-sidebar .pure-menu .pure-menu-link:focus,
 .c-sidebar .pure-menu .pure-menu-link.active {
   background: #82aabd;
 }
 
-/* line 25 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 26 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-heading {
   border-bottom: none;
   font-size: 110%;
@@ -1356,7 +1357,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   padding: 0.5em 1em;
 }
 
-/* line 31 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 32 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .problem-count {
   display: inline-block;
   background-color: #c00;
@@ -1368,51 +1369,51 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   float: right;
 }
 
-/* line 39 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 40 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 
-/* line 39 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+/* line 40 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 .c-group-item {
   margin: 15px 0 15px 15px;
 }
 
-/* line 4 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+/* line 4 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 .c-group-item .c-g-i-heading {
   background-color: #90b1c0;
   color: #fff;
   padding: 5px;
 }
 
-/* line 7 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 
-/* line 7 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+/* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
 .c-resource-item {
   border: 1px solid #b0babf;
   margin: 5px 0 0 10px;
 }
 
-/* line 5 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+/* line 5 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
 .c-resource-item .c-r-i-heading {
   background-color: #d8e3e9;
   color: #1c1c1c;
   padding: 5px;
 }
 
-/* line 8 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
+/* line 8 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\resource-item.styl */
 
-/* line 8 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 8 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 
-/* line 1 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 
-/* line 3 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 3 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 .c-indicator-item .c-i-i-value-list {
   padding-left: 5px;
 }
 
-/* line 6 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 6 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 .c-indicator-item .c-i-i-value {
   display: inline-block;
   margin: 4px 5px;
@@ -1420,21 +1421,36 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   text-align: center;
 }
 
-/* line 12 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 12 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 .c-indicator-item .level-normal {
   border: 2px solid #70b870;
   background-color: #cfc;
 }
 
-/* line 16 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 16 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 .c-indicator-item .level-warning {
   border: 2px solid #db6e00;
   background-color: #f93;
 }
 
-/* line 20 : c:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
 .c-indicator-item .level-error,
 .c-indicator-item .level-critical {
   border: 2px solid #b30000;
   background-color: #f00;
+}
+
+/* line 22 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\indicator-item.styl */
+
+/* line 22 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\notification.styl */
+
+/* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\notification.styl */
+.c-notification {
+  text-align: center;
+  margin: 15px 0;
+  border: 1px solid #70b870;
+  padding: 5px 0;
+  color: #555;
+  background-color: #cfc;
+  text-transform: uppercase;
 }

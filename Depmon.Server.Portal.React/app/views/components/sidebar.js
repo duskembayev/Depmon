@@ -32,8 +32,11 @@ export default class SideBar extends Component {
     let sourceLinks = sources.map((source, index) => {
       return <li key={index} className="pure-menu-item">
         <a href={`/source/${source.sourceCode}`} className="pure-menu-link">
+          { source.problemCount > 0
+            ?  <span className="problem-count">{source.problemCount}</span>
+            : null
+          }
           <span className="source-label">{source.sourceCode}</span>
-          <span className="problem-count">{source.problemCount}</span>
         </a>
       </li>
     });

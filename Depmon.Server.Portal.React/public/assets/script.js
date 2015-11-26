@@ -346,7 +346,7 @@ exports['default'] = HomeController;
 module.exports = exports['default'];
 
 
-},{"../base/controller":2,"../modules/api":10,"../views/home":32,"axios":12,"react":undefined}],5:[function(require,module,exports){
+},{"../base/controller":2,"../modules/api":10,"../views/home":33,"axios":12,"react":undefined}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -398,7 +398,7 @@ exports['default'] = ReportController;
 module.exports = exports['default'];
 
 
-},{"../base/controller":2,"../views/report":34,"react":undefined}],6:[function(require,module,exports){
+},{"../base/controller":2,"../views/report":35,"react":undefined}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -450,7 +450,7 @@ exports['default'] = SettingController;
 module.exports = exports['default'];
 
 
-},{"../base/controller":2,"../views/settings":35,"react":undefined}],7:[function(require,module,exports){
+},{"../base/controller":2,"../views/settings":36,"react":undefined}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -514,7 +514,7 @@ exports['default'] = SourceController;
 module.exports = exports['default'];
 
 
-},{"../base/controller":2,"../modules/api":10,"../views/home":32,"axios":12,"react":undefined}],8:[function(require,module,exports){
+},{"../base/controller":2,"../modules/api":10,"../views/home":33,"axios":12,"react":undefined}],8:[function(require,module,exports){
 'use strict';
 
 window.appNode = document.getElementById('app-node');
@@ -576,6 +576,12 @@ var Api = (function () {
     key: 'sourceInfoByCode',
     value: function sourceInfoByCode(sourceCode) {
       var url = rootUrl + '/drilldown/sourceinfo?sourceCode=' + sourceCode;
+      return _axios2['default'].get(url);
+    }
+  }, {
+    key: 'isNewReportExist',
+    value: function isNewReportExist(dateTime) {
+      var url = rootUrl + '/drilldown/IsNewReportExist?dateTime=' + dateTime;
       return _axios2['default'].get(url);
     }
   }]);
@@ -1692,7 +1698,7 @@ exports['default'] = GroupItem;
 module.exports = exports['default'];
 
 
-},{"../../base/component":1,"./resourceItem":29,"react":undefined}],28:[function(require,module,exports){
+},{"../../base/component":1,"./resourceItem":30,"react":undefined}],28:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1795,6 +1801,108 @@ var _baseComponent = require('../../base/component');
 
 var _baseComponent2 = _interopRequireDefault(_baseComponent);
 
+var _modulesApi = require('../../modules/api');
+
+var _modulesApi2 = _interopRequireDefault(_modulesApi);
+
+var tid = undefined;
+
+var Notification = (function (_Component) {
+  _inherits(Notification, _Component);
+
+  function Notification() {
+    _classCallCheck(this, Notification);
+
+    _get(Object.getPrototypeOf(Notification.prototype), 'constructor', this).apply(this, arguments);
+  }
+
+  _createClass(Notification, [{
+    key: 'initState',
+    value: function initState() {
+      return {
+        updateExists: false,
+        lastTimeCheck: new Date(),
+        intervals: []
+      };
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.checkNewReports();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(tid);
+    }
+  }, {
+    key: 'checkNewReports',
+    value: function checkNewReports() {
+      var _this = this;
+
+      clearInterval(tid);
+      tid = setTimeout(this.checkNewReports.bind(this), 15000);
+
+      if (this.state.updateExists) {
+        return;
+      }
+
+      _modulesApi2['default'].isNewReportExist(this.state.lastTimeCheck.toJSON()).then(function (result) {
+        if (result.data.count !== 0) {
+          _this.setState({ updateExists: true });
+        }
+        _this.setState({ lastTimeCheck: new Date() });
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var updateExists = this.state.updateExists;
+
+      return _react2['default'].createElement(
+        'div',
+        { className: 'c-notification' },
+        updateExists ? _react2['default'].createElement(
+          'span',
+          null,
+          'Доступен новый отчет. Обновите страницу.'
+        ) : null
+      );
+    }
+  }]);
+
+  return Notification;
+})(_baseComponent2['default']);
+
+exports['default'] = Notification;
+module.exports = exports['default'];
+
+
+},{"../../base/component":1,"../../modules/api":10,"react":undefined}],30:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _baseComponent = require('../../base/component');
+
+var _baseComponent2 = _interopRequireDefault(_baseComponent);
+
 var _indicatorItem = require('./indicatorItem');
 
 var _indicatorItem2 = _interopRequireDefault(_indicatorItem);
@@ -1839,7 +1947,7 @@ exports['default'] = ResourceItem;
 module.exports = exports['default'];
 
 
-},{"../../base/component":1,"./indicatorItem":28,"react":undefined}],30:[function(require,module,exports){
+},{"../../base/component":1,"./indicatorItem":28,"react":undefined}],31:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1929,11 +2037,11 @@ var SideBar = (function (_Component) {
               { className: 'source-label' },
               source.sourceCode
             ),
-            _react2['default'].createElement(
+            source.problemCount > 0 ? _react2['default'].createElement(
               'span',
               { className: 'problem-count' },
               source.problemCount
-            )
+            ) : null
           )
         );
       });
@@ -1998,7 +2106,7 @@ exports['default'] = SideBar;
 module.exports = exports['default'];
 
 
-},{"../../base/component":1,"../../modules/api":10,"../../modules/vent":11,"react":undefined}],31:[function(require,module,exports){
+},{"../../base/component":1,"../../modules/api":10,"../../modules/vent":11,"react":undefined}],32:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2066,7 +2174,7 @@ exports['default'] = SourceItem;
 module.exports = exports['default'];
 
 
-},{"../../base/component":1,"./groupItem":27,"react":undefined}],32:[function(require,module,exports){
+},{"../../base/component":1,"./groupItem":27,"react":undefined}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2131,7 +2239,7 @@ exports['default'] = HomeView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"./components/sourceItem":31,"./layout":33,"react":undefined}],33:[function(require,module,exports){
+},{"../base/component":1,"./components/sourceItem":32,"./layout":34,"react":undefined}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2160,6 +2268,10 @@ var _componentsSidebar = require('./components/sidebar');
 
 var _componentsSidebar2 = _interopRequireDefault(_componentsSidebar);
 
+var _componentsNotification = require('./components/notification');
+
+var _componentsNotification2 = _interopRequireDefault(_componentsNotification);
+
 var LayoutView = (function (_Component) {
   _inherits(LayoutView, _Component);
 
@@ -2170,12 +2282,16 @@ var LayoutView = (function (_Component) {
   }
 
   _createClass(LayoutView, [{
+    key: 'initState',
+    value: function initState() {}
+  }, {
     key: 'render',
     value: function render() {
       return _react2['default'].createElement(
         'div',
         { id: 'layout', className: 'l-layout pure-g' },
         _react2['default'].createElement(_componentsSidebar2['default'], null),
+        _react2['default'].createElement(_componentsNotification2['default'], null),
         this.props.children
       );
     }
@@ -2188,7 +2304,7 @@ exports['default'] = LayoutView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"./components/sidebar":30,"react":undefined}],34:[function(require,module,exports){
+},{"../base/component":1,"./components/notification":29,"./components/sidebar":31,"react":undefined}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2248,7 +2364,7 @@ exports['default'] = ReportsView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"./layout":33,"react":undefined}],35:[function(require,module,exports){
+},{"../base/component":1,"./layout":34,"react":undefined}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2308,4 +2424,4 @@ exports['default'] = SetingsView;
 module.exports = exports['default'];
 
 
-},{"../base/component":1,"./layout":33,"react":undefined}]},{},[9]);
+},{"../base/component":1,"./layout":34,"react":undefined}]},{},[9]);

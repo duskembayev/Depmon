@@ -24,5 +24,11 @@ where r.IsLast = 1";
 left join Facts f on f.ReportId = r.Id
 where r.IsLast = 1 and r.SourceCode = @sourceCode";
         }
+
+        public static string IsNewReportExist()
+        {
+            return @"select count() as count from Reports r
+where r.CreatedAt > @dateTime";
+        }
     }
 }
