@@ -5,6 +5,6 @@ namespace Depmon.Server.Collector
 {
     public interface ICsvReader
     {
-        Fact[] Read(Stream data);
+        Fact[] Read(string message);
     }
 }

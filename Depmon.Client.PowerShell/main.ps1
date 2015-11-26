@@ -4,6 +4,11 @@ param (
     [string]$Global:attachmentName = "results.csv"
 )
 
+$culture = [System.Globalization.CultureInfo]::InvariantCulture
+Write-Host "Setting culture [$culture]"
+[Threading.Thread]::CurrentThread.CurrentCulture = $culture        
+[Threading.Thread]::CurrentThread.CurrentUICulture = $culture   
+
 Write-Host "Script path [$scriptPath]"
 Write-Host "Opening parameters file [${paramsFile}]... " -NoNewline
 $params = Get-Content $paramsFile | ConvertFrom-Json

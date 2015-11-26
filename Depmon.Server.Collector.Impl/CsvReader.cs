@@ -9,7 +9,7 @@ namespace Depmon.Server.Collector.Impl
 {
     public class CsvReader : ICsvReader
     {
-        public Fact[] Read(Stream data)
+        public Fact[] Read(string message)
         {
             var csvConfig = new CsvConfiguration
             {
@@ -19,8 +19,9 @@ namespace Depmon.Server.Collector.Impl
             };
             csvConfig.RegisterClassMap<FactMap>();
             csvConfig.CultureInfo = CultureInfo.InvariantCulture;
+            
 
-            using (var reader = new StreamReader(data, Encoding.UTF8))
+            using (var reader = new StringReader(message))
             using (var parser = new CsvHelper.CsvReader(reader, csvConfig))
             {
                 return parser.GetRecords<Fact>().ToArray();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
@@ -64,9 +65,17 @@ namespace Depmon.Server.Collector.Impl
 
                         foreach (var stream in data)
                         {
-                            var dtos = csvReader.Read(stream);
-                            if (!dtos.Any()) continue;
-                            reportRegistry.Save(dtos);
+                            using (var reader = new StreamReader(stream))
+                            {
+                                var messageBase64 = reader.ReadToEnd();
+                                var message = Encoding.UTF8.GetString(Convert.FromBase64String(messageBase64));
+
+                                var dtos = csvReader.Read(message);
+
+                                if (!dtos.Any()) continue;
+                                reportRegistry.Save(dtos);
+                            }
+
                         }
                     }
                     catch (Exception e)

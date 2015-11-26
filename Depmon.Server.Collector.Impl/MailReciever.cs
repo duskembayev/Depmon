@@ -30,15 +30,13 @@ namespace Depmon.Server.Collector.Impl
                     {
                         var letter = client.GetMessage(li);
                         
-                        var attachments = letter.Attachments;
                         var parts = letter.BodyParts;
-                        foreach (var attachment in parts)
+                        foreach (var part in parts)
                         {
-                            if (attachment.IsAttachment)
+                            if (part.IsAttachment)
                             {
                                 var stream = new MemoryStream();
-                                //attachment.WriteTo(stream);
-                                ((MimePart)attachment).ContentObject.WriteTo(stream);
+                                ((MimePart)part).ContentObject.WriteTo(stream);
                                 stream.Position = 0;
                                 result.Add(stream);
                             }
@@ -50,7 +48,7 @@ namespace Depmon.Server.Collector.Impl
                     }
                     finally
                     {
-                        //client.DeleteMessage(li);
+                        client.DeleteMessage(li);
                     }
                 }
                 client.Disconnect(true);

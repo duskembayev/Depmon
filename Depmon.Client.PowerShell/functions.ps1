@@ -133,7 +133,7 @@ Function Create-Result
                     'IndicatorValue' = $indicatorValue;
                     'IndicatorDescription' = $indicatorDescription;
                     'Level' = $level;
-                    'CheckedAt' = [DateTime]::Now
+                    'CheckedAt' = [DateTime]::Now;
                 }
 }
 
