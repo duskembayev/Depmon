@@ -78,6 +78,7 @@ namespace Depmon.Server.Portal.React.Controllers
                 data.GroupBy(entity => entity.SourceCode).Select(sources => new
                 {
                     sources,
+                    createdAt = sources.First().CreatedAt,
                     groups = sources.GroupBy(source => source.GroupCode).Select(groups => new
                     {
                         groups,
@@ -96,7 +97,7 @@ namespace Depmon.Server.Portal.React.Controllers
 
                         }).Select(@t => new { Code = @t.resources.Key, Indicators = @t.indicators })
                     }).Select(@t => new {Code = @t.groups.Key, Resources = @t.resources})
-                }).Select(@t => new {Code = @t.sources.Key, Groups = @t.groups});
+                }).Select(@t => new {Code = @t.sources.Key, CreatedAt = @t.createdAt, Groups = @t.groups});
 
             
             JObject root = new JObject();

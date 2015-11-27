@@ -1301,18 +1301,31 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
 /* line 7 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 .l-card .l-c-heading {
   border-radius: 3px;
-  padding: 10px 5px;
+  padding: 10px;
   color: #fff;
   background-color: #537e92;
   cursor: default;
   vertical-align: middle;
   z-index: 2;
-  box-shadow: -1px 6px 6px -6px rgba(0,0,0,0.35);
 }
 
 /* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
 
-/* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+.l-card .l-c-heading box-shadow -1px 6px 6px -6px rgba(0 .l-c-h-time,
+.l-card .l-c-heading 0 .l-c-h-time,
+.l-card .l-c-heading 0.35) .l-c-h-time {
+  float: right;
+}
+
+/* line 20 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+.l-card .l-c-h-old {
+  background-color: #dc143c;
+}
+
+/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
+
+/* line 21 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar {
@@ -1339,17 +1352,16 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   color: #c2dce8;
   margin-left: 0.5em;
   padding: 0.5em 1em;
-  white-space: normal;
 }
 
-/* line 23 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 22 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-link:hover,
 .c-sidebar .pure-menu .pure-menu-link:focus,
 .c-sidebar .pure-menu .pure-menu-link.active {
   background: #82aabd;
 }
 
-/* line 26 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 25 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .pure-menu-heading {
   border-bottom: none;
   font-size: 110%;
@@ -1357,7 +1369,7 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   padding: 0.5em 1em;
 }
 
-/* line 32 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 31 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 .c-sidebar .pure-menu .problem-count {
   display: inline-block;
   background-color: #c00;
@@ -1369,9 +1381,9 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   float: right;
 }
 
-/* line 40 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
+/* line 39 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\sidebar.styl */
 
-/* line 40 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
+/* line 39 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 
 /* line 1 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\group-item.styl */
 .c-group-item {
@@ -1453,4 +1465,10 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   color: #555;
   background-color: #cfc;
   text-transform: uppercase;
+}
+
+/* line 10 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\components\notification.styl */
+.c-notification a {
+  text-decoration: none;
+  color: #537e92;
 }
