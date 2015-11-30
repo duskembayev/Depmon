@@ -98,10 +98,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\EveryDay.cs" />
     <Compile Include="Configuration\ISettingsReader.cs" />
     <Compile Include="Configuration\Iteration.cs" />
     <Compile Include="Configuration\Mailbox.cs" />
     <Compile Include="Configuration\MailboxCollection.cs" />
+    <Compile Include="Configuration\Notification.cs" />
+    <Compile Include="Configuration\Reciever.cs" />
+    <Compile Include="Configuration\RecieverCollection.cs" />
+    <Compile Include="Configuration\Sender.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="ICsvReader.cs" />
     <Compile Include="IEngine.cs" />

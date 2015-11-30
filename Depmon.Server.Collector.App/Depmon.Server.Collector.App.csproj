@@ -89,6 +89,14 @@
       <Project>{926225b2-759c-4845-9522-c77d1c600878}</Project>
       <Name>Depmon.Server.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Depmon.Server.Services.Impl\Depmon.Server.Services.Impl.csproj">
+      <Project>{67798e5d-03ef-4bb6-bab0-420a16abbce8}</Project>
+      <Name>Depmon.Server.Services.Impl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Depmon.Server.Services\Depmon.Server.Services.csproj">
+      <Project>{91a2fd74-6cbe-423d-9ffe-6e73fb41996b}</Project>
+      <Name>Depmon.Server.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">

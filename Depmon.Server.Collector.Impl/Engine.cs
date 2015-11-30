@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Depmon.Server.Collector.Configuration;
+using Depmon.Server.Services.Impl;
 
 namespace Depmon.Server.Collector.Impl
 {
@@ -25,6 +26,14 @@ namespace Depmon.Server.Collector.Impl
         public void Start(Settings config)
         {
             Console.WriteLine("Monitoring starting...");
+            using (var scope = _objectFactory.CreateScope())
+            {
+                var notificationService = scope.Resolve<INotificationService>();
+
+                notificationService.EveryDay();
+            }
+
+                EveryDayNotification(config.Notification);
 
             _tasks = new Task[config.Mailboxes.Count];
 
@@ -36,6 +45,34 @@ namespace Depmon.Server.Collector.Impl
 
                 _tasks[i] = Task.Run(() => OnProcess(mailbox, _cancellationSource.Token), _cancellationSource.Token);
             }
+        }
+
+        private void EveryDayNotification(Notification settings)
+        {
+            var time = settings.EveryDay.Time;
+
+            DateTime currentTime = DateTime.Now;
+            DateTime scheduleTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, time.Hours, time.Minutes, time.Seconds);
+
+            TimeSpan period = TimeSpan.FromDays(1); 
+                                                        
+            TimeSpan initialInterval;
+            if (currentTime <= scheduleTime)
+            {
+                initialInterval = scheduleTime.Subtract(currentTime);
+            }
+            else
+            {
+                initialInterval = scheduleTime.AddDays(1).Subtract(currentTime);
+            }
+
+            var timer = new Timer(SendEveryDayNotification, null, initialInterval, period);
+
+        }
+
+        private void SendEveryDayNotification(object state)
+        {
+            throw new NotImplementedException();
         }
 
         public void Stop()

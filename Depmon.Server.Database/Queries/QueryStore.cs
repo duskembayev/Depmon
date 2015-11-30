@@ -1,4 +1,8 @@
-﻿namespace Depmon.Server.Database.Queries
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Depmon.Server.Database.Queries
 {
     public static class QueryStore
     {
@@ -29,6 +33,28 @@ where r.IsLast = 1 and r.SourceCode = @sourceCode";
         {
             return @"select count() as count from Reports r
 where r.CreatedAt > @dateTime";
+        }
+
+        public static string ProblemCountForSource(IList<string> sources)
+        {
+            var placeHodler = MakePlaceholders(sources);
+
+            return String.Format(@"select r.CreatedAt, r.SourceCode, f.Level, count() as Count  from Reports r
+left join Facts f on f.ReportId = r.Id
+where r.IsLast = 1 and r.SourceCode in ({0})
+group by r.SourceCode, f.Level", placeHodler);
+        }
+
+        private static string MakePlaceholders(IList<string> sources)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < sources.Count; i++)
+            {
+                sb.AppendFormat("'{0}',", sources[i]);
+            }
+
+            sb.Remove(sb.Length - 1, 1);
+            return sb.ToString();
         }
     }
 }

@@ -9,5 +9,8 @@ namespace Depmon.Server.Collector.Configuration
 
         [ConfigurationProperty("iteration")]
         public Iteration Iteration => (Iteration)base["iteration"];
+
+        [ConfigurationProperty("notifications")]
+        public Notification Notification => (Notification)base["notifications"];
     }
 }

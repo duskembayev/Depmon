@@ -7,6 +7,7 @@ using Depmon.Server.Collector.Impl.Configuration;
 using Depmon.Server.Database;
 using Depmon.Server.Database.Impl;
 using Depmon.Server.Domain;
+using Depmon.Server.Services.Impl;
 
 namespace Depmon.Server.Collector.App
 {
@@ -32,6 +33,10 @@ namespace Depmon.Server.Collector.App
 
             builder.RegisterType<FactRepository>().As<IRepository<Fact>>();
             builder.RegisterType<ReportRepository>().As<IRepository<Report>>();
+
+            builder.RegisterType<NotificationService>().As<INotificationService>();
+            builder.RegisterType<NotificationService>().As<INotificationService>();
+
 
             builder.Register(s => new AutofacObjectFactory(_container)).As<IObjectFactory>();
 

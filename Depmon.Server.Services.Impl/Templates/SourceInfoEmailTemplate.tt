@@ -1,0 +1,27 @@
+﻿<#@ template language="C#" #>
+<#@ output extension=".xml" #>
+<#@ import namespace="System.Collections.Generic" #>
+<html><body>
+<table cellspacing="0" width="100%" style="border-collapse:collapse; border: 1px solid rgb(198, 198, 198);">
+   <tr>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 40%;">Source</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#BDD6EE;">Info</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#F7CAAC;">Warnings</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#FFC000;">Errors</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#C00000;">Critical</td>
+	     <# foreach (var filteredSource in SourceCodeData)
+		    { #>
+			   <tr>
+			      <td style="padding: 8px; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Key#></td>
+			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level25#></td>
+			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level50#></td>
+			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level75#></td>
+			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level100#></td>
+               </tr>
+		    <# } #>    
+ </table>
+</body></html>
+
+<#+ 
+  public IEnumerable<KeyValuePair<string, LevelCount>> SourceCodeData { get; set; }
+#>
