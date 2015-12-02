@@ -1307,14 +1307,11 @@ https://github.com/yahoo/pure/blob/master/LICENSE.md
   cursor: default;
   vertical-align: middle;
   z-index: 2;
+  box-shadow: -1px 6px 6px -6px rgba(0,0,0,0.35);
 }
 
-/* line 15 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-
 /* line 17 : C:\Projects\Depmon\Depmon.Server.Portal.React\app\stylesheets\layout\card.styl */
-.l-card .l-c-heading box-shadow -1px 6px 6px -6px rgba(0 .l-c-h-time,
-.l-card .l-c-heading 0 .l-c-h-time,
-.l-card .l-c-heading 0.35) .l-c-h-time {
+.l-card .l-c-heading .l-c-h-time {
   float: right;
 }
 

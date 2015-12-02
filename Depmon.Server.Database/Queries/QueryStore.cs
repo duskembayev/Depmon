@@ -24,7 +24,7 @@ where r.IsLast = 1";
         public static string SourceInfoByCodeQuery()
         {
             return
-                @"select r.SourceCode, f.GroupCode, f.ResourceCode, f.IndicatorCode, f.IndicatorValue, f.IndicatorDescription, f.Level  from Reports r
+                @"select r.CreatedAt, r.SourceCode, f.GroupCode, f.ResourceCode, f.IndicatorCode, f.IndicatorValue, f.IndicatorDescription, f.Level  from Reports r
 left join Facts f on f.ReportId = r.Id
 where r.IsLast = 1 and r.SourceCode = @sourceCode";
         }
@@ -33,6 +33,14 @@ where r.IsLast = 1 and r.SourceCode = @sourceCode";
         {
             return @"select count() as count from Reports r
 where r.CreatedAt > @dateTime";
+        }
+
+        public static string ProblemCountForSource()
+        {
+            return @"select r.CreatedAt, r.SourceCode, f.Level, count() as Count  from Reports r
+left join Facts f on f.ReportId = r.Id
+where r.IsLast = 1
+group by r.SourceCode, f.Level";
         }
 
         public static string ProblemCountForSource(IList<string> sources)
@@ -53,8 +61,7 @@ group by r.SourceCode, f.Level", placeHodler);
                 sb.AppendFormat("'{0}',", sources[i]);
             }
 
-            sb.Remove(sb.Length - 1, 1);
-            return sb.ToString();
+            return sb.ToString().TrimEnd(',');
         }
     }
 }

@@ -26,26 +26,34 @@ namespace Depmon.Server.Services.Impl.Templates
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"<html><body>
-<table cellspacing=""0"" width=""100%"" style=""border-collapse:collapse; border: 1px solid rgb(198, 198, 198);"">
+            this.Write(@"<html style=""font-family: Calibri, Tahoma, sans-serif;""><body>
+<table cellspacing=""0"" width=""100%"" style=""margin-bottom:15px; border-collapse:collapse; border: 1px solid rgb(198, 198, 198);"">
    <tr>
-      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 40%;"">Source</td>
-      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#BDD6EE;"">Info</td>
-      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#F7CAAC;"">Warnings</td>
-      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#FFC000;"">Errors</td>
-      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#C00000;"">Critical</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 35%;"">Source</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 25%;"">Created At</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#BDD6EE;"">Info</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#F7CAAC;"">Warnings</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#FFC000;"">Errors</td>
+      <td style=""padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#C00000;"">Critical</td>
 	     ");
             
-            #line 12 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            #line 13 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
  foreach (var filteredSource in SourceCodeData)
 		    { 
             
             #line default
             #line hidden
-            this.Write("\t\t\t   <tr>\r\n\t\t\t      <td style=\"padding: 8px; border-collapse: collapse; border: " +
-                    "1px solid rgb(198, 198, 198);\">");
+            this.Write("\t\t\t   <tr>\r\n\t\t\t      <td style=\"");
             
-            #line 15 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            #line 16 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.CustomStyles));
+            
+            #line default
+            #line hidden
+            this.Write(" padding: 8px; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);\">" +
+                    "");
+            
+            #line 16 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Key));
             
             #line default
@@ -53,16 +61,8 @@ namespace Depmon.Server.Services.Impl.Templates
             this.Write("</td>\r\n\t\t\t      <td style=\"padding: 8px; text-align:center; border-collapse: coll" +
                     "apse; border: 1px solid rgb(198, 198, 198);\">");
             
-            #line 16 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level25));
-            
-            #line default
-            #line hidden
-            this.Write("</td>\r\n\t\t\t      <td style=\"padding: 8px; text-align:center; border-collapse: coll" +
-                    "apse; border: 1px solid rgb(198, 198, 198);\">");
-            
             #line 17 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level50));
+            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")));
             
             #line default
             #line hidden
@@ -70,7 +70,7 @@ namespace Depmon.Server.Services.Impl.Templates
                     "apse; border: 1px solid rgb(198, 198, 198);\">");
             
             #line 18 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level75));
+            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level25));
             
             #line default
             #line hidden
@@ -78,22 +78,39 @@ namespace Depmon.Server.Services.Impl.Templates
                     "apse; border: 1px solid rgb(198, 198, 198);\">");
             
             #line 19 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level50));
+            
+            #line default
+            #line hidden
+            this.Write("</td>\r\n\t\t\t      <td style=\"padding: 8px; text-align:center; border-collapse: coll" +
+                    "apse; border: 1px solid rgb(198, 198, 198);\">");
+            
+            #line 20 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level75));
+            
+            #line default
+            #line hidden
+            this.Write("</td>\r\n\t\t\t      <td style=\"padding: 8px; text-align:center; border-collapse: coll" +
+                    "apse; border: 1px solid rgb(198, 198, 198);\">");
+            
+            #line 21 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(filteredSource.Value.Level100));
             
             #line default
             #line hidden
             this.Write("</td>\r\n               </tr>\r\n\t\t    ");
             
-            #line 21 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+            #line 23 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
  } 
             
             #line default
             #line hidden
-            this.Write("    \r\n </table>\r\n</body></html>\r\n\r\n");
+            this.Write("    \r\n </table>\r\n <a href=\"http://192.168.2.89\" target=\"_blank\">View details</a>\r" +
+                    "\n</body></html>\r\n\r\n");
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 25 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
+        #line 28 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
  
   public IEnumerable<KeyValuePair<string, LevelCount>> SourceCodeData { get; set; }
 

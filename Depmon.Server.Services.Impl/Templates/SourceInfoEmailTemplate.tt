@@ -1,18 +1,20 @@
 ﻿<#@ template language="C#" #>
 <#@ output extension=".xml" #>
 <#@ import namespace="System.Collections.Generic" #>
-<html><body>
-<table cellspacing="0" width="100%" style="border-collapse:collapse; border: 1px solid rgb(198, 198, 198);">
+<html style="font-family: Calibri, Tahoma, sans-serif;"><body>
+<table cellspacing="0" width="100%" style="margin-bottom:15px; border-collapse:collapse; border: 1px solid rgb(198, 198, 198);">
    <tr>
-      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 40%;">Source</td>
-      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#BDD6EE;">Info</td>
-      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#F7CAAC;">Warnings</td>
-      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#FFC000;">Errors</td>
-      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 15%; background:#C00000;">Critical</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 35%;">Source</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 25%;">Created At</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#BDD6EE;">Info</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#F7CAAC;">Warnings</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#FFC000;">Errors</td>
+      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198); width: 10%; background:#C00000;">Critical</td>
 	     <# foreach (var filteredSource in SourceCodeData)
 		    { #>
 			   <tr>
-			      <td style="padding: 8px; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Key#></td>
+			      <td style="<#= filteredSource.Value.CustomStyles #> padding: 8px; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Key #></td>
+			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.CreatedAt.ToString("dd.MM.yyyy HH:mm:ss")#></td>
 			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level25#></td>
 			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level50#></td>
 			      <td style="padding: 8px; text-align:center; border-collapse: collapse; border: 1px solid rgb(198, 198, 198);"><#= filteredSource.Value.Level75#></td>
@@ -20,6 +22,7 @@
                </tr>
 		    <# } #>    
  </table>
+ <a href="http://192.168.2.89" target="_blank">View details</a>
 </body></html>
 
 <#+ 

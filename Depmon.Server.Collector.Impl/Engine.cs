@@ -16,6 +16,7 @@ namespace Depmon.Server.Collector.Impl
         private readonly CancellationTokenSource _cancellationSource;
         private Task[] _tasks;
         private IObjectFactory _objectFactory;
+        private Timer _timer;
 
         public Engine(IObjectFactory objectFactory)
         {
@@ -26,14 +27,8 @@ namespace Depmon.Server.Collector.Impl
         public void Start(Settings config)
         {
             Console.WriteLine("Monitoring starting...");
-            using (var scope = _objectFactory.CreateScope())
-            {
-                var notificationService = scope.Resolve<INotificationService>();
 
-                notificationService.EveryDay();
-            }
-
-                EveryDayNotification(config.Notification);
+            EveryDayNotification(config.Notification);
 
             _tasks = new Task[config.Mailboxes.Count];
 
@@ -66,13 +61,18 @@ namespace Depmon.Server.Collector.Impl
                 initialInterval = scheduleTime.AddDays(1).Subtract(currentTime);
             }
 
-            var timer = new Timer(SendEveryDayNotification, null, initialInterval, period);
+            _timer = new Timer(SendEveryDayNotification, null, initialInterval, period);
 
         }
 
         private void SendEveryDayNotification(object state)
         {
-            throw new NotImplementedException();
+            using (var scope = _objectFactory.CreateScope())
+            {
+                var notificationService = scope.Resolve<INotificationService>();
+
+                notificationService.EveryDay();
+            }
         }
 
         public void Stop()

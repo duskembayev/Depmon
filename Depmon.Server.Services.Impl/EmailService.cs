@@ -21,23 +21,20 @@ namespace Depmon.Server.Services.Impl
             {
                 var smtpConfig = _config.Notification.Sender;
 
-                client.Connect(smtpConfig.Server, smtpConfig.Port, smtpConfig.Ssl);
+                client.Connect(smtpConfig.Server, smtpConfig.Port);
                 client.Authenticate(smtpConfig.Username, smtpConfig.Password);
 
                 var message = new MimeMessage();
 
                 var mailboxAddresses = new List<MailboxAddress>();
 
-                foreach (var recipient in data.Recipient)
-                {
-                    mailboxAddresses.Add(new MailboxAddress(recipient,recipient));
-                }
+                mailboxAddresses.Add(new MailboxAddress(data.Recipient, data.Recipient));
+                
 
-
-                message.From.Add(new MailboxAddress(data.Sender, data.Sender));
+                message.From.Add(new MailboxAddress(smtpConfig.Username, smtpConfig.Username));
                 message.To.AddRange(mailboxAddresses);
                 message.Subject = data.Subject;
-                message.Body = new TextPart("plain") {Text = data.Body};
+                message.Body = new TextPart("html") {Text = data.Body};
 
                 client.Send(message);
             }

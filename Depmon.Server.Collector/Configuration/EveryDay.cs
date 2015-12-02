@@ -7,5 +7,8 @@ namespace Depmon.Server.Collector.Configuration
     {
         [ConfigurationProperty("time", IsRequired = true)]
         public TimeSpan Time => (TimeSpan)base["time"];
+
+        [ConfigurationProperty("oldReportThreshold", IsRequired = true)]
+        public double OldReportThreshold => (double)base["oldReportThreshold"];
     }
 }
