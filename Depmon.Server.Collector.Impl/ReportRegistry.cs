@@ -17,18 +17,20 @@ namespace Depmon.Server.Collector.Impl
             _reportRepository = reportRepository;
         }
 
-        public void Save(Fact[] facts)
+        public Report Save(Fact[] facts)
         {
             if (facts.Length == 0 || string.IsNullOrWhiteSpace(facts[0].SourceCode))
             {
                 Console.WriteLine("facts or SourceCode is empty");
-                return;
+                return null;
             }
             try
             {
+
+                Report report = null;
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
-                    var report = new Report { Id = 0, CreatedAt = DateTime.Now, SourceCode = facts[0].SourceCode, IsLast = true };
+                    report = new Report { Id = 0, CreatedAt = DateTime.Now, SourceCode = facts[0].SourceCode, IsLast = true };
                     var reportId = _reportRepository.Save(report);
 
                     foreach (var fact in facts)
@@ -40,11 +42,14 @@ namespace Depmon.Server.Collector.Impl
                 }
 
                 Console.WriteLine("{0} facts saved", facts.Length);
+                return report;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Report saving failed: {e.Message}");
             }
+
+            return null;
         }
     }
 }

@@ -53,6 +53,15 @@ where r.IsLast = 1 and r.SourceCode in ({0})
 group by r.SourceCode, f.Level", placeHodler);
         }
 
+        public static string PreviousReportBySourceCode()
+        {
+            return @"select r.CreatedAt, r.SourceCode, f.GroupCode, f.ResourceCode, f.IndicatorCode, f.IndicatorValue, f.IndicatorDescription, f.Level  from Reports r
+left join Facts f on f.ReportId = r.Id
+where f.reportId in (select max(r.Id) as reportDate 
+   from Reports r
+   where r.IsLast = 'false' and r.SourceCode=@sourceCode)";
+        }
+
         private static string MakePlaceholders(IList<string> sources)
         {
             StringBuilder sb = new StringBuilder();
@@ -63,5 +72,8 @@ group by r.SourceCode, f.Level", placeHodler);
 
             return sb.ToString().TrimEnd(',');
         }
+
+
+       
     }
 }

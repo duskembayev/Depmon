@@ -26,5 +26,5 @@
 </body></html>
 
 <#+ 
-  public IEnumerable<KeyValuePair<string, LevelCount>> SourceCodeData { get; set; }
+  public IEnumerable<KeyValuePair<string, ReportInfo>> SourceCodeData { get; set; }
 #>

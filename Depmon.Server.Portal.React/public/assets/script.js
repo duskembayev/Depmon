@@ -5092,7 +5092,7 @@ var Notification = (function (_Component) {
   }, {
     key: 'reloadPage',
     value: function reloadPage() {
-      location.reload(false);
+      document.location.href = '/';
     }
   }]);
 

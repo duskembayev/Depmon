@@ -48,6 +48,6 @@ export default class Notification extends Component {
   }
 
   reloadPage () {
-    location.reload(false);
+    document.location.href = '/';
   }
 }

@@ -6,7 +6,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using Dapper;
 using Depmon.Server.Collector.Configuration;
+using Depmon.Server.Database;
+using Depmon.Server.Database.Queries;
+using Depmon.Server.Domain;
+using Depmon.Server.Services;
 using Depmon.Server.Services.Impl;
 
 namespace Depmon.Server.Collector.Impl
@@ -27,6 +32,8 @@ namespace Depmon.Server.Collector.Impl
         public void Start(Settings config)
         {
             Console.WriteLine("Monitoring starting...");
+
+            CheckForUpdates(new Report {SourceCode = "Tauken-Samruk"}, null);
 
             EveryDayNotification(config.Notification);
 
@@ -75,6 +82,39 @@ namespace Depmon.Server.Collector.Impl
             }
         }
 
+        private void SendNewReportNotification(Report report, Fact[] facts)
+        {
+            if (!CheckForUpdates(report, facts))
+            {
+                return;
+            }
+            
+            using (var scope = _objectFactory.CreateScope())
+            {
+                var notificationService = scope.Resolve<INotificationService>();
+
+                notificationService.SendNewReport(report, facts);
+            }
+        }
+
+        private bool CheckForUpdates(Report report, Fact[] facts)
+        {
+            using (var scope = _objectFactory.CreateScope())
+            {
+                var unitOfWork = scope.Resolve<IUnitOfWork>();
+                var previousReportDateSql = QueryStore.PreviousReportBySourceCode();
+
+                var previousReportDate = unitOfWork.Session.Query(previousReportDateSql, new {report.SourceCode}).Single();
+
+                var data = unitOfWork.Session.Query(previousReportDateSql, new { previousReportDate.reportDate ,report.SourceCode });
+
+                
+
+            }
+            
+            throw new NotImplementedException();
+        }
+
         public void Stop()
         {
             Console.WriteLine("Monitoring breaking...");
@@ -110,7 +150,9 @@ namespace Depmon.Server.Collector.Impl
                                 var dtos = csvReader.Read(message);
 
                                 if (!dtos.Any()) continue;
-                                reportRegistry.Save(dtos);
+                                var report = reportRegistry.Save(dtos);
+
+                                SendNewReportNotification(report, dtos);
                             }
 
                         }

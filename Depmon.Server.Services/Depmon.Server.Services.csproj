@@ -50,7 +50,8 @@
     <Compile Include="IData.cs" />
     <Compile Include="IEmailService.cs" />
     <Compile Include="INotificationSender.cs" />
-    <Compile Include="LevelCount.cs" />
+    <Compile Include="INotificationService.cs" />
+    <Compile Include="ReportInfo.cs" />
     <Compile Include="NotificationSenderInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\Depmon.Server.Collector\Depmon.Server.Collector.csproj">
       <Project>{58fec6e5-b282-4de2-b3de-d64346e33831}</Project>
       <Name>Depmon.Server.Collector</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Depmon.Server.Domain\Depmon.Server.Domain.csproj">
+      <Project>{926225b2-759c-4845-9522-c77d1c600878}</Project>
+      <Name>Depmon.Server.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

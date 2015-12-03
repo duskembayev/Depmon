@@ -112,7 +112,7 @@ namespace Depmon.Server.Services.Impl.Templates
         
         #line 28 "C:\Projects\Depmon\Depmon.Server.Services.Impl\Templates\SourceInfoEmailTemplate.tt"
  
-  public IEnumerable<KeyValuePair<string, LevelCount>> SourceCodeData { get; set; }
+  public IEnumerable<KeyValuePair<string, ReportInfo>> SourceCodeData { get; set; }
 
         
         #line default

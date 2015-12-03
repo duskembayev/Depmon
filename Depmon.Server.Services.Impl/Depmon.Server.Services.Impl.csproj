@@ -77,6 +77,10 @@
       <Project>{14cff559-0739-48d5-b9cc-d1455bf06fdf}</Project>
       <Name>Depmon.Server.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Depmon.Server.Domain\Depmon.Server.Domain.csproj">
+      <Project>{926225b2-759c-4845-9522-c77d1c600878}</Project>
+      <Name>Depmon.Server.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Depmon.Server.Services\Depmon.Server.Services.csproj">
       <Project>{91a2fd74-6cbe-423d-9ffe-6e73fb41996b}</Project>
       <Name>Depmon.Server.Services</Name>
