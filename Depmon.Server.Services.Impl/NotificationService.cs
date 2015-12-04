@@ -62,8 +62,14 @@ namespace Depmon.Server.Services.Impl
                 
                 var emailBody = template.TransformText();
 
-                SendEmail(emailBody, reciever.Name);
+                var info = new NotificationSenderInfo
+                {
+                    Body = emailBody,
+                    Recipient = reciever.Name,
+                    Subject = "Daily monitoring statistic"
+                };
 
+                SendEmail(info);
             }
         }
 
@@ -94,7 +100,14 @@ namespace Depmon.Server.Services.Impl
                 SourceInfoEmailTemplate template = new SourceInfoEmailTemplate() { SourceCodeData = data };
                 var emailBody = template.TransformText();
 
-                SendEmail(emailBody, reciever.Name);
+                var info = new NotificationSenderInfo
+                {
+                    Body = emailBody,
+                    Recipient = reciever.Name,
+                    Subject = string.Format("[{0}] new important events", report.SourceCode )
+                };
+
+                SendEmail(info);
             }
 
         }
@@ -128,21 +141,15 @@ namespace Depmon.Server.Services.Impl
             return recievers.Cast<Reciever>().SelectMany(c => c.SourceList).Distinct();
         }
 
-        private void SendEmail(string emailBody, string recipient)
+        private void SendEmail(NotificationSenderInfo info)
         {
             try
             {
-                var info = new NotificationSenderInfo
-                {
-                    Body = emailBody,
-                    Recipient = recipient,
-                    Subject = "Daily monitoring statistic"
-                };
                 _emailService.SendNotification(info);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Cannot send notifaction to {0}", recipient);
+                Console.WriteLine("Cannot send notifaction to {0}", info.Recipient);
             }
             
         }

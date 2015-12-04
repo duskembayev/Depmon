@@ -32,9 +32,7 @@ namespace Depmon.Server.Collector.Impl
         public void Start(Settings config)
         {
             Console.WriteLine("Monitoring starting...");
-
-            CheckForUpdates(new Report {SourceCode = "Tauken-Samruk"}, null);
-
+            
             EveryDayNotification(config.Notification);
 
             _tasks = new Task[config.Mailboxes.Count];
@@ -84,7 +82,7 @@ namespace Depmon.Server.Collector.Impl
 
         private void SendNewReportNotification(Report report, Fact[] facts)
         {
-            if (!CheckForUpdates(report, facts))
+            if (!NeedToSendNotification(report, facts))
             {
                 return;
             }
@@ -97,22 +95,33 @@ namespace Depmon.Server.Collector.Impl
             }
         }
 
-        private bool CheckForUpdates(Report report, Fact[] facts)
+        private bool NeedToSendNotification(Report report, Fact[] facts)
         {
             using (var scope = _objectFactory.CreateScope())
             {
                 var unitOfWork = scope.Resolve<IUnitOfWork>();
                 var previousReportDateSql = QueryStore.PreviousReportBySourceCode();
 
-                var previousReportDate = unitOfWork.Session.Query(previousReportDateSql, new {report.SourceCode}).Single();
+                var previousReportDate = unitOfWork.Session.Query(previousReportDateSql, new {report.SourceCode});
 
-                var data = unitOfWork.Session.Query(previousReportDateSql, new { previousReportDate.reportDate ,report.SourceCode });
+                var currentCount = Enum.GetValues(typeof (FactLevel))
+                    .Cast<FactLevel>()
+                    .ToDictionary(l => (int)l, l => facts.Count(f => f.Level == l));
 
-                
+                var previousCount = Enum.GetValues(typeof (FactLevel))
+                    .Cast<FactLevel>()
+                    .ToDictionary(l => (int) l, l => previousReportDate.Count(f => f.Level == (int) l));
 
+                foreach (var current in currentCount)
+                {
+                    if (previousCount[current.Key] != current.Value)
+                    {
+                        return true;
+                    } 
+                }
+
+                return false;
             }
-            
-            throw new NotImplementedException();
         }
 
         public void Stop()
