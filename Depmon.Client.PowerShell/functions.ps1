@@ -97,9 +97,14 @@ Function command-harddrive-state
         }
         $level = 'Normal'
         [String]$diskID = $disk.DeviceID
-        $result += Create-Result -context $context -indicatorValue $disk.Size -indicatorDescription ($diskID + ' Total Space') -level $level
-        $result += Create-Result -context $context -indicatorValue $disk.FreeSpace -indicatorDescription ($diskID + ' Free Space') -level $level
+        $diskSize = $disk.Size / 1024 /1024 / 1024;
+        $diskFreeSpace = $disk.FreeSpace / 1024 /1024 / 1024;
+        $diskSizeString =  "{0:F2}" -f $diskSize;
+        $diskFreeSpaceString =  "{0:F2}" -f $diskfreeSpace;
+        $result += Create-Result -context $context -indicatorValue $diskSizeString -indicatorDescription ($diskID + ' Total Space') -level $level
+        $result += Create-Result -context $context -indicatorValue $diskFreeSpaceString -indicatorDescription ($diskID + ' Free Space') -level $level
         $perc = $disk.FreeSpace * 100 / $disk.Size;
+        $percString = "{0:F0}" -f $perc;
         if ($perc -lt 10) 
         {
             $level = 'Warning';
@@ -111,7 +116,7 @@ Function command-harddrive-state
                 $level = 'Error';
             }
         }
-        $result += Create-Result -context $context -indicatorValue $perc -indicatorDescription ($diskID + ' Percentage') -level $level
+        $result += Create-Result -context $context -indicatorValue $percString -indicatorDescription ($diskID + ' Percentage') -level $level
     }
     return $result
 }
