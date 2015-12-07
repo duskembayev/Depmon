@@ -23,6 +23,11 @@ class Api {
     let url = `${rootUrl}/drilldown/IsNewReportExist?dateTime=${dateTime}`;
     return axios.get(url);
   }
+
+  lastReportDate () {
+    let url = `${rootUrl}/drilldown/GetLastReportDate`;
+    return axios.get(url);
+  }
 }
 
 export default new Api();

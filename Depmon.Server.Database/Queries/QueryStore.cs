@@ -31,7 +31,7 @@ where r.IsLast = 1 and r.SourceCode = @sourceCode";
 
         public static string IsNewReportExist()
         {
-            return @"select count() as count from Reports r
+            return @"select count() as count, max(r.CreatedAt) as lastReportDate from Reports r
 where r.CreatedAt > @dateTime";
         }
 
@@ -62,6 +62,11 @@ where f.reportId in (select max(r.Id) as reportDate
    where r.IsLast = 'false' and r.SourceCode=@sourceCode)";
         }
 
+        public static string LastReportDate()
+        {
+            return @"select max(r.CreatedAt) lastReportDate from Reports r";
+        }
+
         private static string MakePlaceholders(IList<string> sources)
         {
             StringBuilder sb = new StringBuilder();
@@ -72,8 +77,6 @@ where f.reportId in (select max(r.Id) as reportDate
 
             return sb.ToString().TrimEnd(',');
         }
-
-
        
     }
 }

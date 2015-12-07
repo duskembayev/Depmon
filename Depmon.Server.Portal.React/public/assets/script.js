@@ -597,6 +597,12 @@ var Api = (function () {
       var url = rootUrl + '/drilldown/IsNewReportExist?dateTime=' + dateTime;
       return _axios2['default'].get(url);
     }
+  }, {
+    key: 'lastReportDate',
+    value: function lastReportDate() {
+      var url = rootUrl + '/drilldown/GetLastReportDate';
+      return _axios2['default'].get(url);
+    }
   }]);
 
   return Api;
@@ -5034,13 +5040,19 @@ var Notification = (function (_Component) {
     value: function initState() {
       return {
         updateExists: false,
-        lastReportDate: new Date()
+        lastReportDate: null
       };
     }
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.checkNewReports();
+      var _this = this;
+
+      _modulesApi2['default'].lastReportDate().then(function (response) {
+        _this.setState({ lastReportDate: response.data.lastReportDate });
+      }).then(function () {
+        _this.checkNewReports();
+      });
     }
   }, {
     key: 'componentWillUnmount',
@@ -5050,7 +5062,7 @@ var Notification = (function (_Component) {
   }, {
     key: 'checkNewReports',
     value: function checkNewReports() {
-      var _this = this;
+      var _this2 = this;
 
       clearInterval(tid);
       tid = setTimeout(this.checkNewReports.bind(this), _configDefault2['default'].reportUpdateInterval);
@@ -5059,9 +5071,13 @@ var Notification = (function (_Component) {
         return;
       }
 
-      _modulesApi2['default'].isNewReportExist(this.state.lastReportDate.toJSON()).then(function (result) {
+      _modulesApi2['default'].isNewReportExist(this.state.lastReportDate).then(function (result) {
         if (result.data.count !== 0) {
-          _this.setState({ updateExists: true });
+
+          _this2.setState({
+            updateExists: true,
+            lastReportDate: result.data.lastReportDate
+          });
         }
       });
     }

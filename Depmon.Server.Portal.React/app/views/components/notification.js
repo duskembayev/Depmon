@@ -9,12 +9,18 @@ export default class Notification extends Component {
   initState () {
     return {
       updateExists: false,
-      lastReportDate: new Date()
+      lastReportDate: null
     }
   }
 
   componentDidMount () {
-    this.checkNewReports();
+    Api.lastReportDate()
+    .then((response) => {
+      this.setState({lastReportDate: response.data.lastReportDate});
+    })
+    .then(() =>{
+      this.checkNewReports();
+    })
   }
 
   componentWillUnmount () {
@@ -29,10 +35,16 @@ export default class Notification extends Component {
       return
     }
 
-    Api.isNewReportExist(this.state.lastReportDate.toJSON())
+    Api.isNewReportExist(this.state.lastReportDate)
       .then((result) => {
         if (result.data.count !== 0) {
-          this.setState({updateExists: true})
+
+          this.setState(
+            {
+              updateExists: true,
+              lastReportDate: result.data.lastReportDate
+            }
+          )
         }
       })
   }
