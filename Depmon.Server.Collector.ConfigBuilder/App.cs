@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Depmon.Server.Collector.ConfigBuilder.Controls;
 using Depmon.Server.Collector.ConfigBuilder.Extensions;
+using FastColoredTextBoxNS;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -235,7 +236,7 @@ namespace Depmon.Server.Collector.ConfigBuilder
             }
         }
 
-        private void jsonValueTextBox_TextChanged(object sender, EventArgs e)
+        private void jsonValueTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var node = jsonTreeView.SelectedNode as IJsonTreeNode;
             if (node == null)
@@ -404,6 +405,16 @@ namespace Depmon.Server.Collector.ConfigBuilder
             }
 
             jsonTreeView.EndUpdate();
+        }
+
+        private void jsonValueTextBox_TextChangedDelayed(object sender, TextChangedEventArgs e)
+        {
+            e.ChangedRange.ClearFoldingMarkers();
+            e.ChangedRange.SetFoldingMarkers("{", "}");
+            jsonValueTextBox.LeftBracket = '{';
+            jsonValueTextBox.RightBracket = '}';
+            jsonValueTextBox.LeftBracket2 = '[';
+            jsonValueTextBox.RightBracket2 = ']';
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Depmon.Server.Collector.ConfigBuilder
+﻿using FastColoredTextBoxNS;
+
+namespace Depmon.Server.Collector.ConfigBuilder
 {
     partial class App
     {
@@ -28,6 +30,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
+            this.jsonValueTextBox = new FastColoredTextBoxNS.FastColoredTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,13 +44,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.jsonTreeView = new System.Windows.Forms.TreeView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.jsonValueTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.actionStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.jsonStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            ((System.ComponentModel.ISupportInitialize)(this.jsonValueTextBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -55,6 +59,46 @@
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // jsonValueTextBox
+            // 
+            this.jsonValueTextBox.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.jsonValueTextBox.AutoIndentCharsPatterns = "\r\n^\\s*[\\w\\.]+(\\s\\w+)?\\s*(?<range>=)\\s*(?<range>[^;]+);\r\n";
+            this.jsonValueTextBox.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.jsonValueTextBox.BackBrush = null;
+            this.jsonValueTextBox.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2;
+            this.jsonValueTextBox.CharHeight = 14;
+            this.jsonValueTextBox.CharWidth = 8;
+            this.jsonValueTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.jsonValueTextBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.jsonValueTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jsonValueTextBox.IsReplaceMode = false;
+            this.jsonValueTextBox.Language = FastColoredTextBoxNS.Language.JS;
+            this.jsonValueTextBox.LeftBracket = '(';
+            this.jsonValueTextBox.LeftBracket2 = '{';
+            this.jsonValueTextBox.Location = new System.Drawing.Point(3, 16);
+            this.jsonValueTextBox.Name = "jsonValueTextBox";
+            this.jsonValueTextBox.Paddings = new System.Windows.Forms.Padding(0);
+            this.jsonValueTextBox.RightBracket = ')';
+            this.jsonValueTextBox.RightBracket2 = '}';
+            this.jsonValueTextBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.jsonValueTextBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("jsonValueTextBox.ServiceColors")));
+            this.jsonValueTextBox.Size = new System.Drawing.Size(515, 546);
+            this.jsonValueTextBox.TabIndex = 0;
+            this.jsonValueTextBox.Zoom = 100;
+            this.jsonValueTextBox.TextChangedDelayed += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.jsonValueTextBox_TextChangedDelayed);
+            this.jsonValueTextBox.Enter += new System.EventHandler(this.jsonValueTextBox_Enter);
+            this.jsonValueTextBox.Leave += new System.EventHandler(this.jsonValueTextBox_Leave);
             // 
             // menuStrip1
             // 
@@ -117,7 +161,7 @@
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(0, 52);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 27);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -127,7 +171,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(920, 540);
+            this.splitContainer1.Size = new System.Drawing.Size(920, 565);
             this.splitContainer1.SplitterDistance = 395;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -137,7 +181,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 540);
+            this.groupBox1.Size = new System.Drawing.Size(395, 565);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "JSON Tree";
@@ -148,7 +192,7 @@
             this.jsonTreeView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.jsonTreeView.Location = new System.Drawing.Point(3, 16);
             this.jsonTreeView.Name = "jsonTreeView";
-            this.jsonTreeView.Size = new System.Drawing.Size(389, 521);
+            this.jsonTreeView.Size = new System.Drawing.Size(389, 546);
             this.jsonTreeView.TabIndex = 0;
             this.jsonTreeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.jsonTreeView_AfterCollapse);
             this.jsonTreeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.jsonTreeView_AfterExpand);
@@ -161,23 +205,10 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(521, 540);
+            this.groupBox2.Size = new System.Drawing.Size(521, 565);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JSON Editor";
-            // 
-            // jsonValueTextBox
-            // 
-            this.jsonValueTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.jsonValueTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.jsonValueTextBox.Location = new System.Drawing.Point(3, 16);
-            this.jsonValueTextBox.Multiline = true;
-            this.jsonValueTextBox.Name = "jsonValueTextBox";
-            this.jsonValueTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.jsonValueTextBox.Size = new System.Drawing.Size(515, 521);
-            this.jsonValueTextBox.TabIndex = 0;
-            this.jsonValueTextBox.Enter += new System.EventHandler(this.jsonValueTextBox_Enter);
-            this.jsonValueTextBox.Leave += new System.EventHandler(this.jsonValueTextBox_Leave);
             // 
             // statusStrip1
             // 
@@ -201,7 +232,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(679, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(797, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // jsonStatusLabel
@@ -215,26 +246,18 @@
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(921, 25);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 617);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "App";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.jsonValueTextBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -243,7 +266,6 @@
             this.splitContainer1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -263,14 +285,13 @@
         private System.Windows.Forms.TreeView jsonTreeView;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.TextBox jsonValueTextBox;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel actionStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel jsonStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private FastColoredTextBox jsonValueTextBox;
     }
 }
 
