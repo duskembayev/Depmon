@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Services", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Services.Impl", "Depmon.Server.Services.Impl\Depmon.Server.Services.Impl.csproj", "{67798E5D-03EF-4BB6-BAB0-420A16ABBCE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Depmon.Server.Collector.ConfigBuilder", "Depmon.Server.Collector.ConfigBuilder\Depmon.Server.Collector.ConfigBuilder.csproj", "{357BB5EF-2E5E-4CAD-AD41-9C0165733709}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,18 @@ Global
 		{67798E5D-03EF-4BB6-BAB0-420A16ABBCE8}.Release|x64.Build.0 = Release|Any CPU
 		{67798E5D-03EF-4BB6-BAB0-420A16ABBCE8}.Release|x86.ActiveCfg = Release|Any CPU
 		{67798E5D-03EF-4BB6-BAB0-420A16ABBCE8}.Release|x86.Build.0 = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|x64.Build.0 = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Debug|x86.Build.0 = Debug|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|x64.ActiveCfg = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|x64.Build.0 = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|x86.ActiveCfg = Release|Any CPU
+		{357BB5EF-2E5E-4CAD-AD41-9C0165733709}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

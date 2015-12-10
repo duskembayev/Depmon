@@ -25,39 +25,35 @@ namespace Depmon.Server.Portal.React.Controllers
         }
 
         [HttpGet]
+        public HttpResponseMessage GetLastReportDate()
+        {
+            var sql = QueryStore.LastReportDate();
+
+            var data = _unitOfWork.Session.Query(sql).Single();
+            var response = CreateJsonObjectResponse(data);
+            return response;
+        }
+
+        [HttpGet]
         public HttpResponseMessage IsNewReportExist(DateTime dateTime)
         {
             var sql = QueryStore.IsNewReportExist();
 
             var data = _unitOfWork.Session.Query(sql, new { dateTime }).Single();
-            var serializer = JsonSerializer.Create(new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(JObject.FromObject(data, serializer).ToString(), Encoding.UTF8,
-                "application/json");
+            var response = CreateJsonObjectResponse(data);
             return response;
         }
-
+        
         [HttpGet]
         public HttpResponseMessage Sources()
         {
             var sql = QueryStore.SourceQuery();
 
             var data = _unitOfWork.Session.Query(sql);
-             var serializer = JsonSerializer.Create(new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            response.Content = new StringContent(JArray.FromObject(data, serializer).ToString(), Encoding.UTF8,
-                "application/json");
+             var response = CreateJsonArrayResponse(data);
             return response;
         }
-
+        
         [HttpGet]
         public HttpResponseMessage SourceInfo(string sourceCode = null)
         {
@@ -104,6 +100,32 @@ namespace Depmon.Server.Portal.React.Controllers
             root.Add("sources", JArray.FromObject(list, serializer));
             var response = Request.CreateResponse(HttpStatusCode.OK);
             response.Content = new StringContent(root.ToString(), Encoding.UTF8,
+                "application/json");
+            return response;
+        }
+
+        private HttpResponseMessage CreateJsonObjectResponse(dynamic data)
+        {
+            var serializer = JsonSerializer.Create(new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(JObject.FromObject(data, serializer).ToString(), Encoding.UTF8,
+                "application/json");
+            return response;
+        }
+
+        private HttpResponseMessage CreateJsonArrayResponse(IEnumerable<dynamic> data)
+        {
+            var serializer = JsonSerializer.Create(new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent(JArray.FromObject(data, serializer).ToString(), Encoding.UTF8,
                 "application/json");
             return response;
         }
