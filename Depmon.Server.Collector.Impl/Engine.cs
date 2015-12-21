@@ -12,7 +12,6 @@ using Depmon.Server.Database;
 using Depmon.Server.Database.Queries;
 using Depmon.Server.Domain;
 using Depmon.Server.Services;
-using Depmon.Server.Services.Impl;
 
 namespace Depmon.Server.Collector.Impl
 {
@@ -134,7 +133,7 @@ namespace Depmon.Server.Collector.Impl
 
         private void OnProcess(Mailbox mailbox, CancellationToken cancellationToken)
         {
-            Console.WriteLine("[{0}] monitoring started", mailbox.Name);
+            Console.WriteLine("[{1}] - [{0}] monitoring started", mailbox.Name, DateTime.Now);
 
             while (!cancellationToken.IsCancellationRequested)
             {

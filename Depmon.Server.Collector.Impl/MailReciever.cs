@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
 using Depmon.Server.Collector.Configuration;
 using MailKit.Net.Pop3;
 using MimeKit;
@@ -22,7 +20,7 @@ namespace Depmon.Server.Collector.Impl
                 client.Authenticate(mailbox.Username, mailbox.Password);
 
                 var msgCount = client.Count;
-                Console.WriteLine("[{1}] {0} new messages found", msgCount, mailbox.Username);
+                Console.WriteLine("[{2}] - [{1}] {0} new messages found", msgCount, mailbox.Username, DateTime.Now);
 
                 for (var li = 0; li < msgCount; li++)
                 {
@@ -55,11 +53,6 @@ namespace Depmon.Server.Collector.Impl
             }
 
             return result;
-        }
-
-        private bool CertificateValidator(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-        {
-            return true;
         }
     }
 }
